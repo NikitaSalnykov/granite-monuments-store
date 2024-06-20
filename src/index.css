@@ -1,0 +1,184 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+@import './assets/fonts/custom-fonts.css';
+
+body {
+  background-color: #212121;
+  /* background-image: url('./assets/background.png'); */
+  background-size: auto 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  font-weight: 400;
+  font-style: normal;
+  color: #fafafa;
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-top: 0;
+}
+a {
+  text-decoration: none;
+}
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+img {
+  display: block;
+}
+button {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 440px) {
+  .bg-black {
+      background-position: -250px 20px;
+      background-size: 220%;
+  }
+}
+
+@media screen and (min-width: 440px) and (max-width: 700px) {
+    .bg-black {
+        background-position: -250px 80px;
+        background-size: 150%;
+    }
+}
+
+@media screen and (min-width: 700px) and (max-width: 767px) {
+  .bg-black {
+      background-position: -250px -120px;
+      background-size: 150%;
+  }
+}
+
+/* Для экранов размером md и выше */
+@media screen and (min-width: 767px) and (max-width: 1240px) {
+    .bg-black {
+        background-position: -240px;
+        background-size: 100%;
+    }
+}
+
+@media screen and (min-width: 1240px) {
+  .bg-black {
+      background-position: -450px;
+      background-size: 100%;
+  }
+}
+
+.swiper-pagination {
+  /* Цвет активной точки */
+  --swiper-pagination-color: #f1d8cd;
+  /* Цвет неактивных точек */
+  --swiper-pagination-color: #f1d8cd;
+  cursor: pointer;
+}
+
+.swiper-pagination-fraction, .swiper-pagination-custom, .swiper-horizontal > .swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal {
+  top: 460px;
+}
+
+.swiper-pagination-bullet{
+  background: #f1d8cd;
+
+}
+
+@media screen and (max-width: 767px) {
+  .swiper-pagination-fraction, .swiper-pagination-custom, .swiper-horizontal > .swiper-pagination-bullets, .swiper-pagination-bullets.swiper-pagination-horizontal {
+    top: 330px;
+  }
+}
+
+#products > .swiper-horizontal {
+  top: 1100px;
+}
+
+@media screen and (max-width: 767px) {
+  iframe {
+    height: 400px;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  iframe {
+    height: 500px;
+  }
+}
+
+
+.visually-hidden {
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  border: 0;
+  padding: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  margin: -1px;
+}
+
+.swiper-products .swiper-pagination {
+  transform: translateY(260px);
+
+}
+
+.swiper-products  .swiper-pagination-bullet{
+  background: #471600;
+
+}
+
+
+@media screen and (min-width: 1480px) {
+  .swiper-products .swiper-pagination {
+    transform: translateY(170px);
+  }
+  
+  
+  .swiper-products  .swiper-pagination-bullet{
+    background: #471600;
+  
+  }
+}
+
+  
+  
+.swiper-products  .swiper-pagination-bullet{
+  background: #471600;
+
+}
+
+@media screen and (max-width: 767px) {
+  .swiper-products .swiper-pagination {
+    transform: translateY(233px);
+  }
+}
+
+@media screen and (min-width: 767px) and (max-width: 1439px) {
+  .swiper-products .swiper-pagination {
+    transform: translateY(260px);
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .swiper-products .swiper-pagination {
+    transform: translateY(170px);
+  }
+}
+
+.active {
+  font-weight: 600;
+  text-decoration: solid;
+}
+
