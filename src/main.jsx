@@ -7,7 +7,7 @@ import './i18n';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-  <BrowserRouter basename="/video-production-front">
+  <BrowserRouter basename="/granite-monuments">
       <App />
     </BrowserRouter>
   </React.StrictMode>,

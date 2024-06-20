@@ -12,5 +12,5 @@ export default defineConfig({
           assets: '/src/assets'
         },
       },
-      base: '/video-production-front',
+      base: '/granite-monuments',
     });
