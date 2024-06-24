@@ -1,4 +1,5 @@
 
+import { Background } from "../../components/Background/Background";
 import {Container} from "../../components/Container/Container"
 
 
@@ -6,8 +7,10 @@ import {Container} from "../../components/Container/Container"
 
 const MainPage = () => {
   return (
-<div className="">
+<div className=" h-screen">
     <Container>
+      <p>aaaa</p>
+      <Background/>
     </Container>
 </div>
   );

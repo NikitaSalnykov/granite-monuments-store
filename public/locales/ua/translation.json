@@ -1,8 +1,20 @@
 {
-  "home": "Головна",
-  "about": "Про мене",
-  "contacts": "Контакти",
-  "all-works": "Всі роботи",
-  "": "",
-  "description": "Это многоязычное приложение"
+  "monuments": "Пам`ятники",
+  "availability": "В наявності",
+  "vertical": "Вертикальні",
+  "horizontal": "Горизонтальні",
+  "small": "Маленькі",
+  "landscaping": "Благоустрій",
+  "anti_settlement_slabs": "Плити протиусадочні",
+  "paving_tiles": "Тротуарна плитка",
+  "granite_tiles": "Гранітна плитка",
+  "fencing": "Огородження",
+  "tables_and_benches": "Столи та лавки",
+  "vases_and_lamps": "Вази та лампади",
+  "cubes_and_spheres": "Куби та шари",
+  "related_products": "Супутні товари",
+  "glass_photos": "Фото у склі",
+  "plaques": "Таблички",
+  "embedded_parts": "Закладні",
+  "building_materials": "Будматеріали"
 }

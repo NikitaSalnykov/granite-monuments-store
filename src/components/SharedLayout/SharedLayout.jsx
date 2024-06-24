@@ -20,7 +20,9 @@ const SharedLayout = () => {
         <Header/>
       </header>
       <Suspense fallback="....">
+        <div className="pt-[150px]">
         <Outlet />
+        </div>
       </Suspense>
       <Footer/>
     </>

@@ -5,6 +5,7 @@ const Svg = ({
   size,
   fill,
   stroke,
+  strokeWidth,
   className = '',
   onClick,
   classNameSvg = '',
@@ -17,6 +18,7 @@ const Svg = ({
         height={size}
         fill={fill}
         stroke={stroke}
+        strokeWidth={strokeWidth}
       >
         <use href={`${sprite}#${id}`} />
       </svg>

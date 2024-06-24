@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
-export const Dropdown = () => {
+export const Dropdown = ({title, links}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const dropdownMenuRef = useRef(null);
@@ -13,9 +14,7 @@ export const Dropdown = () => {
     setSearchTerm(e.target.value.toLowerCase());
   };
 
-  const filteredItems = ['Uppercase', 'Lowercase', 'Camel Case', 'Kebab Case'].filter(item =>
-    item.toLowerCase().includes(searchTerm)
-  );
+  // const links = [{title:"Гранит", link:""}]
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -31,14 +30,15 @@ export const Dropdown = () => {
   }, []);
 
   return (
-    <div className="flex items-center justify-center">
+    <div className="flex items-center justify-center ">
       <div className="relative group" ref={dropdownMenuRef}>
         <button
           id="dropdown-button"
           onClick={toggleDropdown}
-          className="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 bg-white "
+          className=" px-4 py-2 cursor-pointer rounded-sm text-sm font-medium hover:bg-gray-100  flex items-center justify-center"
         >
-          <span className="mr-2">Open Dropdown</span>
+          <span>{title}</span>
+          <div className={` transition-transform ${isOpen && " scale-y-[-1]"} `}>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="w-5 h-5 ml-2 -mr-1"
@@ -52,21 +52,16 @@ export const Dropdown = () => {
               clipRule="evenodd"
             />
           </svg>
+          </div>
         </button>
         {isOpen && (
           <div
             id="dropdown-menu"
-            className="absolute right-0 mt-2 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 p-1 space-y-1 w-40"
+            className="absolute right-0 mt-2 w-[200px] rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 py-3 px-6 space-y-3 flex flex-col"
           >
 
-            {filteredItems.map((item, index) => (
-              <a
-                key={index}
-                href="#"
-                className="block px-4 py-2 text-gray-700 hover:bg-gray-100 active:bg-blue-100 cursor-pointer rounded-md"
-              >
-                {item}
-              </a>
+            {links && links.map((item, index) => (
+              <Link to={item.link}>{item.title}</Link>
             ))}
           </div>
         )}

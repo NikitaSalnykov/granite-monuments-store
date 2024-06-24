@@ -76,7 +76,7 @@ const Footer = () => {
   </div>
 
   <div class="w-full bg-black/5 p-4 text-center text-white">
-    © 2024 Banya na ozeri
+    © 2024 Memorial Service
   </div>
 </footer>
   )

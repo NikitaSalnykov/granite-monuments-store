@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { MobileMenu } from '../MobileMenu/MobileMenu';
 import { Dropdown } from '../Dropdown/Dropdown';
+import { Logo } from '../Logo/Logo';
 
 const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -19,16 +20,15 @@ const Header = () => {
     setIsModalOpen(!isModalOpen);
   };
 
+  console.log(currentLanguage);
+
   return (
     <div>
-      <div class="bg-white">
+      <div class="bg-white z-50 fixed mx-auto w-full">
   <div class="border py-3 px-6">
-    <div class="flex justify-between">
+    <div class="flex justify-between items-center">
       <div class="flex items-center">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
-        </svg>
-        <span class="ml-2 font-semibold text-[#252C32]">What a Market</span>
+        <Logo/>
       </div>
 
       <div class="ml-6 flex flex-1 gap-x-3">
@@ -68,33 +68,64 @@ const Header = () => {
           <span class="text-sm font-medium">Cart</span>
         </div>
 
-        <div class="ml-2 flex cursor-pointer items-center gap-x-1 rounded-md border py-2 px-4 hover:bg-gray-100">
+        {/* <div class="ml-2 flex cursor-pointer items-center gap-x-1 rounded-md border py-2 px-4 hover:bg-gray-100">
           <span class="text-sm font-medium">Sign in</span>
-        </div>
+        </div> */}
+
+          <div className="lg:flex justify-center text-black flex cursor-pointer items-center gap-x-1 rounded-md  px-1 hover:bg-gray-100">
+            <button onClick={() => changeLanguage('ua')} className={`${currentLanguage === 'ua' ? 'font-semibold' : 'opacity-75'}`}>ua</button>
+          </div>
+          <div className="lg:flex justify-center text-black flex cursor-pointer items-center gap-x-1 rounded-md  px-1 hover:bg-gray-100">
+            <button  onClick={() => changeLanguage('ru')} className={`${currentLanguage === 'ru' ? 'font-semibold' : 'opacity-75'}`}>ru</button>
+          </div>
       </div>
     </div>
 
     <div class="mt-4 flex items-center justify-between">
-      <div class="flex gap-x-2 py-1 px-2">
+      <div class="flex gap-x-2 py-1">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-500" viewBox="0 0 20 20" fill="currentColor">
           <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
         </svg>
-        <span class="text-sm font-medium">California</span>
+        <span class="text-sm font-medium">Україна, м.Дніпро</span>
       </div>
 
       <div class="flex gap-x-8">
-        <Dropdown/>
-        <span class="cursor-pointer rounded-sm py-1 px-2 text-sm font-medium hover:bg-gray-100">Best seller</span>
-        <span class="cursor-pointer rounded-sm py-1 px-2 text-sm font-medium hover:bg-gray-100">New Releases</span>
-        <span class="cursor-pointer rounded-sm py-1 px-2 text-sm font-medium hover:bg-gray-100">Books</span>
-        <span class="cursor-pointer rounded-sm py-1 px-2 text-sm font-medium hover:bg-gray-100">Computers</span>
-        <span class="cursor-pointer rounded-sm py-1 px-2 text-sm font-medium hover:bg-gray-100">Fashion</span>
-        <span class="cursor-pointer rounded-sm py-1 px-2 text-sm font-medium hover:bg-gray-100">Health</span>
-        <span class="cursor-pointer rounded-sm py-1 px-2 text-sm font-medium hover:bg-gray-100">Pharmacy</span>
-        <span class="cursor-pointer rounded-sm py-1 px-2 text-sm font-medium hover:bg-gray-100">Toys & Games</span>
-      </div>
+    <Dropdown 
+        title={t('monuments')} 
+        links={[
+            {title: t('availability'), link: ""}, 
+            {title: t('vertical'), link: ""}, 
+            {title: t('horizontal'), link: ""}, 
+            {title: t('small'), link: ""}
+        ]}
+    />
+    <Dropdown 
+        title={t('landscaping')} 
+        links={[
+            {title: t('anti_settlement_slabs'), link: ""}, 
+            {title: t('paving_tiles'), link: ""}, 
+            {title: t('granite_tiles'), link: ""}, 
+            {title: t('fencing'), link: ""}, 
+            {title: t('tables_and_benches'), link: ""}, 
+            {title: t('vases_and_lamps'), link: ""}, 
+            {title: t('cubes_and_spheres'), link: ""}
+        ]}
+    />
+    <Dropdown 
+        title={t('related_products')} 
+        links={[
+            {title: t('glass_photos'), link: ""}, 
+            {title: t('plaques'), link: ""}, 
+            {title: t('embedded_parts'), link: ""}
+        ]}
+    />
+    <div className='px-4 py-2 cursor-pointer rounded-sm text-sm font-medium hover:bg-gray-100 flex items-center justify-center'>
+        {t('building_materials')}
+    </div>
+</div>
 
-      <span class="cursor-pointer rounded-sm py-1 px-2 text-sm font-medium hover:bg-gray-100">Becoma a seller</span>
+
+      <span class="cursor-pointer rounded-sm py-1 px-2 text-sm font-medium hover:bg-gray-100">+38056345654</span>
     </div>
   </div>
 </div>
