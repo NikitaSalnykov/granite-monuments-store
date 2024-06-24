@@ -4,7 +4,6 @@ import Header from '../Header/Header';
 import Footer from '../Footer/Footer';
 
 const SharedLayout = () => {
-
   const handleNavigate = () => {
     window.scrollTo(0, 0);
   };
@@ -17,14 +16,16 @@ const SharedLayout = () => {
   return (
     <>
       <header>
-        <Header/>
+        <Header />
       </header>
       <Suspense fallback="....">
-        <div className="pt-[150px]">
-        <Outlet />
+        <div className="pt-[100px]">
+          <Outlet />
         </div>
       </Suspense>
-      <Footer/>
+      <footer>
+        <Footer />
+      </footer>
     </>
   );
 };

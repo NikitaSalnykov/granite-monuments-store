@@ -1,18 +1,12 @@
-
-import { Background } from "../../components/Background/Background";
-import {Container} from "../../components/Container/Container"
-
-
-
+import { Background } from '../../components/Background/Background';
+import { Container } from '../../components/Container/Container';
 
 const MainPage = () => {
   return (
-<div className=" h-screen">
-    <Container>
+    <div className=" h-screen">
       <p>aaaa</p>
-      <Background/>
-    </Container>
-</div>
+      <Background />
+    </div>
   );
 };
 
