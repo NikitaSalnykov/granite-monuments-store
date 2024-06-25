@@ -1,4 +1,7 @@
 {
+  "name":"Меморіал Сервіс",
+  "secondary_name":"Пам'ятники з граніту",
+  "main": "Головна",
   "monuments": "Пам`ятники",
   "availability": "В наявності",
   "vertical": "Вертикальні",
@@ -16,5 +19,9 @@
   "glass_photos": "Фото у склі",
   "plaques": "Таблички",
   "embedded_parts": "Закладні",
-  "building_materials": "Будматеріали"
+  "building_materials": "Будматеріали",
+  "extra_services": "Додаткові послуги",
+  "contacts": "Контакти",
+  "locate": "Україна, м.Дніпро",
+  "favorites": "Обране"
 }
