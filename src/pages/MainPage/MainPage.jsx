@@ -4,8 +4,7 @@ import { Container } from '../../components/Container/Container';
 const MainPage = () => {
   return (
     <div className=" h-screen">
-      <p>aaaa</p>
-      <Background />
+        
     </div>
   );
 };

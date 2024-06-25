@@ -1,7 +1,10 @@
 import { Link } from 'react-router-dom';
 import Svg from '../Svg/Svg';
+import { useTranslation } from 'react-i18next';
 
 export const Logo = ({ size, textSize, textColor }) => {
+  const { t } = useTranslation();
+
   return (
     <Link
       to="/"
@@ -16,10 +19,10 @@ export const Logo = ({ size, textSize, textColor }) => {
       ></Svg>
       <div className="flex flex-col  leading-none ">
         <p className={` text-${textColor || 'black'} font-bold`}>
-          Меморіал Сервіс
+          {t("name")}
         </p>
         <p className={`text-${textColor || 'black'} text-xs`}>
-          Пам'ятники з граніту
+        {t("secondary_name")}
         </p>
       </div>
     </Link>

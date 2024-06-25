@@ -1,7 +1,7 @@
 
 const AboutPage = () => {
   return (
-    <div>
+    <div className='h-screen'>
     </div>
   );
 };

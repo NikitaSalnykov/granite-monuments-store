@@ -1,4 +1,7 @@
 {
+  "name":"Мемориал Сервис",
+  "secondary_name":"Памятники из гранита",
+  "main": "Главная",
   "monuments": "Памятники",
   "availability": "В наличии",
   "vertical": "Вертикальные",
@@ -16,5 +19,9 @@
   "glass_photos": "Фото в стекле",
   "plaques": "Таблички",
   "embedded_parts": "Закладные",
-  "building_materials": "Стройматериалы"
+  "building_materials": "Стройматериалы",
+  "extra_services": "Доп. услуги",
+  "contacts": "Контакты",
+  "locate": "Украина, г.Днепр",
+  "favorites": "Выбранное"
 }

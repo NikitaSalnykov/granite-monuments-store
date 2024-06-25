@@ -4,6 +4,7 @@ import { MobileMenu } from '../MobileMenu/MobileMenu';
 import { Dropdown } from '../Dropdown/Dropdown';
 import { Logo } from '../Logo/Logo';
 import Svg from '../Svg/Svg';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -32,50 +33,51 @@ const Header = () => {
               </div>
             </div>
 
-            <div className="hidden lg:flex gap-x-4">
+            <div className="hidden lg:flex gap-x-4 text-sm">
               <Dropdown
                 title={t('monuments')}
                 links={[
-                  { title: t('availability'), link: '' },
-                  { title: t('vertical'), link: '' },
-                  { title: t('horizontal'), link: '' },
-                  { title: t('small'), link: '' },
+                  { title: t('availability'), link: '/memorials/availability' },
+                  { title: t('vertical'), link: '/memorials/vertical' },
+                  { title: t('horizontal'), link: 'memorials/horizontal' },
+                  { title: t('small'), link: 'memorials/small' },
                 ]}
               />
               <Dropdown
                 title={t('landscaping')}
                 links={[
-                  { title: t('anti_settlement_slabs'), link: '' },
-                  { title: t('paving_tiles'), link: '' },
-                  { title: t('granite_tiles'), link: '' },
-                  { title: t('fencing'), link: '' },
-                  { title: t('tables_and_benches'), link: '' },
-                  { title: t('vases_and_lamps'), link: '' },
-                  { title: t('cubes_and_spheres'), link: '' },
+                  { title: t('anti_settlement_slabs'), link: '/landscaping/antisettlementslabs' },
+                  { title: t('paving_tiles'), link: '/landscaping/pavingtiles' },
+                  { title: t('granite_tiles'), link: '/landscaping/granitetiles' },
+                  { title: t('fencing'), link: '/landscaping/fencing' },
+                  { title: t('tables_and_benches'), link: '/landscaping/tablesandbenches' },
+                  { title: t('vases_and_lamps'), link: '/landscaping/vasesandlamps' },
+                  { title: t('cubes_and_spheres'), link: '/landscaping/cubesandspheres' },
                 ]}
               />
               <Dropdown
                 title={t('related_products')}
                 links={[
-                  { title: t('glass_photos'), link: '' },
-                  { title: t('plaques'), link: '' },
-                  { title: t('embedded_parts'), link: '' },
+                  { title: t('glass_photos'), link: '/relatedproducts/glassphotos' },
+                  { title: t('plaques'), link: '/relatedproducts/plaques' },
+                  { title: t('embedded_parts'), link: '/relatedproducts/embeddedparts' },
                 ]}
               />
-              <div className=" text-center px-2 py-2 cursor-pointer rounded-sm font-medium hover:bg-gray-100 flex items-center justify-center">
+
+              <Link to={'/buildingmaterials'} className=" text-center px-2 py-2 cursor-pointer rounded-sm font-medium hover:bg-gray-100 flex items-center justify-center">
                 {t('building_materials')}
-              </div>
-              <div className="px-2 py-2 text-center  cursor-pointer rounded-sm font-medium hover:bg-gray-100 flex items-center justify-center">
-                Додаткові послуги
-              </div>
-              <div className="px-2 py-2 text-center  cursor-pointer rounded-sm font-medium hover:bg-gray-100 flex items-center justify-center">
-                Контакти
-              </div>
+              </Link>
+              <Link to={'/services'} className="px-2 py-2 text-center  cursor-pointer rounded-sm font-medium hover:bg-gray-100 flex items-center justify-center">
+              {t('extra_services')}
+              </Link>
+              <Link to={'/about'} className="px-2 py-2 text-center  cursor-pointer rounded-sm font-medium hover:bg-gray-100 flex items-center justify-center">
+              {t('contacts')}
+              </Link>
             </div>
 
             <div className="hidden lg:flex justify-center items-center gap-8">
               <div className="ml-2 flex">
-                <div className="flex cursor-pointer items-center gap-x-1 rounded-md py-2 px-4 hover:bg-gray-100">
+                <Link to={'/favorite'} className="flex cursor-pointer items-center gap-x-1 rounded-md py-2 px-4 hover:bg-gray-100">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-5 w-5 text-gray-500"
@@ -89,8 +91,8 @@ const Header = () => {
                       clip-rule="evenodd"
                     />
                   </svg>
-                  <span className="text-sm font-medium">Orders</span>
-                </div>
+                  <span className="text-sm font-medium">{t('favorites')}</span>
+                </Link>
 
                 {/* <div className="flex cursor-pointer items-center gap-x-1 rounded-md py-2 px-4 hover:bg-gray-100">
                 <svg
@@ -154,10 +156,10 @@ const Header = () => {
                 </div>
               </div>
               <div>
-                <div className="flex gap-x-2 py-1">
+                <div className="flex gap-x-1 py-1">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5 text-gray-500"
+                    className="h-4 w-4 text-gray-500"
                     viewBox="0 0 20 20"
                     fill="currentColor"
                   >
@@ -167,11 +169,11 @@ const Header = () => {
                       clipRule="evenodd"
                     />
                   </svg>
-                  <span className="text-sm font-medium">Україна, м.Дніпро</span>
+                  <span className="text-xs font-medium">{t('locate')}</span>
                 </div>
                 <div className="flex gap-x-2 py-1">
-                  <Svg id={'icon-phone'} size={18} fill={'gray'} />
-                  <p className="cursor-pointer rounded-sm text-sm font-medium hover:bg-gray-100">
+                  <Svg id={'icon-phone'} size={14} fill={'gray'} />
+                  <p className="cursor-pointer rounded-sm text-xs font-medium hover:bg-gray-100">
                     +38056345654
                   </p>
                 </div>
