@@ -24,8 +24,8 @@ const Header = () => {
 
   return (
     <div>
-      <div className="bg-white z-50 fixed mx-auto w-full">
-        <div className="border py-3 px-6">
+      <div className="bg-[#ffffffeb] z-50 fixed mx-auto w-full">
+        <div className="border-b py-3 px-6">
           <div className="flex justify-between items-center">
             <div className="flex gap-8">
               <div className="flex items-center">

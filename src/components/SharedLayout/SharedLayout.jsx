@@ -22,7 +22,7 @@ const SharedLayout = () => {
         <Header />
       </header>
 
-      <div className="relative">
+      <div className="relative overflow-hidden">
 
       <Container>
       <div className="pt-[60px]">  
