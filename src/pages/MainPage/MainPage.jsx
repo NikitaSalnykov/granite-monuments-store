@@ -1,11 +1,9 @@
-import { Background } from '../../components/Background/Background';
-import { Container } from '../../components/Container/Container';
-import { ProductList } from '../../components/ProductList/ProductList';
+import {Features} from '../../components/Features/Features'
 
 const MainPage = () => {
   return (
-    <div className="pb-20">
-        <ProductList/>
+    <div className="pb-20"> 
+    <Features/>
     </div>
   );
 };
