@@ -29,7 +29,7 @@ const Header = () => {
           <div className="flex justify-between items-center">
             <div className="flex gap-8">
               <div className="flex items-center">
-                <Logo />
+                <Logo size={48} secondaryTextSize={'sm'}/>
               </div>
             </div>
 

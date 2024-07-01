@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import Svg from '../Svg/Svg';
 import { useTranslation } from 'react-i18next';
 
-export const Logo = ({ size, textSize, textColor }) => {
+export const Logo = ({ size, textSize, textColor, secondaryTextSize }) => {
   const { t } = useTranslation();
 
   return (
@@ -12,16 +12,16 @@ export const Logo = ({ size, textSize, textColor }) => {
     >
       <Svg
         id={'icon-logo'}
-        size={48}
+        size={size}
         fill={'black'}
         stroke={'white'}
         strokeWidth={2}
       ></Svg>
       <div className="flex flex-col  leading-none">
-        <p className={` text-${textColor || 'black'} font-bold`}>
+        <p className={` text-${textColor || 'black'} font-bold text-${textSize}`}>
           {t("name")}
         </p>
-        <p className={`text-${textColor || 'black'} text-xs`}>
+        <p className={`text-${textColor || 'black'}  opacity-70 text-${secondaryTextSize}`}>
         {t("secondary_name")}
         </p>
       </div>

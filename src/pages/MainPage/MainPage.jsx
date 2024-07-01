@@ -1,10 +1,20 @@
+import { Container } from '../../components/Container/Container';
 import {Features} from '../../components/Features/Features'
+import {Hero} from '../../components/Hero/Hero'
+import { Section } from '../../components/Section/Section';
 
 const MainPage = () => {
   return (
-    <div className="pb-20"> 
+<>
+    <Container> 
+    <Section>
+    <Hero/>
+    </Section>
+    <Section>
     <Features/>
-    </div>
+    </Section>
+    </Container>
+    </>
   );
 };
 
