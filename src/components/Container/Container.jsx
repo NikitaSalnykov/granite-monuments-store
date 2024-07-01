@@ -1,7 +1,5 @@
-import React from 'react'
+import React from 'react';
 
-export const Container = ({children}) => {
-  return (
-    <div className='xl:container px-4 xl:px-0'>{children}</div>
-  )
-}
+export const Container = ({ children }) => {
+  return <div className="xl:container px-4 xl:px-0">{children}</div>;
+};
