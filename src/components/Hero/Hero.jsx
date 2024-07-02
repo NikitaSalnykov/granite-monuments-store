@@ -23,7 +23,7 @@ export const Hero = () => {
             </button>
           </div>
         </div>
-        <div className="w-full md:w-1/2 flex justify-center grayscale-[100%]">
+        <div className="w-full md:w-1/2 flex justify-center grayscale-[100%] rounded-lg overflow-hidden">
           <img src={photo} />
         </div>
       </div>

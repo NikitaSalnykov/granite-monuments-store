@@ -23,7 +23,7 @@ export const Background = () => {
 
   return (
     <div className=" ">
-      <div className="w-full h-full overflow-hidden opacity-[15%] -z-10 grayscale-[20%] absolute bottom-0 right-0 " style={bg2Style}>
+      <div className="w-full h-full overflow-hidden opacity-[10%] -z-10 grayscale-[20%] absolute bottom-0 right-0 " style={bg2Style}>
         <img
           src={bg}
           alt="gravestone-background"

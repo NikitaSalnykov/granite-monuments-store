@@ -3,6 +3,7 @@ import { Features } from '../../components/Features/Features';
 import { Hero } from '../../components/Hero/Hero';
 import { Reviews } from '../../components/Reviews/Reviews';
 import { Section } from '../../components/Section/Section';
+import { Works } from '../../components/Works/Works';
 
 const MainPage = () => {
   return (
@@ -13,6 +14,9 @@ const MainPage = () => {
         </Section>
         <Section>
           <Features />
+        </Section>
+        <Section>
+          <Works />
         </Section>
         <Section>
           <Reviews />
