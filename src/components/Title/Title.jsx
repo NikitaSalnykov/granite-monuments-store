@@ -1,7 +1,12 @@
-export const Title = ({ title, accent }) => {
+export const Title = ({ title, accent, description }) => {
   return (
-    <h3 className="text-center text-3xl md:text-4xl lg:text-4xl capitalize tracking-widest text-gray-800 font-semibold mb-6 md:mb-12 lg:mb-16 ">
-      {title} <span className="text-black">{accent}</span>
-    </h3>
+    <div className="mb-6 md:mb-8 lg:mb-12 ">
+      <h3 className="md:text-4xl lg:text-4xl text-4xl font-bold text-gray-800 tracking-widest uppercase text-center">
+        {title} <span className="text-black">{accent}</span>
+      </h3>
+      {description && (
+        <p className="text-center text-gray-600 text-sm mt-2">{description}</p>
+      )}
+    </div>
   );
 };
