@@ -14,7 +14,7 @@ export const Features = () => {
             <h3 className="text-lg md:text-xl font-bold text-gray-700">
               Висока якість
             </h3>
-            <p className="text-gray-600 my-2 md:text-lg">
+            <p className="text-gray-600 my-2  text-md  lg:text-lg">
               Довговічність та стійкість матеріалів. Lorem ipsum dolor sit amet,
               consectetur adipisicing elit. Perspiciatis, voluptatibus ab earum
               iusto velit, officiis quis eligendi nulla id facere soluta ipsa,
@@ -36,7 +36,7 @@ export const Features = () => {
             <h3 className="text-lg md:text-xl font-bold text-gray-700">
               Перевезення/встановлення
             </h3>
-            <p className="text-gray-600 my-2 md:text-lg">
+            <p className="text-gray-600 my-2  text-md  lg:text-lg">
               Повний сервіс від початку до кінця. Lorem ipsum dolor sit amet
               consectetur adipisicing elit. Possimus quasi id placeat? Lorem
               ipsum dolor sit amet consectetur adipisicing elit. Possimus quasi
@@ -58,7 +58,7 @@ export const Features = () => {
             <h3 className="text-lg md:text-xl font-bold text-gray-700">
               Швидкість
             </h3>
-            <p className="text-gray-600 my-2 md:text-lg">
+            <p className="text-gray-600 my-2  text-md  lg:text-lg">
               Виготовлення протягом 14 днів. Lorem ipsum dolor sit amet
               consectetur adipisicing elit. Veritatis, aspernatur ex similique,
               ad amet illum explicabo libero nisi quidem, architecto aliquam

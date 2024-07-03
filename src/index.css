@@ -184,3 +184,23 @@ button {
   text-decoration: solid;
 }
 
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #c5c5c571;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(129, 129, 129);
+}
+
+::-webkit-scrollbar {
+  border-radius: 15px;
+}
