@@ -1,3 +1,4 @@
+import { AllCategories } from '../../components/AllCategories/AllCategories';
 import { Container } from '../../components/Container/Container';
 import { Features } from '../../components/Features/Features';
 import { Hero } from '../../components/Hero/Hero';
@@ -14,6 +15,9 @@ const MainPage = () => {
         </Section>
         <Section>
           <Features />
+        </Section>
+        <Section>
+          <AllCategories />
         </Section>
         <Section>
           <Works />
