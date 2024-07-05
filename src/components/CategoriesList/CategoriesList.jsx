@@ -12,7 +12,7 @@ export const CategoriesList = ({categories, sm}) => {
       <Link to={el.link} className="relative rounded overflow w-full grayscale-[0%] hover:shadow-xl hover:contrast-[80%] transition-all ">
       <img className=' object-cover ' src={el.img} alt="Hanging Planters" />
     <p
-      className={`cursor-pointer absolute inset-0 top-0 left-0 bg-black bg-opacity-40 text-xl flex justify-center items-center  text-white text-center  font-medium hover:bg-opacity-60 transition ${sm ? "text-xs md:text-lg" : "text-2xl"}`}>
+      className={`cursor-pointer absolute w-full h-full top-0 left-0 bg-black bg-opacity-40 text-xl flex justify-center items-center  text-white text-center  font-medium hover:bg-opacity-60 transition ${sm ? "text-xs md:text-lg" : "text-2xl"}`}>
       {el.title}
     </p>
       </Link>
