@@ -10,7 +10,7 @@ export const CategoriesList = ({categories, sm}) => {
 {categories.map((el, index) => (
     <li key={index}>
       <Link to={el.link} className="relative rounded overflow w-full grayscale-[0%] hover:shadow-xl hover:contrast-[80%] transition-all ">
-      <img className='h-full object-cover ' src={el.img} alt="Hanging Planters" />
+      <img className=' object-cover ' src={el.img} alt="Hanging Planters" />
     <p
       className={`cursor-pointer absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center text-xl text-center text-white font-roboto font-medium group-hover:bg-opacity-60 transition ${sm ? "text-xs md:text-lg" : "text-2xl"}`}>
       {el.title}
