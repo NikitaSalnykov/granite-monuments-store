@@ -1,0 +1,1 @@
+import{j as e,S as r,C as t}from"./index-296381ca.js";import{F as s,P as i}from"./ProductList-14256bf7.js";import"./example-6fdc0d1b.js";const n=()=>e.jsx(r,{children:e.jsxs(t,{className:"h-screen",children:[e.jsx(s,{nameFilter:!0,filterColor:!0,filterCategory:!0,filterPrice:!0,filterNew:!0,filterSale:!0}),e.jsx(i,{})]})});export{n as default};
