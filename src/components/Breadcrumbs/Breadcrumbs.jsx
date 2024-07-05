@@ -147,8 +147,9 @@ const Breadcrumbs = ({ name }) => {
                 </Link>
               );
       default:               return (
-        <div to={''} className="p-[2px] md:p-1">
-          {t('favorites')}
+        <div to={''} className="p-[2px] md:p-1 flex justify-center items-center">
+          {/* {t('favorites')} */}
+          <Svg id={'icon-logo'} size={15} stroke={'black'} fill={'grey'}/>
         </div>
       );
         return null;
