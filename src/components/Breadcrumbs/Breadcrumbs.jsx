@@ -24,6 +24,8 @@ const Breadcrumbs = ({ name }) => {
              {t('monuments')}
           </Link>
         );
+        case 'granite-monuments-store':
+          return null;
         case 'availability':
           return (
             <Link to={'/memorials/availability'} className="p-[2px] md:p-1">
@@ -144,7 +146,11 @@ const Breadcrumbs = ({ name }) => {
                   {t('favorites')}
                 </Link>
               );
-      default:
+      default:               return (
+        <div to={''} className="p-[2px] md:p-1">
+          {t('favorites')}
+        </div>
+      );
         return null;
     }
   }
