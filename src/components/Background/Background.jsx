@@ -17,8 +17,8 @@ export const Background = () => {
   }, []);
 
   const bg2Style = {
-    transform: ` translateY(${(scrollPosition * 0.98) - 50}px)`, // Adjust the speed of the movement
-    transition: 'transform 0.05s ease-out-in',
+    transform: ` translateY(${(scrollPosition * 1)}px)`, // Adjust the speed of the movement
+    // transition: 'transform 0.05s ease-out-in',
   };
 
   return (
