@@ -14,7 +14,7 @@ const BuildingMaterialsPage = () => {
     <Container>
     <Title title={t('building_materials')} description={t('landscaping-description')}/>
 
-     <Filter nameFilter={true} filterPrice={true} filterNew={true} filterSale={true} />
+     <Filter nameFilter={true}  filterType={true} filterPrice={true} filterNew={true} filterSale={true} />
      <ProductList/>
    </Container>
   </Section>

@@ -13,7 +13,6 @@ const products = [
     category: "memorials",
     type: "vertical",
     description: 'Опис для надгробної плити 1 Опис для надгробної плити 1 Опис для надгробної плити 1 Опис для надгробної плити 1',
-    discount: '10%',
     price: '5000 грн'
   },
   {
@@ -23,7 +22,7 @@ const products = [
     category: "memorials",
     type: "vertical",
     description: 'Опис для пам\'ятника 2',
-    discount: '15%',
+    discount: 15,
     price: '12000 грн'
   },
   {
@@ -33,7 +32,7 @@ const products = [
     category: "memorials",
     type: "vertical",
     description: 'Опис для надгробної плити 3',
-    discount: '20%',
+    discount: 20,
     price: '7000 грн'
   },
   {
@@ -43,7 +42,7 @@ const products = [
     category: "memorials",
     type: "vertical",
     description: 'Опис для пам\'ятника 4',
-    discount: '25%',
+    discount: 25,
     price: '15000 грн'
   },
   {
@@ -53,7 +52,7 @@ const products = [
     category: "memorials",
     type: "vertical",
     description: 'Опис для надгробної плити 5',
-    discount: '30%',
+    discount: 30,
     price: '8000 грн'
   },
   {
@@ -63,7 +62,7 @@ const products = [
     category: "memorials",
     type: "vertical",
     description: 'Опис для пам\'ятника 6',
-    discount: '5%',
+    discount: 5,
     price: '10000 грн'
   },
   {
@@ -73,7 +72,7 @@ const products = [
     category: "memorials",
     type: "vertical",
     description: 'Опис для надгробної плити 7',
-    discount: '50%',
+    discount: 50,
     price: '6000 грн'
   },
   {
@@ -83,7 +82,7 @@ const products = [
     category: "memorials",
     type: "vertical",
     description: 'Опис для пам\'ятника 8',
-    discount: '35%',
+    discount: 35,
     price: '20000 грн'
   },
   {
@@ -93,7 +92,7 @@ const products = [
     category: "memorials",
     type: "vertical",
     description: 'Опис для надгробної плити 9',
-    discount: '40%',
+    discount: 40,
     price: '9000 грн'
   },
   {
@@ -103,7 +102,7 @@ const products = [
     category: "memorials",
     type: "vertical",
     description: 'Опис для пам\'ятника 10',
-    discount: '45%',
+    discount: 45,
     price: '25000 грн'
   }
 ];
@@ -114,7 +113,7 @@ const CategoryPage = () => {
   return (
    <Section>
      <Container className='h-screen'>
-      <Filter nameFilter={true} filterColor={true} filterCategory={true} filterPrice={true} filterNew={true} filterSale={true} />
+      <Filter nameFilter={true} filterType={true} filterCategory={true} filterPrice={true} filterNew={true} filterSale={true} />
       <ProductList products={products}/>
     </Container>
    </Section>

@@ -2,6 +2,7 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage';
 import { persistReducer, persistStore, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import filterSlice from './filter/filterSlice';
+import favoriteSlice from './favorites/favoriteSlice';
 
 const favoritesPersistConfig = {
   key: 'favorites',
@@ -11,13 +12,12 @@ const favoritesPersistConfig = {
 
 const rootReducer = combineReducers({
   filter: filterSlice,
-  // favorites: persistReducer(favoritesPersistConfig, favoriteSlice.reducer),
+  favorites: persistReducer(favoritesPersistConfig, favoriteSlice),
 });
 
-const persistedReducer = persistReducer(favoritesPersistConfig, rootReducer);
 
 export const store = configureStore({
-  reducer: persistedReducer,
+  reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {

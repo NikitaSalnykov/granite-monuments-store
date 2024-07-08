@@ -6,9 +6,9 @@ export const ProductCard = ({id, category, type, image, title, description, pric
       <div key={id} className='relative p'>
             <Link to={`/${category}/${type}/${id}`}>   
     <img className="object-cover w-full rounded-lg" src={image} alt="Product Image" />
-    <div className="absolute top-0 left-0">
+{discount && discount > 0 &&    <div className="absolute top-0 left-0">
     <p className="text-xs md:text-md p-1 bg-red text-white">{discount}</p>
-    </div>
+    </div>}
 
     <div className="flex flex-col justify-between py-2">
       <a href="#" className="text-xl font-semibold text-gray-800 hover:underline dark:text-white">

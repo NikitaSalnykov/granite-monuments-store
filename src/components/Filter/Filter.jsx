@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
 import Svg from '../Svg/Svg';
-import { setFilterCategory, setFilterColor, setFilterNew, setFilterPrice, setFilterSale } from '../../Redux/filter/filterSlice';
+import { setFilterCategory, setFilterType, setFilterName, setFilterNew, setFilterPrice, setFilterSale, getFilterType, getFilterCategory } from '../../Redux/filter/filterSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
-export const Filter = ({nameFilter=false, filterColor=false, filterCategory=false, filterPrice=false, filterNew=false, filterSale=false, value}) => {
+export const Filter = ({nameFilter=false, filterType=false, filterCategory=false, filterPrice=false, filterNew=false, filterSale=false, value}) => {
+  const dispatch = useDispatch();
+  const { t } = useTranslation();
+  const category = useSelector(getFilterCategory);
+
   const [isCheckedSale, setCheckedSale] = useState(value === "sale" ? true : false)
   const products = [1,3,4]
 
@@ -10,12 +16,13 @@ export const Filter = ({nameFilter=false, filterColor=false, filterCategory=fals
     dispatch(setFilterName(currentTarget.value));
   };
 
-  const handleFilterColor = ({ currentTarget }) => {
-    dispatch(setFilterColor(currentTarget.value));
+  const handleFilterType = ({ currentTarget }) => {
+    dispatch(setFilterType(currentTarget.value));
   };
 
   const handleFilterCategory = ({ currentTarget }) => {
     dispatch(setFilterCategory(currentTarget.value));
+    console.log(currentTarget.value);
   };
 
   const handleFilterPrice = ({ currentTarget }) => {
@@ -51,41 +58,71 @@ export const Filter = ({nameFilter=false, filterColor=false, filterCategory=fals
       />
     </div>}
       <div className="flex gap-4 mx-auto">
-      {filterColor && <div className="flex justify-center items-center">
-      <label className='sr-only' style={{ marginRight: '14px' }} htmlFor="filterColor">
-       Цвет
-       </label>
-       <select id="filterColor" onChange={handleFilterColor}
- class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
-         <option selected>Все цвета</option>
-         {products.map(el => <option>{el}</option>)}
-     </select>
-      </div>}
       {filterCategory && <div className="flex justify-center items-center">
       <label className='sr-only' style={{ marginRight: '14px' }} htmlFor="filterCategory">
        Категория
        </label>
-       <select id="filterCategory" onChange={handleFilterCategory} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
-         <option selected={true}>Все категории</option>
-         <option selected={value === "main" ? true : false}>Основные ткани</option>
-         <option selected={value === "accessories" ? true : false}>Аксессуары</option>
-         {products.map(el => <option>{el}</option>
-)}
+       <select id="filterCategory" onChange={handleFilterCategory} class="smOnly:w-[120px] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block md:w-full p-2.5 ">
+         <option className=' smOnly:mr-10'  selected={true}>Всі категорії</option>
+         <option value={'memorials'}>{t('monuments')}</option>
+         <option value={'landscaping'}>{t('landscaping')}</option>
+         <option value={'relatedProducts'}>{t('related_products')}</option>
      </select>
       </div>}
+
+      {filterType && category === 'memorials' && <div className="flex justify-center items-center">
+      <label className='sr-only' style={{ marginRight: '14px' }} htmlFor="filterType">
+       Цвет
+       </label>
+       <select id="filterType" onChange={handleFilterType}
+ class="smOnly:min-w-[100px] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
+         <option selected>Всі типи</option>
+         <option value={'availability'}>{t('availability')}</option>
+         <option value={'vertical'}>{t('vertical')}</option>
+         <option value={'horizontal'}>{t('horizontal')}</option>
+         <option value={'small'}>{t('small')}</option>
+     </select>
+      </div>}
+
+      {filterType && category === 'landscaping' && <div className="flex justify-center items-center">
+      <label className='sr-only' style={{ marginRight: '14px' }} htmlFor="filterType">
+       Цвет
+       </label>
+       <select id="filterType" onChange={handleFilterType}
+ class="smOnly:min-w-[100px] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
+         <option selected>Всі типи</option>
+         <option value={'antiSettlementSlabs'}>{t('anti_settlement_slabs')}</option>
+         <option value={'pavingTiles'}>{t('paving_tiles')}</option>
+         <option value={'graniteTiles'}>{t('granite_tiles')}</option>
+         <option value={'fencing'}>{t('fencing')}</option>
+         <option value={'tablesAndBenches'}>{t('tables_and_benches')}</option>
+         <option value={'vasesAndLamps'}>{t('vases_and_lamps')}</option>
+         <option value={'cubesAndSpheres'}>{t('cubes_and_spheres')}</option>
+     </select>
+      </div>}
+
+      {filterType && category === 'relatedProducts' && <div className="flex justify-center items-center">
+      <label className='sr-only' style={{ marginRight: '14px' }} htmlFor="filterType">
+       Цвет
+       </label>
+       <select id="filterType" onChange={handleFilterType}
+ class="smOnly:min-w-[100px] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ">
+         <option selected>Всі типи</option>
+         <option>{t('glass_photos')}</option>
+         <option>{t('plaques')}</option>
+         <option>{t('embedded_parts')}</option>
+     </select>
+      </div>}
+
       {filterPrice && <div className="flex justify-center items-center">
       <label className='sr-only' style={{ marginRight: '14px' }} htmlFor="filterPrice">
        Цена
        </label>
        <select id="filterPrice" onChange={handleFilterPrice} class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " 
        >
-         <option value="10000000" selected>Все цены</option>
-         <option value="100">До 100</option>
-         <option value="200">До 200</option>
-         <option value="300">До 300</option>
-         <option value="1000">До 1000</option>
-         <option value="2500">До 2500</option>
-         <option value="100000">более 2500</option>
+         <option value="10000000" selected>Всі ціни</option>
+         <option value="100">Від дешевих до дорогих</option>
+         <option value="200">Від дорогих до дешевих</option>
      </select>
       </div>}
       </div>
