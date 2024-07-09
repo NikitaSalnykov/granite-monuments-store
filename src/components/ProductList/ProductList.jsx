@@ -16,7 +16,6 @@ import { Pagination } from '../Pagination/Pagination';
 export const ProductList = ({products}) => {
 
   const { t } = useTranslation();
-
   const filterName = useSelector(getFilterName);
   const filterCategory = useSelector(getFilterCategory);
   const filterPrice = useSelector(getFilterPrice);
@@ -26,6 +25,9 @@ export const ProductList = ({products}) => {
 
   const [currentPage, setCurrentPage] = useState(1);
   const limit = 8;
+
+
+  
 
   // const newProducts = (products) => {
 
@@ -52,7 +54,6 @@ export const ProductList = ({products}) => {
     const price = filterPrice.replace(/\D/g, '')
     
     return product.filter((el) => {
-      console.log(el);
       let categoryMatch
       const nameMatch = el.title.toLowerCase().includes(filterName.toLowerCase());
      
@@ -90,7 +91,7 @@ export const ProductList = ({products}) => {
 {paginatedProducts(products) &&  <div className="mx-auto">
       <div className="grid grid-cols-2 gap-x-8 gap-y-4 md:grid-cols-4">
         {paginatedProducts(products).map((product, index) => (
-          <ProductCard id={product.id} image={product.image} title={product.title} description={product.description} price={product.price} discount={product.discount} category={product.category} type={product.type}/>
+          <ProductCard key={product.id} image={product.image} title={product.title} description={product.description} price={product.price} discount={product.discount} category={product.category} type={product.type}/>
         ))}
       </div>
       {Math.ceil(filteredProducts(products).length / limit) > 1 && (

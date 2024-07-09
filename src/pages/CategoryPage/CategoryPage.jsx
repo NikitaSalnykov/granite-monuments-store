@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react';
 import { Filter } from '../../components/Filter/Filter'
 import { ProductList } from '../../components/ProductList/ProductList'
 import { Container } from '../../components/Container/Container'
@@ -107,9 +107,9 @@ const products = [
   }
 ];
 
-
-
 const CategoryPage = () => {
+
+
   return (
    <Section>
      <Container className='h-screen'>

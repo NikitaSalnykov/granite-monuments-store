@@ -7,13 +7,13 @@ export const ProductCard = ({id, category, type, image, title, description, pric
             <Link to={`/${category}/${type}/${id}`}>   
     <img className="object-cover w-full rounded-lg" src={image} alt="Product Image" />
 {discount && discount > 0 &&    <div className="absolute top-0 left-0">
-    <p className="text-xs md:text-md p-1 bg-red text-white">{discount}</p>
+    <p className="text-xs md:text-md p-1 bg-red text-white">{discount}%</p>
     </div>}
 
     <div className="flex flex-col justify-between py-2">
-      <a href="#" className="text-xl font-semibold text-gray-800 hover:underline dark:text-white">
+      <h4 className="text-xl font-semibold text-gray-800 hover:underline dark:text-white">
         {title}
-      </a>
+      </h4>
       <span className="text-sm text-gray-500 dark:text-gray-300">
         {description}
       </span>

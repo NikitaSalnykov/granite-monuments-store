@@ -11,10 +11,10 @@ const MemorialsPage = () => {
 
   const { t } = useTranslation();
 
-  const categories = [  { title: t('anti_settlement_slabs'), link: '/memorials/availability', img: "https://lviv.media/static/content/files/f/2d/73b6c579b38e13841d29b0fe8c15d2df.jpg" },
-  { title: t('paving_tiles'), link: '/memorials/vertical', img: "https://lviv.media/static/content/files/f/2d/73b6c579b38e13841d29b0fe8c15d2df.jpg" },
-  { title: t('granite_tiles'), link: '/memorials/horizontal', img: "https://lviv.media/static/content/files/f/2d/73b6c579b38e13841d29b0fe8c15d2df.jpg"  },
-  { title: t('fencing'), link: '/memorials/small', img: "https://lviv.media/static/content/files/f/2d/73b6c579b38e13841d29b0fe8c15d2df.jpg"  },
+  const categories = [  { title: t('anti_settlement_slabs'), category:"memorials", type:"", link: '/memorials/availability', img: "https://lviv.media/static/content/files/f/2d/73b6c579b38e13841d29b0fe8c15d2df.jpg" },
+  { title: t('paving_tiles'), link: '/memorials/vertical', category:"memorials", type:"vertical", img: "https://lviv.media/static/content/files/f/2d/73b6c579b38e13841d29b0fe8c15d2df.jpg" },
+  { title: t('granite_tiles'), link: '/memorials/horizontal', category:"memorials", type:"horizontal", img: "https://lviv.media/static/content/files/f/2d/73b6c579b38e13841d29b0fe8c15d2df.jpg"  },
+  { title: t('fencing'), link: '/memorials/small', category:"memorials", type:"small", img: "https://lviv.media/static/content/files/f/2d/73b6c579b38e13841d29b0fe8c15d2df.jpg"  },
   ]
 
   return (

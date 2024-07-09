@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import bg from '../../assets/bg-monuments.jpg';
-import bg2 from '../../assets/bg-monuments2.png';
 
 export const Background = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -17,9 +16,19 @@ export const Background = () => {
   }, []);
 
   const bg2Style = {
-    transform: ` translateY(${(scrollPosition * 1)}px)`, // Adjust the speed of the movement
-    // transition: 'transform 0.05s ease-out-in',
+    transform: ` translateY(${(scrollPosition * 0.3)}px)`, // Adjust the speed of the movement
+    transition: 'transform 0.9s ease-out-in',
+    opacity: `${Math.ceil(18 - ((scrollPosition * 0.6)/10))}%`, 
+    transition: 'opacity 1s ease-out-in',
   };
+  
+  const bg2Style2 = {
+    transform: ` translateY(${(scrollPosition * 0.6)}px)`, // Adjust the speed of the movement
+    transition: 'transform 1.1s ease-out-in',
+    opacity: `${Math.ceil(10 - ((scrollPosition * 0.6)/10))}%`, 
+    transition: 'opacity 1s ease-out-in',
+  };
+
 
   return (
     <div className=" ">
