@@ -24,11 +24,9 @@ const SharedLayout = () => {
 
       <div className="relative overflow-hidden">
 
-      <Container>
-      <div className="pt-[60px]">  
+      <div className="pt-[60px] px-4 lg:px-12">  
       <Breadcrumbs/>
       </div>
-      </Container>
 
       <Suspense fallback={<Loader/>}>
             <Outlet/>

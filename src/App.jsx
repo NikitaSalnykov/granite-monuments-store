@@ -46,6 +46,7 @@ function App() {
             </Route>
 
             <Route path="buildingmaterials" element={<BuildingMaterialsPage />} />
+            <Route path="products" element={<CategoryPage />} />
             <Route path="services" element={<ExtraServicesPage />} />
             <Route path="about" element={<AboutPage />} />
             <Route path="favorite" element={<FavoritePage />} />

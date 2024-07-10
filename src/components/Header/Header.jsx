@@ -23,7 +23,7 @@ const Header = () => {
 
   return (
     <div>
-      <div className="bg-[#fffffffd] z-50 fixed mx-auto w-full ">
+      <div className="bg-[#fffffffd] z-50 fixed mx-auto w-full lg:px-8">
       <div className="w-full h-auto blur-lg absolute top-0 right-0"></div>
         <div className="border-b py-3 px-6">
           <div className="flex justify-between items-center">

@@ -11,10 +11,10 @@ export const ProductCard = ({id, category, type, image, title, description, pric
     </div>}
 
     <div className="flex flex-col justify-between py-2">
-      <h4 className="text-xl font-semibold text-gray-800 hover:underline dark:text-white">
+      <h4 className="text-xl font-semibold text-gray-800 hover:underline ">
         {title}
       </h4>
-      <span className="text-sm text-gray-500 dark:text-gray-300">
+      <span className="text-sm text-gray-500 ">
         {description}
       </span>
     </div>

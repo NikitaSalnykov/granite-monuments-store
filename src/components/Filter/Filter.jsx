@@ -101,11 +101,13 @@ export const Filter = ({
 
   const handleFilterType = ({ currentTarget }) => {
     dispatch(setFilterType(currentTarget.value));
+    navigate(`/${category.toLowerCase()}/${currentTarget.value.toLowerCase()}`)
   };
 
   const handleFilterCategory = ({ currentTarget }) => {
     dispatch(setFilterCategory(currentTarget.value));
-    navigate(`/${currentTarget.value}/all`)
+    if(currentTarget.value.toLowerCase() === "products") return navigate(`/products`)
+    navigate(`/${currentTarget.value.toLowerCase()}/all`)
   };
 
   const handleFilterPrice = ({ currentTarget }) => {
@@ -155,10 +157,10 @@ export const Filter = ({
                 className="smOnly:w-[120px] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block md:w-full p-2.5"
                 value={category}
               >
-                <option value="all">Всі категорії</option>
+                <option value="products">Всі категорії</option>
                 <option value="memorials">{t('monuments')}</option>
                 <option value="landscaping">{t('landscaping')}</option>
-                <option value="relatedProducts">{t('related_products')}</option>
+                <option value="relatedproducts">{t('related_products')}</option>
               </select>
             </div>
           )}

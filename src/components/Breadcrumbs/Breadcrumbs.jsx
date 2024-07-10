@@ -146,6 +146,18 @@ const Breadcrumbs = ({ name }) => {
                   {t('favorites')}
                 </Link>
               );
+              case 'all':
+                return (
+                  <div className="p-[2px] md:p-1">
+                    {t('all')}
+                  </div>
+                );
+                case 'products':
+                  return (
+                    <div className="p-[2px] md:p-1">
+                      {t('products')}
+                    </div>
+                  );
       default:               return (
         <div to={''} className="p-[2px] md:p-1 flex justify-center items-center">
           {/* {t('favorites')} */}
