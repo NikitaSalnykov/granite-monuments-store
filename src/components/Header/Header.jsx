@@ -71,7 +71,7 @@ const Header = () => {
               {t('extra_services')}
               </Link>
               <Link to={'/about'} className="px-2 py-2 text-center  cursor-pointer rounded-sm font-medium hover:bg-gray-100 flex items-center justify-center">
-              {t('contacts')}
+              {t('about')}
               </Link>
             </div>
 

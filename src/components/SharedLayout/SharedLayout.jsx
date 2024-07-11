@@ -6,6 +6,7 @@ import {Container} from '../../components/Container/Container'
 import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
 import { Background } from '../Background/Background';
 import Loader from '../Loader/Loader';
+import { FloatingButtons } from '../FloatingButtons/FloatingButtons';
 const SharedLayout = () => {
   const handleNavigate = () => {
     window.scrollTo(0, 0);
@@ -37,6 +38,7 @@ const SharedLayout = () => {
       <footer>
         <Footer />
       </footer>
+      <FloatingButtons/>
     </>
   );
 };
