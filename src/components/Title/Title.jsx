@@ -5,7 +5,7 @@ export const Title = ({ title, accent, description }) => {
         {title} <span className="text-black">{accent}</span>
       </h3>
       {description && (
-        <p className="text-center text-gray-600 text-sm mt-2 lg:     w-[800px]">{description}</p>
+        <p className="text-center text-gray-600 text-sm mt-2 lg:w-[800px]">{description}</p>
       )}
     </div>
   );

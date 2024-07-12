@@ -9,6 +9,7 @@ export const Works = () => {
     <>
     <Title title={'Наші роботи'}/>
     <WorksList worksArr={worksArr}/>
+    
     </>
   )
 }

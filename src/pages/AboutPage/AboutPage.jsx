@@ -2,13 +2,16 @@ import { useTranslation } from 'react-i18next';
 import {Container}  from '../../components/Container/Container';
 import { Section } from '../../components/Section/Section';
 import {Title} from '../../components/Title/Title'
+import { Works } from '../../components/Works/Works';
+import { Reviews } from '../../components/Reviews/Reviews';
 
 const AboutPage = () => {
   const { t } = useTranslation();
 
 
   return (
-      <Section>
+<>
+<Section>
     <Container>
   <Title title={t('about')} description={'Меморіал сервіс – це команда професіоналів, яка спеціалізується на виготовленні памятників, благоустрої та наданні повного спектра ритуальних послуг. Наше завдання – допомогти вам створити гідний памятник для ваших близьких, зберігаючи їх память і шануючи їх спадок.'}/>
   <div class="mt-10 grid grid-cols-1 gap-6 lg:gap-12  md:grid-cols-3">
@@ -36,6 +39,17 @@ const AboutPage = () => {
   </div>
     </Container>
     </Section>
+    <Section>
+      <Container>
+        <Works/>
+      </Container>
+    </Section>
+    <Section>
+      <Container>
+        <Reviews/>
+      </Container>
+    </Section>
+    </>
   );
 };
 
