@@ -4,6 +4,10 @@ import MainPage from 'pages/MainPage/MainPage';
 import ErrorPage from 'pages/ErrorPage/ErrorPage';
 import SharedLayout from './components/SharedLayout/SharedLayout';
 import Loader from './components/Loader/Loader';
+import AdminRoute from './components/Route/AdminRoute';
+import AdminPage from './pages/AdminPage/AdminPage';
+import LoginPage from './pages/LoginPage/LoginPage';
+import PublicRoute from './components/Route/PublicRoute';
 
 const BuildingMaterialsPage = lazy(() => import('./pages/BuildingMaterialsPage/BuildingMaterialsPage'));
 const ExtraServicesPage = lazy(() => import('./pages/ExtraServicesPage/ExtraServicesPage'));
@@ -51,6 +55,27 @@ function App() {
             <Route path="about" element={<AboutPage />} />
             <Route path="favorite" element={<FavoritePage />} />
             <Route path="*" element={<ErrorPage />} />
+
+            <Route
+            path="/login"
+            element={
+              <PublicRoute restricted>
+                <LoginPage />
+              </PublicRoute>
+            }
+          />
+
+            <Route
+          path="/admin"
+          element={
+            <Suspense fallback={<Loader />}>
+              <AdminRoute restricted>
+                <AdminPage />
+              </AdminRoute>
+            </Suspense>
+          }
+        />
+
           </Route>
         </Routes>
       </Suspense>
