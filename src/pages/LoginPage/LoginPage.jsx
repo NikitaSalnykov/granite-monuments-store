@@ -109,6 +109,18 @@ const LoginPage = () => {
                   <p className={errorTextStyle}>{errors['password']}</p>
                 )}
               </div>
+              <div className="relative">
+                <button
+                type="submit"
+                disabled={isRequest}
+                className={`w-full text-white bg-blue hover:bg-red focus:ring-4 focus:ring-red font-medium rounded-lg text-sm px-5 py-2.5 text-center  ${
+                  isRequest && 'animate-pulse bg-red'
+                }`}
+              >
+                Войти
+              </button>
+              {isAuthError && <p className={`${errorTextStyle}`}>Данные для пароля или эл.почты неверны</p>}
+            </div>
             </form>
           </div>
         </div>

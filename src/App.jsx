@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from 'react';
+import React, { lazy, Suspense, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import MainPage from 'pages/MainPage/MainPage';
 import ErrorPage from 'pages/ErrorPage/ErrorPage';
@@ -8,6 +8,9 @@ import AdminRoute from './components/Route/AdminRoute';
 import AdminPage from './pages/AdminPage/AdminPage';
 import LoginPage from './pages/LoginPage/LoginPage';
 import PublicRoute from './components/Route/PublicRoute';
+import { useDispatch } from 'react-redux';
+import setUpInterceptor from './helpers/axiosInterceptor';
+import { currentUser } from './Redux/auth/auth-operations';
 
 const BuildingMaterialsPage = lazy(() => import('./pages/BuildingMaterialsPage/BuildingMaterialsPage'));
 const ExtraServicesPage = lazy(() => import('./pages/ExtraServicesPage/ExtraServicesPage'));
@@ -21,7 +24,15 @@ const AboutPage = lazy(() => import('./pages/AboutPage/AboutPage'));
 const test = import.meta.env.VITE_API_TEST;
 
 function App() {
-  
+
+  const dispatch = useDispatch();
+  setUpInterceptor(dispatch);
+
+  useEffect(() => {
+    dispatch(currentUser());
+  }, [dispatch]);
+
+
 
   return (
     <div>

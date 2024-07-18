@@ -1,72 +1,26 @@
 import React, { useState } from 'react';
 import { Container } from '../../components/Container/Container';
+import { AdminNavbar } from './AdminNavbar';
+import { Button } from '../../components/Button/Button';
+import { Filter } from '../../components/Filter/Filter';
 
 const AdminPage = () => {
+  const [selectedCategory, setSelectedCategory] = useState('products')
 
+  const changeCategory = (category) => {
+    setSelectedCategory(category)
+    console.log(category);
+  }
 
   return (
     <Container>
       <div className="h-auto">
-
-      <div id="sideNav" className={`hidden lg:block bg-white w-64 fixed rounded-lg border-none`}>
-        <div className="p-4 space-y-4">
-          <a href="#" aria-label="dashboard" className="relative px-2 py-1 flex items-center space-x-4 rounded-lg text-white bg-gradient-to-r from-sky-600 to-cyan-400">
-            <i className="fas fa-home text-white"></i>
-            <span className="-mr-1 font-medium">Inicio</span>
-          </a>
-          <a href="#" className="px-2 py-1 flex items-center space-x-4 rounded-md text-gray-500 group">
-            <i className="fas fa-wallet"></i>
-            <span>Billetera</span>
-          </a>
-          <a href="#" className="px-2 py-1 flex items-center space-x-4 rounded-md text-gray-500 group">
-            <i className="fas fa-exchange-alt"></i>
-            <span>Transacciones</span>
-          </a>
-          <a href="#" className="px-2 py-1 flex items-center space-x-4 rounded-md text-gray-500 group">
-            <i className="fas fa-user"></i>
-            <span>Mi cuenta</span>
-          </a>
-          <a href="#" className="px-2 py-1 flex items-center space-x-4 rounded-md text-gray-500 group">
-            <i className="fas fa-sign-out-alt"></i>
-            <span>Cerrar sesión</span>
-          </a>
-        </div>
-      </div>
-
-      <div id="sideNav" className={`lg:hidden bg-white w-full rounded-lg border-none p-2`}>
-        <div className="flex flex-wrap justify-center">
-          <a href="#" aria-label="dashboard" className="px-2 py-1 relative flex items-center rounded-lg text-white bg-gradient-to-r from-sky-600 to-cyan-400">
-            <i className="fas fa-home text-white"></i>
-            <span className="-mr-1 font-medium">Inicio</span>
-          </a>
-          <a href="#" className="px-2 py-1 flex items-center space-x-4 rounded-md text-gray-500 group">
-            <i className="fas fa-wallet"></i>
-            <span>Billetera</span>
-          </a>
-          <a href="#" className="px-2 py-1 flex items-center space-x-4 rounded-md text-gray-500 group">
-            <i className="fas fa-exchange-alt"></i>
-            <span>Transacciones</span>
-          </a>
-          <a href="#" className="px-2 py-1 flex items-center space-x-4 rounded-md text-gray-500 group">
-            <i className="fas fa-user"></i>
-            <span>Mi cuenta</span>
-          </a>
-          <a href="#" className="px-2 py-1 flex items-center space-x-4 rounded-md text-gray-500 group">
-            <i className="fas fa-sign-out-alt"></i>
-            <span>Cerrar sesión</span>
-          </a>
-        </div>
-      </div>
+      <AdminNavbar changeCategory={changeCategory} selectedCategory={selectedCategory}/>
 
       <div className="lg:ml-64 lg:pl-4 lg:flex lg:flex-col lg:w-75% mt-5 mx-2">
-        <div className="bg-white rounded-full border-none p-3 mb-4 shadow-md">
-          <div className="flex items-center">
-            <i className="px-3 fas fa-search ml-1"></i>
-            <input type="text" placeholder="Buscar..." className="ml-3 focus:outline-none w-full" />
-          </div>
-        </div>
+      <Filter nameFilter={true}/>
 
-        <div className="lg:flex gap-4 items-stretch">
+        <div className="lg:flex gap-4 items-center">
           <div className="bg-white md:p-2 p-6 rounded-lg border border-gray-200 mb-4 lg:mb-0 shadow-md lg:w-[35%]">
             <div className="flex justify-center items-center space-x-5 h-full">
               <div>
@@ -77,8 +31,10 @@ const AdminPage = () => {
               <img src="https://www.emprenderconactitud.com/img/Wallet.png" alt="wallet" className="h-24 md:h-20 w-38" />
             </div>
           </div>
-
-
+        
+          <div className={`hover:cursor-pointer hover:opacity-85 shadow-md md:p-6 p-6 font-bold bg-black text-white rounded-full uppercase text-center`}>
+          + {selectedCategory}
+          </div>
         </div>
 
         <div className="bg-white rounded-lg p-4 shadow-md my-4">
@@ -193,6 +149,7 @@ const AdminPage = () => {
             </tbody>
           </table>
         </div>
+
       </div>
       </div>
     </Container>
