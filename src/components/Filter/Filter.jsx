@@ -126,7 +126,7 @@ export const Filter = ({
   };
 
   return (
-    <div className="w-full flex flex-col lg:flex-row mb-4 gap-4 items-center justify-center">
+    <div className="w-full flex flex-col lg:flex-row gap-4 items-center justify-center">
       <div className="flex gap-4 flex-wrap">
         {nameFilter && (
           <div className="flex gap-1 bg-gray-50 border-[1px] px-2 text-gray-800 border-gray-300 hover:outline-none focus:outline-none rounded-lg mx-auto py-2">
