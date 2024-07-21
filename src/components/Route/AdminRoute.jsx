@@ -1,23 +1,25 @@
 import { useSelector } from 'react-redux';
-import { getIsLoggedIn, getUser } from '../../Redux/auth/auth-selectors';
+import {
+  getIsLoggedIn,
+  getUser,
+  getRefresh,
+} from '../../Redux/auth/auth-selectors';
 import { Navigate } from 'react-router-dom';
 import Loader from '../Loader/Loader';
 
 export default function AdminRoute({ children }) {
   const user = useSelector(getUser);
-  const isLoading = useSelector(getIsLoggedIn);
+  const isLoggedIn = useSelector(getIsLoggedIn);
+  const isRefresh = useSelector(getRefresh);
 
-  return (
-    <>
-      {isLoading ? (
-        user.role === 'admin' ? (
-          children
-        ) : (
-          <Navigate to="/login" />
-        )
-      ) : (
-        <Loader />
-      )}
-    </>
-  );
+  const isLoading = !user && !isLoggedIn && isRefresh;
+
+  if (isLoading) {
+    return <Loader />;
+  }
+  if (isLoggedIn && user.role === 'admin') {
+    return children;
+  } else {
+    return <Navigate to="/login" />;
+  }
 }
