@@ -1,11 +1,7 @@
 import * as yup from 'yup';
 
 export const productSchema = yup.object({
-  nameUA: yup
-    .string('Названиие должно состоять только из букв')
-    .min(2, 'Название должно содержать минимум 2 символа')
-    .required('Укажите название'),
-    nameRU: yup
+  name: yup
     .string('Названиие должно состоять только из букв')
     .min(2, 'Название должно содержать минимум 2 символа')
     .required('Укажите название'),
@@ -14,18 +10,18 @@ export const productSchema = yup.object({
     .min(2, 'Цвет должна содержать минимум 2 символа')
     .required('Укажите название'),
 
-  type: yup
+  color: yup
   .string('Цвет должен состоять только из букв')
   .min(2, 'Цвет должна содержать минимум 2 символа')
   .required('Укажите название'),
 
 
   price: yup
-    .number('Цена должна содержать только цифры')    
-    .typeError('Цена должна содержать только цифры')
+    .number('Цена должна содержать только цифры')
     .required('Укажите цену'),
 
-
+  pricePerMeter: yup
+  .number('Цена должна содержать только цифры'),
 
     discount: yup
     .number('Скидка должна содержать только цифры')
@@ -33,18 +29,16 @@ export const productSchema = yup.object({
     .max(100, 'Скидка должна быть минимим 100')
     .typeError('Скидка должна содержать только цифры'),
   
-    descriptionUA: yup
+    description: yup
     .string('Описание должно должно состоять только из букв')
     .required('Укажите описание'),
-
-    descriptionRU: yup
-    .string('Описание должно должно состоять только из букв')
-    .required('Укажите описание'),
-
 
     mainPhoto: yup
     .mixed()
-    .required('Добавьте фото'),
+    .test('maxFiles', 'Максимальное количество файлов - 1', (value) => {
+      if (!value) return true;
+      return value.length <= 1;
+    })    .required('Добавьте фото'),
     
     extraPhotos: yup
     .mixed()

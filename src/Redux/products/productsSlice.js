@@ -13,6 +13,7 @@ const initialProducts = {
   error: null,
   selectedProduct: null,
   isProductCreated: false,
+  isProductUpdated: false,
   total: 0,
 };
 
@@ -39,6 +40,9 @@ const productsStateSlice = createSlice({
   reducers: {
     resetProductCreated: (state) => {
       state.isProductCreated = false;
+    },
+    resetProductUpdated: (state) => {
+      state.isProductUpdated = false;
     },
   },
   extraReducers: (builder) => {
@@ -109,6 +113,7 @@ const productsStateSlice = createSlice({
         items: updatedItems,
         isLoading: false,
         error: null,
+        isProductUpdated: true
       };
     });
 
@@ -118,5 +123,5 @@ const productsStateSlice = createSlice({
   },
 });
 
-export const { resetProductCreated } = productsStateSlice.actions;
+export const { resetProductCreated, resetProductUpdated } = productsStateSlice.actions;
 export const productsStateReducer = productsStateSlice.reducer;
