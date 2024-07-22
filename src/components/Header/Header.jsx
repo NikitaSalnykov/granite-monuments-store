@@ -20,16 +20,15 @@ const Header = () => {
     setIsModalOpen(!isModalOpen);
   };
 
-
   return (
     <div>
       <div className="bg-[#fffffffd] z-50 fixed mx-auto w-full lg:px-8 border-b ">
-      <div className="w-full h-auto blur-lg absolute top-0 right-0"></div>
+        <div className="w-full h-auto blur-lg absolute top-0 right-0"></div>
         <div className="py-3 px-6">
           <div className="flex justify-between items-center">
             <div className="flex gap-8">
               <div className="flex items-center">
-                <Logo size={48} secondaryTextSize={'sm'}/>
+                <Logo size={48} secondaryTextSize={'sm'} />
               </div>
             </div>
 
@@ -46,38 +45,74 @@ const Header = () => {
               <Dropdown
                 title={t('landscaping')}
                 links={[
-                  { title: t('anti_settlement_slabs'), link: '/landscaping/antisettlementslabs' },
-                  { title: t('paving_tiles'), link: '/landscaping/pavingtiles' },
-                  { title: t('granite_tiles'), link: '/landscaping/granitetiles' },
+                  {
+                    title: t('anti_settlement_slabs'),
+                    link: '/landscaping/antisettlementslabs',
+                  },
+                  {
+                    title: t('paving_tiles'),
+                    link: '/landscaping/pavingtiles',
+                  },
+                  {
+                    title: t('granite_tiles'),
+                    link: '/landscaping/granitetiles',
+                  },
                   { title: t('fencing'), link: '/landscaping/fencing' },
-                  { title: t('tables_and_benches'), link: '/landscaping/tablesandbenches' },
-                  { title: t('vases_and_lamps'), link: '/landscaping/vasesandlamps' },
-                  { title: t('cubes_and_spheres'), link: '/landscaping/cubesandspheres' },
+                  {
+                    title: t('tables_and_benches'),
+                    link: '/landscaping/tablesandbenches',
+                  },
+                  {
+                    title: t('vases_and_lamps'),
+                    link: '/landscaping/vasesandlamps',
+                  },
+                  {
+                    title: t('cubes_and_spheres'),
+                    link: '/landscaping/cubesandspheres',
+                  },
                 ]}
               />
               <Dropdown
                 title={t('related_products')}
                 links={[
-                  { title: t('glass_photos'), link: '/relatedproducts/glassphotos' },
+                  {
+                    title: t('glass_photos'),
+                    link: '/relatedproducts/glassphotos',
+                  },
                   { title: t('plaques'), link: '/relatedproducts/plaques' },
-                  { title: t('embedded_parts'), link: '/relatedproducts/embeddedparts' },
+                  {
+                    title: t('embedded_parts'),
+                    link: '/relatedproducts/embeddedparts',
+                  },
                 ]}
               />
 
-              <Link to={'/buildingmaterials'} className=" text-center px-2 py-2 cursor-pointer rounded-sm font-medium hover:bg-gray-100 flex items-center justify-center">
+              <Link
+                to={'/buildingmaterials'}
+                className=" text-center px-2 py-2 cursor-pointer rounded-sm font-medium hover:bg-gray-100 flex items-center justify-center"
+              >
                 {t('building_materials')}
               </Link>
-              <Link to={'/services'} className="px-2 py-2 text-center  cursor-pointer rounded-sm font-medium hover:bg-gray-100 flex items-center justify-center">
-              {t('extra_services')}
+              <Link
+                to={'/services'}
+                className="px-2 py-2 text-center  cursor-pointer rounded-sm font-medium hover:bg-gray-100 flex items-center justify-center"
+              >
+                {t('extra_services')}
               </Link>
-              <Link to={'/about'} className="px-2 py-2 text-center  cursor-pointer rounded-sm font-medium hover:bg-gray-100 flex items-center justify-center">
-              {t('about')}
+              <Link
+                to={'/about'}
+                className="px-2 py-2 text-center  cursor-pointer rounded-sm font-medium hover:bg-gray-100 flex items-center justify-center"
+              >
+                {t('about')}
               </Link>
             </div>
 
             <div className="hidden lg:flex justify-center items-center gap-8">
               <div className="ml-2 flex">
-                <Link to={'/favorite'} className="flex cursor-pointer items-center gap-x-1 rounded-md py-2 px-4 hover:bg-gray-100">
+                <Link
+                  to={'/favorite'}
+                  className="flex cursor-pointer items-center gap-x-1 rounded-md py-2 px-4 hover:bg-gray-100"
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-5 w-5 text-gray-500"
@@ -127,33 +162,35 @@ const Header = () => {
                 <span className="text-sm font-medium">Cart</span>
               </div> */}
 
-                <div className="flex justify-center items-center">
-                  <div className="lg:flex justify-center text-black flex cursor-pointer items-center gap-x-1 rounded-md  px-1 hover:bg-gray-100">
-                    <button
-                      onClick={() => changeLanguage('ua')}
-                      className={`${
-                        currentLanguage === 'ua'
-                          ? 'font-semibold'
-                          : 'opacity-75'
-                      }`}
-                    >
-                      ua
-                    </button>
+                {currentLanguage && (
+                  <div className="flex justify-center items-center">
+                    <div className="lg:flex justify-center text-black flex cursor-pointer items-center gap-x-1 rounded-md  px-1 hover:bg-gray-100">
+                      <button
+                        onClick={() => changeLanguage('ua')}
+                        className={`${
+                          currentLanguage === 'ua'
+                            ? 'font-semibold'
+                            : 'opacity-75'
+                        }`}
+                      >
+                        ua
+                      </button>
+                    </div>
+                    <div className=" text-gray-500">|</div>
+                    <div className="lg:flex justify-center text-black flex cursor-pointer items-center gap-x-1 rounded-md  px-1 hover:bg-gray-100">
+                      <button
+                        onClick={() => changeLanguage('ru')}
+                        className={`${
+                          currentLanguage === 'ru'
+                            ? 'font-semibold'
+                            : 'opacity-75'
+                        }`}
+                      >
+                        ru
+                      </button>
+                    </div>
                   </div>
-                  <div className=" text-gray-500">|</div>
-                  <div className="lg:flex justify-center text-black flex cursor-pointer items-center gap-x-1 rounded-md  px-1 hover:bg-gray-100">
-                    <button
-                      onClick={() => changeLanguage('ru')}
-                      className={`${
-                        currentLanguage === 'ru'
-                          ? 'font-semibold'
-                          : 'opacity-75'
-                      }`}
-                    >
-                      ru
-                    </button>
-                  </div>
-                </div>
+                )}
               </div>
               <div>
                 <div className="flex gap-x-1 py-1">

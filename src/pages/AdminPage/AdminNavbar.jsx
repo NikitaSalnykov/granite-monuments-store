@@ -1,39 +1,107 @@
-import React, { useEffect, useState } from 'react'
-import { Filter } from '../../components/Filter/Filter'
+import { Filter } from '../../components/Filter/Filter';
 import AddProduct from '../../components/Modals/AdminModals/AddProduct';
 import { BasicModal } from '../../components/Modals/BasicModal/BasicModal';
+import { CreateReview } from '../../components/Modals/Review/CreateReview';
+import Leaving from '../../components/Modals/Leaving/Leaving';
+import { useState } from 'react';
 
-export const AdminNavbar = ({changeCategory, selectedCategory, isModalProductOpen, onTogleProductModal}) => {
+export const AdminNavbar = ({
+  changeCategory,
+  selectedCategory,
+  isModalProductOpen,
+  onTogleProductModal,
+  isModalReviewOpen,
+  onTogleReviewModal,
+}) => {
+  const [isLeavingModalOpen, setLeavingModalOpen] = useState(false);
 
+  const onToogleLeavingModal = () => {
+    setLeavingModalOpen(!isLeavingModalOpen);
+  };
+
+  const handleToggleModal = () => {
+    if (selectedCategory === 'products') {
+      onTogleProductModal();
+    } else if (selectedCategory === 'reviews') {
+      onTogleReviewModal();
+      console.log(selectedCategory);
+    } else {
+      console.log('Error');
+    }
+  };
 
   return (
-    <>      
-    <div id="sideNav" className={`hidden lg:block bg-white w-64 fixed rounded-lg border-none`}>
+    <>
+      <div
+        id="sideNav"
+        className="hidden lg:block bg-white w-64 fixed rounded-lg border-none "
+      >
         <div className="p-4 space-y-2 gap-2">
-          <div onClick={() => changeCategory("products")} className={`cursor-pointer px-2 py-1 flex items-center space-x-4 rounded-md text-gray-500 group ${selectedCategory ===  "products" && "text-white bg-black"}  `}>
+          <div
+            onClick={() => changeCategory('products')}
+            className={`cursor-pointer px-2 py-1 flex items-center space-x-4 rounded-md text-gray-500 group ${
+              selectedCategory === 'products' && 'text-white bg-black'
+            }`}
+          >
             Product
           </div>
-          <div onClick={() => changeCategory("reviews")} className={`cursor-pointer px-2 py-1 flex items-center space-x-4 rounded-md text-gray-500 group ${selectedCategory ===  "reviews" && "text-white bg-black"}  `}>
+          <div
+            onClick={() => changeCategory('reviews')}
+            className={`cursor-pointer px-2 py-1 flex items-center space-x-4 rounded-md text-gray-500 group ${
+              selectedCategory === 'reviews' && 'text-white bg-black'
+            }`}
+          >
             Reviews
           </div>
-          <Filter nameFilter={true}/>
-          <div className={`hover:cursor-pointer hover:opacity-85 shadow-md p-2 font-bold bg-black text-white rounded-full uppercase text-center`}>
-          + {selectedCategory}
+          <Filter nameFilter={true} />
+          <div
+            onClick={handleToggleModal}
+            className="hover:cursor-pointer hover:opacity-85 shadow-md p-2 font-bold bg-black text-white rounded-full uppercase text-center"
+          >
+            + {selectedCategory}
+          </div>
+          <div
+            onClick={onToogleLeavingModal}
+            className="hover:cursor-pointer text-sm hover:opacity-85 text-center underline"
+          >
+            Выйти из аккаунта
           </div>
         </div>
       </div>
 
-      <div id="sideNav" className={`lg:hidden w-full rounded-lg border-none p-4`}>
-        <div className="flex flex-wrap justify-center gap-4">
-          <div onClick={() => changeCategory("products")} className={`cursor-pointer px-2 py-1 flex items-center space-x-4 rounded-md text-gray-500 group ${selectedCategory ===  "products" && "text-white bg-black"}  `}>
-          Product
+      <div
+        id="sideNav"
+        className="lg:hidden w-full rounded-lg border-none p-4 flex justify-center"
+      >
+        <div className="flex flex-wrap justify-center gap-4 items-center justify-center">
+          <div
+            onClick={() => changeCategory('products')}
+            className={`cursor-pointer px-2 py-1 flex items-center space-x-4 rounded-md text-gray-500 group ${
+              selectedCategory === 'products' && 'text-white bg-black'
+            }`}
+          >
+            Product
           </div>
-          <div onClick={() => changeCategory("reviews")} className={` cursor-pointer px-2 py-1 flex items-center space-x-4 rounded-md text-gray-500 group ${selectedCategory ===  "reviews" && "text-white bg-black"}  `}>
-          Reviews
+          <div
+            onClick={() => changeCategory('reviews')}
+            className={`cursor-pointer px-2 py-1 flex items-center space-x-4 rounded-md text-gray-500 group ${
+              selectedCategory === 'reviews' && 'text-white bg-black'
+            }`}
+          >
+            Reviews
           </div>
-          <Filter nameFilter={true}/>
-          <div onClick={onTogleProductModal} className={`hover:cursor-pointer hover:opacity-85 shadow-md py-2 w-full  md:w-[300px] font-bold bg-black text-white rounded-full uppercase text-center`}>
-          + {selectedCategory}
+          <Filter nameFilter={true} />
+          <div
+            onClick={handleToggleModal}
+            className="hover:cursor-pointer hover:opacity-85 shadow-md py-2 w-full md:w-[300px] font-bold bg-black text-white rounded-full uppercase text-center"
+          >
+            + {selectedCategory}
+          </div>
+          <div
+            onClick={onToogleLeavingModal}
+            className="hover:cursor-pointer text-sm hover:opacity-85 text-center underline"
+          >
+            Выйти из аккаунта
           </div>
         </div>
       </div>
@@ -45,7 +113,16 @@ export const AdminNavbar = ({changeCategory, selectedCategory, isModalProductOpe
         <AddProduct onCloseModal={onTogleProductModal} />
       </BasicModal>
 
+      <BasicModal isOpen={isModalReviewOpen} onCloseModal={onTogleReviewModal}>
+        <CreateReview onCloseModal={onTogleReviewModal} />
+      </BasicModal>
 
+      <BasicModal
+        isOpen={isLeavingModalOpen}
+        onCloseModal={onToogleLeavingModal}
+      >
+        <Leaving onCloseModal={onToogleLeavingModal} />
+      </BasicModal>
     </>
-  )
-}
+  );
+};

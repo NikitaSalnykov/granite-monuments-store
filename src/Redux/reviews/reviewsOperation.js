@@ -13,7 +13,6 @@ export const fetchReviews = createAsyncThunk(
   }
 );
 
-
 export const getReviewById = createAsyncThunk(
   'reviews/getReviewById',
   async (id, thunkAPI) => {
@@ -30,11 +29,7 @@ export const createReview = createAsyncThunk(
   'reviews/postReview',
   async (arg, thunkAPI) => {
     try {
-      const { data } = await instance.post('/api/reviews', arg, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
+      const { data } = await instance.post('/api/reviews', arg);
       return data;
     } catch (evt) {
       return thunkAPI.rejectWithValue(evt.message);
@@ -56,9 +51,12 @@ export const deleteReview = createAsyncThunk(
 
 export const createReviewComment = createAsyncThunk(
   'reviews/postReviewComment',
-  async ({reviewId, post}, thunkAPI) => {
+  async ({ reviewId, post }, thunkAPI) => {
     try {
-      const { data } = await instance.patch(`/api/reviews/${reviewId}/comments`, post);
+      const { data } = await instance.patch(
+        `/api/reviews/${reviewId}/comments`,
+        post
+      );
       return data;
     } catch (evt) {
       return thunkAPI.rejectWithValue(evt.message);
@@ -68,9 +66,11 @@ export const createReviewComment = createAsyncThunk(
 
 export const deleteReviewComment = createAsyncThunk(
   'reviews/deleteReviewComment',
-  async ({reviewId, commentId}, thunkAPI) => {
+  async ({ reviewId, commentId }, thunkAPI) => {
     try {
-      const { data } = await instance.delete(`/api/reviews/${reviewId}/comments/${commentId}`);
+      const { data } = await instance.delete(
+        `/api/reviews/${reviewId}/comments/${commentId}`
+      );
       return data;
     } catch (evt) {
       return thunkAPI.rejectWithValue(evt.message);

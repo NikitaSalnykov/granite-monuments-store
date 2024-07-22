@@ -9,9 +9,34 @@ import {
 } from '../../../Redux/products/productsSelectors';
 import { productSchema } from '../../../schemas/ProductSchema';
 import { resetProductCreated } from '../../../Redux/products/productsSlice';
+import { useTranslation } from 'react-i18next';
 
-const categories = ['fff', 'aaaa', 'cccc', 'dddd'];
-const type = ['1111', '2222', '3333', '4444'];
+const categories = [
+  { title: 'memorials', t: 'monuments' },
+  { title: 'landscaping', t: 'landscaping' },
+  { title: 'relatedproducts', t: 'related_products' },
+];
+const memorials = [
+  { title: 'availability', t: 'availability' },
+  { title: 'vertical', t: 'vertical' },
+  { title: 'horizontal', t: 'horizontal' },
+  { title: 'small', t: 'small' },
+];
+const landscaping = [
+  { title: 'antiSettlementSlabs', t: 'anti_settlement_slabs' },
+  { title: 'pavingTiles', t: 'paving_tiles' },
+  { title: 'graniteTiles', t: 'granite_tiles' },
+  { title: 'fencing', t: 'fencing' },
+  { title: 'tablesAndBenches', t: 'tables_and_benches' },
+  { title: 'vasesAndLamps', t: 'vases_and_lamps' },
+  { title: 'cubesAndSpheres', t: 'cubes_and_spheres' },
+];
+
+const relatedproducts = [
+  { title: 'glassPhotos', t: 'glass_photos' },
+  { title: 'plaques', t: 'plaques' },
+  { title: 'embeddedParts', t: 'embedded_parts' },
+];
 
 const errorTextStyle =
   'pl-4 absolute -bottom-5 text-rose-500 text-xs font-normal top-6 left-[60px] xl:left-[85px]';
@@ -26,6 +51,7 @@ export const AddProductForm = ({ onCloseModal }) => {
   const isProductCreated = useSelector(getIsProductCreated);
   const errorProducts = useSelector(getErrorProducts);
   const [errorMessage, setErrorMessage] = useState('');
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (isProductCreated) {
@@ -94,7 +120,9 @@ export const AddProductForm = ({ onCloseModal }) => {
       </label>
       {isTextArea ? (
         <textarea
-          className={`${inputStyle} resize-none h-[200px] ${errors[name] && 'border-rose-400'}`}
+          className={`${inputStyle} resize-none h-[200px] ${
+            errors[name] && 'border-rose-400'
+          }`}
           id={name}
           name={name}
           value={formikValues[name]}
@@ -127,54 +155,67 @@ export const AddProductForm = ({ onCloseModal }) => {
             {renderInputField('Название UA', 'nameUA')}
             {renderInputField('Название RU', 'nameRU')}
             <div className="flex-col">
-                <div className="flex justify-between w-full relative flex-wrap gap-2 items-center">
-                  <label className={labelStyle} htmlFor="category">
-                    Категория:
-                  </label>
-                  <select
-                    className={`w-[150px] text-xs outline-none border-b-black border-[1px] p-1 ${
-                      errors['category'] && 'border-rose-400'
-                    }`}
-                    id="category"
-                    name="category"
-                    value={formikValues['category']}
-                    onChange={formik.handleChange}
-                  >
-                    {categories.map((el, index) => (
-                      <option key={index} value={el}>
-                        {el}
-                      </option>
-                    ))}
-                  </select>
-                  {errors['category'] && (
-                    <p className={errorTextStyle}>{errors['category']}</p>
-                  )}
-                </div>
+              <div className="flex justify-between w-full relative flex-wrap gap-2 items-center">
+                <label className={labelStyle} htmlFor="category">
+                  Категория:
+                </label>
+                <select
+                  className={`w-[150px] text-xs outline-none border-b-black border-[1px] p-1 ${
+                    errors['category'] && 'border-rose-400'
+                  }`}
+                  id="category"
+                  name="category"
+                  value={formikValues['category']}
+                  onChange={formik.handleChange}
+                >
+                  {categories.map((el, index) => (
+                    <option key={index} value={el.title}>
+                      {t(el.t)}
+                    </option>
+                  ))}
+                </select>
+                {errors['category'] && (
+                  <p className={errorTextStyle}>{errors['category']}</p>
+                )}
+              </div>
             </div>
             <div className="flex-col">
-                <div className="flex justify-between w-full relative flex-wrap gap-2 items-center">
-                  <label className={labelStyle} htmlFor="type">
-                    Тип:
-                  </label>
-                  <select
-                    className={`w-[150px] text-xs outline-none border-b-black border-[1px] p-1 ${
-                      errors['type'] && 'border-rose-400'
-                    }`}
-                    id="type"
-                    name="type"
-                    value={formikValues['type']}
-                    onChange={formik.handleChange}
-                  >
-                    {type.map((el, index) => (
-                      <option key={index} value={el}>
-                        {el}
+              <div className="flex justify-between w-full relative flex-wrap gap-2 items-center">
+                <label className={labelStyle} htmlFor="type">
+                  Тип:
+                </label>
+                <select
+                  className={`w-[150px] text-xs outline-none border-b-black border-[1px] p-1 ${
+                    errors['type'] && 'border-rose-400'
+                  }`}
+                  id="type"
+                  name="type"
+                  value={formikValues['type']}
+                  onChange={formik.handleChange}
+                >
+                  {formikValues['category'] === 'memorials' &&
+                    memorials.map((el, index) => (
+                      <option key={index} value={el.title}>
+                        {t(el.t)}
                       </option>
                     ))}
-                  </select>
-                  {errors['type'] && (
-                    <p className={errorTextStyle}>{errors['type']}</p>
-                  )}
-                </div>
+                  {formikValues['category'] === 'landscaping' &&
+                    landscaping.map((el, index) => (
+                      <option key={index} value={el.title}>
+                        {t(el.t)}
+                      </option>
+                    ))}
+                  {formikValues['category'] === 'relatedproducts' &&
+                    relatedproducts.map((el, index) => (
+                      <option key={index} value={el.title}>
+                        {t(el.t)}
+                      </option>
+                    ))}
+                </select>
+                {errors['type'] && (
+                  <p className={errorTextStyle}>{errors['type']}</p>
+                )}
+              </div>
             </div>
             {renderInputField('Цена', 'price')}
             {renderInputField('Скидка', 'discount')}
@@ -197,14 +238,16 @@ export const AddProductForm = ({ onCloseModal }) => {
               type="file"
               id="mainPhoto"
               name="mainPhoto"
-                   accept="image/jpeg, image/png, image/webp"
+              accept="image/jpeg, image/png, image/webp"
               onChange={(e) => {
                 const file = e.target.files[0];
                 formik.setFieldValue('mainPhoto', file);
               }}
             />
             {errors['mainPhoto'] && (
-              <p className={`${errorTextStyle} top-[-20px] left-[20%]`}>{errors['mainPhoto']}</p>
+              <p className={`${errorTextStyle} top-[-20px] left-[20%]`}>
+                {errors['mainPhoto']}
+              </p>
             )}
           </div>
 
@@ -217,7 +260,7 @@ export const AddProductForm = ({ onCloseModal }) => {
               type="file"
               id="extraPhotos"
               name="extraPhotos"
-                   accept="image/jpeg, image/png, image/webp"
+              accept="image/jpeg, image/png, image/webp"
               multiple
               onChange={(e) => {
                 const files = e.target.files;
