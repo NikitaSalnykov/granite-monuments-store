@@ -14,9 +14,8 @@ import { useTranslation } from 'react-i18next';
 const categories = [
   { title: 'monuments', t: 'monuments' },
   { title: 'landscaping', t: 'landscaping' },
-  { title: 'relatedproducts', t: 'related_products' },
-  {title: "buildingmaterials", t:"building_materials"}
-
+  { title: 'relatedproducts', t: 'relatedProducts' },
+  { title: 'buildingmaterials', t: 'buildingMaterials' },
 ];
 const monuments = [
   { title: 'availability', t: 'availability' },
@@ -25,21 +24,20 @@ const monuments = [
   { title: 'small', t: 'small' },
 ];
 const landscaping = [
-  { title: 'antiSettlementSlabs', t: 'anti_settlement_slabs' },
-  { title: 'pavingTiles', t: 'paving_tiles' },
-  { title: 'graniteTiles', t: 'granite_tiles' },
+  { title: 'antiSettlementSlabs', t: 'antiSettlementSlabs' },
+  { title: 'pavingTiles', t: 'pavingTiles' },
+  { title: 'graniteTiles', t: 'graniteTiles' },
   { title: 'fencing', t: 'fencing' },
-  { title: 'tablesAndBenches', t: 'tables_and_benches' },
-  { title: 'vasesAndLamps', t: 'vases_and_lamps' },
-  { title: 'cubesAndSpheres', t: 'cubes_and_spheres' },
+  { title: 'tablesAndBenches', t: 'tablesAndBenches' },
+  { title: 'vasesAndLamps', t: 'vasesAndLamps' },
+  { title: 'cubesAndSpheres', t: 'cubesAndSpheres' },
 ];
 
 const relatedproducts = [
-  { title: 'glassPhotos', t: 'glass_photos' },
+  { title: 'glassPhotos', t: 'glassPhotos' },
   { title: 'plaques', t: 'plaques' },
-  { title: 'embeddedParts', t: 'embedded_parts' },
+  { title: 'embeddedParts', t: 'embeddedParts' },
 ];
-
 
 const errorTextStyle =
   'pl-4 absolute -bottom-5 text-rose-500 text-xs font-normal top-6 left-[60px] xl:left-[85px]';
@@ -60,7 +58,6 @@ export const EditProductForm = ({ onCloseModal, product }) => {
     if (isProductUpdated) {
       onCloseModal();
       dispatch(resetProductUpdated());
-
     } else if (errorProducts) {
       setErrorMessage('Произошла ошибка, попробуйте снова.');
     }
@@ -124,7 +121,9 @@ export const EditProductForm = ({ onCloseModal, product }) => {
       </label>
       {isTextArea ? (
         <textarea
-          className={`${inputStyle} resize-none h-[200px] ${errors[name] && 'border-rose-400'}`}
+          className={`${inputStyle} resize-none h-[200px] ${
+            errors[name] && 'border-rose-400'
+          }`}
           id={name}
           name={name}
           value={formikValues[name]}
@@ -181,45 +180,46 @@ export const EditProductForm = ({ onCloseModal, product }) => {
                 )}
               </div>
             </div>
-           {formikValues['category'] !== 'buildingmaterials' && <div className="flex-col">
-              <div className="flex justify-between w-full relative flex-wrap gap-2 items-center">
-                <label className={labelStyle} htmlFor="type">
-                  Тип:
-                </label>
-                <select
-                  className={`w-[150px] text-xs outline-none border-b-black border-[1px] p-1 ${
-                    errors['type'] && 'border-rose-400'
-                  }`}
-                  id="type"
-                  name="type"
-                  value={formikValues['type']}
-                  onChange={formik.handleChange}
-                >
-                  {formikValues['category'] === 'monuments' &&
-                    monuments.map((el, index) => (
-                      <option key={index} value={el.title}>
-                        {t(el.t)}
-                      </option>
-                    ))}
-                  {formikValues['category'] === 'landscaping' &&
-                    landscaping.map((el, index) => (
-                      <option key={index} value={el.title}>
-                        {t(el.t)}
-                      </option>
-                    ))}
-                  {formikValues['category'] === 'relatedproducts' &&
-                    relatedproducts.map((el, index) => (
-                      <option key={index} value={el.title}>
-                        {t(el.t)}
-                      </option>
-                    ))}
-                </select>
-                {errors['type'] && (
-                  <p className={errorTextStyle}>{errors['type']}</p>
-                )}
+            {formikValues['category'] !== 'buildingmaterials' && (
+              <div className="flex-col">
+                <div className="flex justify-between w-full relative flex-wrap gap-2 items-center">
+                  <label className={labelStyle} htmlFor="type">
+                    Тип:
+                  </label>
+                  <select
+                    className={`w-[150px] text-xs outline-none border-b-black border-[1px] p-1 ${
+                      errors['type'] && 'border-rose-400'
+                    }`}
+                    id="type"
+                    name="type"
+                    value={formikValues['type']}
+                    onChange={formik.handleChange}
+                  >
+                    {formikValues['category'] === 'monuments' &&
+                      monuments.map((el, index) => (
+                        <option key={index} value={el.title}>
+                          {t(el.t)}
+                        </option>
+                      ))}
+                    {formikValues['category'] === 'landscaping' &&
+                      landscaping.map((el, index) => (
+                        <option key={index} value={el.title}>
+                          {t(el.t)}
+                        </option>
+                      ))}
+                    {formikValues['category'] === 'relatedproducts' &&
+                      relatedproducts.map((el, index) => (
+                        <option key={index} value={el.title}>
+                          {t(el.t)}
+                        </option>
+                      ))}
+                  </select>
+                  {errors['type'] && (
+                    <p className={errorTextStyle}>{errors['type']}</p>
+                  )}
+                </div>
               </div>
-            </div>
-              }
+            )}
             {renderInputField('Цена', 'price')}
             {renderInputField('Скидка', 'discount')}
             {renderInputField('Артикль', 'article')}
@@ -241,14 +241,16 @@ export const EditProductForm = ({ onCloseModal, product }) => {
               type="file"
               id="mainPhoto"
               name="mainPhoto"
-                   accept="image/jpeg, image/png, image/webp"
+              accept="image/jpeg, image/png, image/webp"
               onChange={(e) => {
                 const file = e.target.files[0];
                 formik.setFieldValue('mainPhoto', file);
               }}
             />
             {errors['mainPhoto'] && (
-              <p className={`${errorTextStyle} top-[-20px] left-[20%]`}>{errors['mainPhoto']}</p>
+              <p className={`${errorTextStyle} top-[-20px] left-[20%]`}>
+                {errors['mainPhoto']}
+              </p>
             )}
           </div>
 
@@ -261,7 +263,7 @@ export const EditProductForm = ({ onCloseModal, product }) => {
               type="file"
               id="extraPhotos"
               name="extraPhotos"
-                   accept="image/jpeg, image/png, image/webp"
+              accept="image/jpeg, image/png, image/webp"
               multiple
               onChange={(e) => {
                 const files = e.target.files;
@@ -269,7 +271,9 @@ export const EditProductForm = ({ onCloseModal, product }) => {
               }}
             />
             {errors['extraPhotos'] && (
-              <p className={`${errorTextStyle} top-[-20px] left-[20%]`}>{errors['extraPhotos']}</p>
+              <p className={`${errorTextStyle} top-[-20px] left-[20%]`}>
+                {errors['extraPhotos']}
+              </p>
             )}
           </div>
         </div>

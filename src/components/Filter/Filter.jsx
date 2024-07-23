@@ -12,11 +12,11 @@ import {
   getFilterName,
   getFilterNew,
   getFilterPrice,
-  getFilterSale
+  getFilterSale,
 } from '../../Redux/filter/filterSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { useLocation, useNavigate  } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export const Filter = ({
   nameFilter = false,
@@ -25,7 +25,7 @@ export const Filter = ({
   filterPrice = false,
   filterNew = false,
   filterSale = false,
-  value
+  value,
 }) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
@@ -39,58 +39,60 @@ export const Filter = ({
   const location = useLocation();
   const pathname = location.pathname;
 
-  const [isCheckedSale, setCheckedSale] = useState(value === 'sale' ? true : false);
+  const [isCheckedSale, setCheckedSale] = useState(
+    value === 'sale' ? true : false
+  );
 
   useEffect(() => {
     applyFiltersFromPathname();
   }, [pathname]);
 
   const applyFiltersFromPathname = () => {
-    if (pathname.includes('monuments')) {
+    if (pathname.toLocaleLowerCase().includes('monuments')) {
       dispatch(setFilterCategory('monuments'));
-    } else if (pathname.includes('landscaping')) {
+    } else if (pathname.toLocaleLowerCase().includes('landscaping')) {
       dispatch(setFilterCategory('landscaping'));
-    } else if (pathname.includes('relatedproducts')) {
+    } else if (pathname.toLocaleLowerCase().includes('relatedproducts')) {
       dispatch(setFilterCategory('relatedProducts'));
     }
 
     // Дополнительные условия для типа, цены и других фильтров
-    if (pathname.includes('availability')) {
+    if (pathname.toLocaleLowerCase().includes('availability')) {
       dispatch(setFilterType('availability'));
-    } else if (pathname.includes('vertical')) {
+    } else if (pathname.toLocaleLowerCase().includes('vertical')) {
       dispatch(setFilterType('vertical'));
-    } else if (pathname.includes('horizontal')) {
+    } else if (pathname.toLocaleLowerCase().includes('horizontal')) {
       dispatch(setFilterType('horizontal'));
-    } else if (pathname.includes('small')) {
+    } else if (pathname.toLocaleLowerCase().includes('small')) {
       dispatch(setFilterType('small'));
-    } else if (pathname.includes('antiSettlementSlabs')) {
+    } else if (pathname.toLocaleLowerCase().includes('antiSettlementSlabs')) {
       dispatch(setFilterType('antiSettlementSlabs'));
-    } else if (pathname.includes('pavingTiles')) {
+    } else if (pathname.toLocaleLowerCase().includes('pavingTiles')) {
       dispatch(setFilterType('pavingTiles'));
-    } else if (pathname.includes('graniteTiles')) {
+    } else if (pathname.toLocaleLowerCase().includes('graniteTiles')) {
       dispatch(setFilterType('graniteTiles'));
-    } else if (pathname.includes('fencing')) {
+    } else if (pathname.toLocaleLowerCase().includes('fencing')) {
       dispatch(setFilterType('fencing'));
-    } else if (pathname.includes('tablesAndBenches')) {
+    } else if (pathname.toLocaleLowerCase().includes('tablesAndBenches')) {
       dispatch(setFilterType('tablesAndBenches'));
-    } else if (pathname.includes('vasesAndLamps')) {
+    } else if (pathname.toLocaleLowerCase().includes('vasesAndLamps')) {
       dispatch(setFilterType('vasesAndLamps'));
-    } else if (pathname.includes('cubesAndSpheres')) {
+    } else if (pathname.toLocaleLowerCase().includes('cubesAndSpheres')) {
       dispatch(setFilterType('cubesAndSpheres'));
-    } else if (pathname.includes('glassPhotos')) {
+    } else if (pathname.toLocaleLowerCase().includes('glassPhotos')) {
       dispatch(setFilterType('glassPhotos'));
-    } else if (pathname.includes('plaques')) {
+    } else if (pathname.toLocaleLowerCase().includes('plaques')) {
       dispatch(setFilterType('plaques'));
-    } else if (pathname.includes('embeddedParts')) {
-      dispatch(setFilterType('embeddedParts'))
-    } else if (pathname.includes('all')) {
-      dispatch(setFilterType(''))}
-
+    } else if (pathname.toLocaleLowerCase().includes('embeddedParts')) {
+      dispatch(setFilterType('embeddedParts'));
+    } else if (pathname.toLocaleLowerCase().includes('all')) {
+      dispatch(setFilterType(''));
+    }
 
     // Пример для других фильтров
-    // if (pathname.includes('minprice')) {
+    // if (pathname.toLocaleLowerCase().includes('minprice')) {
     //   dispatch(setFilterPrice('min'));
-    // } else if (pathname.includes('maxprice')) {
+    // } else if (pathname.toLocaleLowerCase().includes('maxprice')) {
     //   dispatch(setFilterPrice('max'));
     // }
   };
@@ -101,13 +103,14 @@ export const Filter = ({
 
   const handleFilterType = ({ currentTarget }) => {
     dispatch(setFilterType(currentTarget.value));
-    navigate(`/${category.toLowerCase()}/${currentTarget.value.toLowerCase()}`)
+    navigate(`/${category.toLowerCase()}/${currentTarget.value.toLowerCase()}`);
   };
 
   const handleFilterCategory = ({ currentTarget }) => {
     dispatch(setFilterCategory(currentTarget.value));
-    if(currentTarget.value.toLowerCase() === "products") return navigate(`/products`)
-    navigate(`/${currentTarget.value.toLowerCase()}/all`)
+    if (currentTarget.value.toLowerCase() === 'products')
+      return navigate(`/products`);
+    navigate(`/${currentTarget.value.toLowerCase()}/all`);
   };
 
   const handleFilterPrice = ({ currentTarget }) => {
@@ -130,7 +133,11 @@ export const Filter = ({
       <div className="flex gap-4 flex-wrap">
         {nameFilter && (
           <div className="flex gap-1 bg-gray-50 border-[1px] px-2 text-gray-800 border-gray-300 hover:outline-none focus:outline-none rounded-lg mx-auto py-2">
-            <label className="flex justify-center items-center" style={{ marginRight: '14px' }} htmlFor="filter">
+            <label
+              className="flex justify-center items-center"
+              style={{ marginRight: '14px' }}
+              htmlFor="filter"
+            >
               <Svg id={'icon-search'} size={22} stroke={'black'} />
             </label>
             <input
@@ -148,7 +155,11 @@ export const Filter = ({
         <div className="flex gap-4 mx-auto flex-wrap justify-center items-center">
           {filterCategory && (
             <div className="flex justify-center items-center max-w-[100px] lg:max-w-[200px]">
-              <label className="sr-only" style={{ marginRight: '14px' }} htmlFor="filterCategory">
+              <label
+                className="sr-only"
+                style={{ marginRight: '14px' }}
+                htmlFor="filterCategory"
+              >
                 Категория
               </label>
               <select
@@ -160,13 +171,17 @@ export const Filter = ({
                 <option value="products">Всі категорії</option>
                 <option value="monuments">{t('monuments')}</option>
                 <option value="landscaping">{t('landscaping')}</option>
-                <option value="relatedproducts">{t('related_products')}</option>
+                <option value="relatedproducts">{t('relatedProducts')}</option>
               </select>
             </div>
           )}
-          {((filterType && category === 'monuments')) && (
+          {filterType && category === 'monuments' && (
             <div className="flex justify-center items-center max-w-[100px] lg:max-w-[200px]">
-              <label className="sr-only" style={{ marginRight: '14px' }} htmlFor="filterType">
+              <label
+                className="sr-only"
+                style={{ marginRight: '14px' }}
+                htmlFor="filterType"
+              >
                 Тип
               </label>
               <select
@@ -183,9 +198,13 @@ export const Filter = ({
               </select>
             </div>
           )}
-          {(filterType && category === 'landscaping') && (
+          {filterType && category === 'landscaping' && (
             <div className="flex justify-center items-center max-w-[100px] lg:max-w-[200px]">
-              <label className="sr-only" style={{ marginRight: '14px' }} htmlFor="filterType">
+              <label
+                className="sr-only"
+                style={{ marginRight: '14px' }}
+                htmlFor="filterType"
+              >
                 Тип
               </label>
               <select
@@ -195,19 +214,27 @@ export const Filter = ({
                 value={type}
               >
                 <option value="all">Всі типи</option>
-                <option value="antiSettlementSlabs">{t('anti_settlement_slabs')}</option>
-                <option value="pavingTiles">{t('paving_tiles')}</option>
-                <option value="graniteTiles">{t('granite_tiles')}</option>
+                <option value="antiSettlementSlabs">
+                  {t('antiSettlementSlabs')}
+                </option>
+                <option value="pavingTiles">{t('pavingTiles')}</option>
+                <option value="graniteTiles">{t('graniteTiles')}</option>
                 <option value="fencing">{t('fencing')}</option>
-                <option value="tablesAndBenches">{t('tables_and_benches')}</option>
-                <option value="vasesAndLamps">{t('vases_and_lamps')}</option>
-                <option value="cubesAndSpheres">{t('cubes_and_spheres')}</option>
+                <option value="tablesAndBenches">
+                  {t('tablesAndBenches')}
+                </option>
+                <option value="vasesAndLamps">{t('vasesAndLamps')}</option>
+                <option value="cubesAndSpheres">{t('cubesAndSpheres')}</option>
               </select>
             </div>
           )}
-          {(filterType && category === 'relatedProducts') && (
+          {filterType && category === 'relatedProducts' && (
             <div className="flex justify-center items-center max-w-[100px] lg:max-w-[200px]">
-              <label className="sr-only" style={{ marginRight: '14px' }} htmlFor="filterType">
+              <label
+                className="sr-only"
+                style={{ marginRight: '14px' }}
+                htmlFor="filterType"
+              >
                 Тип
               </label>
               <select
@@ -217,15 +244,19 @@ export const Filter = ({
                 value={type}
               >
                 <option value="all">Всі типи</option>
-                <option value="glassPhotos">{t('glass_photos')}</option>
+                <option value="glassPhotos">{t('glassPhotos')}</option>
                 <option value="plaques">{t('plaques')}</option>
-                <option value="embeddedParts">{t('embedded_parts')}</option>
+                <option value="embeddedParts">{t('embeddedParts')}</option>
               </select>
             </div>
           )}
           {filterPrice && (
             <div className="flex justify-center items-center max-w-[100px]">
-              <label className="sr-only" style={{ marginRight: '14px' }} htmlFor="filterPrice">
+              <label
+                className="sr-only"
+                style={{ marginRight: '14px' }}
+                htmlFor="filterPrice"
+              >
                 Ціна
               </label>
               <select
@@ -240,38 +271,44 @@ export const Filter = ({
               </select>
             </div>
           )}
-{(filterNew || filterSale) &&
+          {(filterNew || filterSale) && (
             <div className=" flex gap-4 justify-center items-center">
               {filterNew && (
-              <div className="flex justify-center items-center">
-                <input
-                  id="filterNew"
-                  type="checkbox"
-                  checked={isNew}
-                  onChange={handleFilterNew}
-                  className="form-checkbox h-5 w-5 text-indigo-600 rounded-lg"
-                />
-                <label htmlFor="filterNew" className="ml-2 text-gray-700 text-sm md:text-md">
-                  Новинка
-                </label>
-              </div>
-            )}
-            {filterSale && (
-              <div className="flex justify-center items-center">
-                <input
-                  id="filterSale"
-                  type="checkbox"
-                  checked={isCheckedSale}
-                  onChange={handleFilterSale}
-                  className="form-checkbox h-5 w-5 text-indigo-600 rounded-lg"
-                />
-                <label htmlFor="filterSale" className="ml-2 text-gray-700 text-sm md:text-md">
-                  Розпродаж
-                </label>
-              </div>
-            )}
+                <div className="flex justify-center items-center">
+                  <input
+                    id="filterNew"
+                    type="checkbox"
+                    checked={isNew}
+                    onChange={handleFilterNew}
+                    className="form-checkbox h-5 w-5 text-indigo-600 rounded-lg"
+                  />
+                  <label
+                    htmlFor="filterNew"
+                    className="ml-2 text-gray-700 text-sm md:text-md"
+                  >
+                    Новинка
+                  </label>
+                </div>
+              )}
+              {filterSale && (
+                <div className="flex justify-center items-center">
+                  <input
+                    id="filterSale"
+                    type="checkbox"
+                    checked={isCheckedSale}
+                    onChange={handleFilterSale}
+                    className="form-checkbox h-5 w-5 text-indigo-600 rounded-lg"
+                  />
+                  <label
+                    htmlFor="filterSale"
+                    className="ml-2 text-gray-700 text-sm md:text-md"
+                  >
+                    Розпродаж
+                  </label>
+                </div>
+              )}
             </div>
-}
+          )}
         </div>
       </div>
     </div>

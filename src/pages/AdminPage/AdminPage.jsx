@@ -12,7 +12,10 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { getFilterName } from '../../Redux/filter/filterSlice';
 import Loader from '../../components/Loader/Loader';
-import { fetchProducts, updateAvailability } from '../../Redux/products/productsOperation';
+import {
+  fetchProducts,
+  updateAvailability,
+} from '../../Redux/products/productsOperation';
 import { formattedDate } from '../../helpers/formattedDate';
 import DeleteProduct from '../../components/Modals/AdminModals/DeleteProduct';
 import EditProduct from '../../components/Modals/AdminModals/EditProduct';
@@ -23,6 +26,7 @@ import {
 } from '../../Redux/reviews/reviewsOperation';
 import { useTranslation } from 'react-i18next';
 import { Title } from '../../components/Title/Title';
+import { cutText } from '../../helpers/cutText';
 
 const AdminPage = () => {
   const [selectedCategory, setSelectedCategory] = useState('products');
@@ -35,7 +39,7 @@ const AdminPage = () => {
   const dispatch = useDispatch();
   const products = useSelector(getProducts);
   const reviews = useSelector(getReviews);
-  const {t} = useTranslation()
+  const { t } = useTranslation();
   const isLoadingProducts = useSelector(getIsLoadingProducts);
   const filterName = useSelector(getFilterName);
 
@@ -114,11 +118,12 @@ const AdminPage = () => {
       });
   };
 
-  console.log(isLoadingProducts);
-
   return (
     <Container>
-    <Title title={"Админ-панель"} description={"Добавляйте, редактируйте и удаляйте товары/отзывы"}/>
+      <Title
+        title={'Админ-панель'}
+        description={'Добавляйте, редактируйте и удаляйте товары/отзывы'}
+      />
 
       <div className="h-auto">
         <AdminNavbar
@@ -133,7 +138,7 @@ const AdminPage = () => {
         <div className="lg:ml-64 lg:pl-4 lg:flex lg:flex-col lg:w-75% mx-[2px] md:mx-2 min-h-screen">
           {!isLoadingProducts ? (
             <div className="bg-white rounded-lg p-2 shadow-md mb-20  md:p-4 min-h-screen">
-              <table className="table-auto w-full text-xs md:text-md lg:text-lg">
+              <table className="table-auto w-full text-xs md:text-md lg:text-md">
                 <thead>
                   <tr>
                     <th className="px-1 md:px-2 py-2 text-left border-b-2 w-1/3">
@@ -151,58 +156,66 @@ const AdminPage = () => {
                     products &&
                     filteredProducts(products).map((el, index) => (
                       <>
-                      <tr className="" key={index}>
-                        <td className="px-1 md:px-2 py-2 text-left align-center w-full md:w-1/3">
-                          <div>
-                            <h2 className=' font-semibold'>{el.name.ru}</h2>
-                            <p className="text-[8px] md:text-xs">
-                              {formattedDate(el.createdAt)}
-                            </p>
-                            <div className="flex gap-1">
-                            <input
-                              type="checkbox"
-                              id={el._id}
-                              name={el._id}
-                              checked={el.availability}
-                              onChange={(e) => {
-                                dispatch(
-                                  updateAvailability({
-                                    id: el._id,
-                                    arg: { availability: e.target.checked },
-                                  })
-                                );
-                                dispatch(fetchProducts());
-                              }}
-                            />
-                                                        <p>Наличие</p>
+                        <tr className="" key={index}>
+                          <td className="px-1 md:px-2 py-2 text-left align-center w-full md:w-1/3">
+                            <div>
+                              <h2 className=" font-semibold">{el.name.ru}</h2>
+                              <p className="text-[8px] md:text-xs">
+                                {formattedDate(el.createdAt)}
+                              </p>
+                              <div className="flex gap-1">
+                                <input
+                                  type="checkbox"
+                                  id={el._id}
+                                  name={el._id}
+                                  checked={el.availability}
+                                  onChange={(e) => {
+                                    dispatch(
+                                      updateAvailability({
+                                        id: el._id,
+                                        arg: { availability: e.target.checked },
+                                      })
+                                    );
+                                    dispatch(fetchProducts());
+                                  }}
+                                />
+                                <p>Наличие</p>
+                              </div>
                             </div>
-                          </div>
-                        </td>
-                        <td className="px-1 md:px-2 py-2 text-left align-center w-1/3">
-                          <div>
-                            <p><span className="font-bold">Категория: </span>{t(el.category)}</p>
-                            <p><span className="font-bold">Тип: </span>{t(el.type)}</p>
-                          </div>
-                        </td>
-                        <td className="px-1 md:px-2 py-2 text-left align-center w-1/3">
-                          <div className='hidden md:block md:px-2 lg:px-10'>
-                            <p><span className="font-bold">Описание: </span>{t(el.description.ru)}</p>
-                          </div>
-                        </td>
-                        <td className="px-1 md:px-2 py-2 text-right text-cyan-500 w-1/3">
-                          <p>
-                            {el.price}
-                            <span className="font-bold">₴</span>
-                            {el.discount && el.discount > 0 && (
-                              <p className="text-red"><span className="font-bold">Скидка </span> -{el.discount}%</p>
-                            )}
-                          </p>
-                        </td>
-                        
+                          </td>
+                          <td className="px-1 md:px-2 py-2 text-left align-center w-1/3">
+                            <div>
+                              <p>
+                                <span className="font-bold">Категория: </span>
+                                {t(el.category)}
+                              </p>
+                              <p>
+                                <span className="font-bold">Тип: </span>
+                                {t(el.type)}
+                              </p>
+                            </div>
+                          </td>
+                          <td className="px-1 md:px-2 py-2 text-left align-center w-1/3">
+                            <div className="hidden md:block md:px-2 lg:px-10">
+                              <p>
+                                <span className="font-bold">Описание: </span>
+                                {cutText(el.description.ru, 120)}
+                              </p>
+                            </div>
+                          </td>
+                          <td className="px-1 md:px-2 py-2 text-right text-cyan-500 w-1/3">
+                            <p>
+                              {el.price}
+                              <span className="font-bold">₴</span>
+                            </p>
 
-                      </tr>
-                      <tr className='border-b w-full'>
-                      <td className="px-1 pb-3  text-white flex gap-2 md:gap-4">
+                            {el.discount > 0 && (
+                              <p className="text-red">-{el.discount}%</p>
+                            )}
+                          </td>
+                        </tr>
+                        <tr className="border-b w-full">
+                          <td className="px-1 pb-3  text-white flex gap-2 md:gap-4">
                             <div
                               className=" cursor-pointer hover:opacity-80 transition-opacity px-42 p-1 bg-red rounded-md flex justify-center items-center"
                               onClick={() => onTogleDeleteProductModal(el)}
@@ -215,8 +228,9 @@ const AdminPage = () => {
                             >
                               Изменить
                             </div>
-                        </td> 
-                      </tr></>
+                          </td>
+                        </tr>
+                      </>
                     ))}
                   {selectedCategory === 'reviews' &&
                     reviews &&

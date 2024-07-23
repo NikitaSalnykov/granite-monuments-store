@@ -14,8 +14,8 @@ import { useTranslation } from 'react-i18next';
 const categories = [
   { title: 'monuments', t: 'monuments' },
   { title: 'landscaping', t: 'landscaping' },
-  { title: 'relatedproducts', t: 'related_products' },
-  {title: "buildingmaterials", t:"building_materials"}
+  { title: 'relatedproducts', t: 'relatedProducts' },
+  { title: 'buildingmaterials', t: 'buildingMaterials' },
 ];
 const monuments = [
   { title: 'availability', t: 'availability' },
@@ -24,19 +24,19 @@ const monuments = [
   { title: 'small', t: 'small' },
 ];
 const landscaping = [
-  { title: 'antiSettlementSlabs', t: 'anti_settlement_slabs' },
-  { title: 'pavingTiles', t: 'paving_tiles' },
-  { title: 'graniteTiles', t: 'granite_tiles' },
+  { title: 'antiSettlementSlabs', t: 'antiSettlementSlabs' },
+  { title: 'pavingTiles', t: 'pavingTiles' },
+  { title: 'graniteTiles', t: 'graniteTiles' },
   { title: 'fencing', t: 'fencing' },
-  { title: 'tablesAndBenches', t: 'tables_and_benches' },
-  { title: 'vasesAndLamps', t: 'vases_and_lamps' },
-  { title: 'cubesAndSpheres', t: 'cubes_and_spheres' },
+  { title: 'tablesAndBenches', t: 'tablesAndBenches' },
+  { title: 'vasesAndLamps', t: 'vasesAndLamps' },
+  { title: 'cubesAndSpheres', t: 'cubesAndSpheres' },
 ];
 
 const relatedproducts = [
-  { title: 'glassPhotos', t: 'glass_photos' },
+  { title: 'glassPhotos', t: 'glassPhotos' },
   { title: 'plaques', t: 'plaques' },
-  { title: 'embeddedParts', t: 'embedded_parts' },
+  { title: 'embeddedParts', t: 'embeddedParts' },
 ];
 
 const errorTextStyle =
@@ -180,45 +180,46 @@ export const AddProductForm = ({ onCloseModal }) => {
                 )}
               </div>
             </div>
-            {formikValues['category'] !== 'buildingmaterials' && <div className="flex-col">
-              <div className="flex justify-between w-full relative flex-wrap gap-2 items-center">
-                <label className={labelStyle} htmlFor="type">
-                  Тип:
-                </label>
-                <select
-                  className={`w-[150px] text-xs outline-none border-b-black border-[1px] p-1 ${
-                    errors['type'] && 'border-rose-400'
-                  }`}
-                  id="type"
-                  name="type"
-                  value={formikValues['type']}
-                  onChange={formik.handleChange}
-                >
-                  {formikValues['category'] === 'monuments' &&
-                    monuments.map((el, index) => (
-                      <option key={index} value={el.title}>
-                        {t(el.t)}
-                      </option>
-                    ))}
-                  {formikValues['category'] === 'landscaping' &&
-                    landscaping.map((el, index) => (
-                      <option key={index} value={el.title}>
-                        {t(el.t)}
-                      </option>
-                    ))}
-                  {formikValues['category'] === 'relatedproducts' &&
-                    relatedproducts.map((el, index) => (
-                      <option key={index} value={el.title}>
-                        {t(el.t)}
-                      </option>
-                    ))}
-                </select>
-                {errors['type'] && (
-                  <p className={errorTextStyle}>{errors['type']}</p>
-                )}
+            {formikValues['category'] !== 'buildingmaterials' && (
+              <div className="flex-col">
+                <div className="flex justify-between w-full relative flex-wrap gap-2 items-center">
+                  <label className={labelStyle} htmlFor="type">
+                    Тип:
+                  </label>
+                  <select
+                    className={`w-[150px] text-xs outline-none border-b-black border-[1px] p-1 ${
+                      errors['type'] && 'border-rose-400'
+                    }`}
+                    id="type"
+                    name="type"
+                    value={formikValues['type']}
+                    onChange={formik.handleChange}
+                  >
+                    {formikValues['category'] === 'monuments' &&
+                      monuments.map((el, index) => (
+                        <option key={index} value={el.title}>
+                          {t(el.t)}
+                        </option>
+                      ))}
+                    {formikValues['category'] === 'landscaping' &&
+                      landscaping.map((el, index) => (
+                        <option key={index} value={el.title}>
+                          {t(el.t)}
+                        </option>
+                      ))}
+                    {formikValues['category'] === 'relatedproducts' &&
+                      relatedproducts.map((el, index) => (
+                        <option key={index} value={el.title}>
+                          {t(el.t)}
+                        </option>
+                      ))}
+                  </select>
+                  {errors['type'] && (
+                    <p className={errorTextStyle}>{errors['type']}</p>
+                  )}
+                </div>
               </div>
-            </div>
-              }
+            )}
             {renderInputField('Цена', 'price')}
             {renderInputField('Скидка', 'discount')}
             {renderInputField('Артикль', 'article')}

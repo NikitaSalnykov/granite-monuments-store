@@ -18,11 +18,17 @@ export const Logo = ({ size, textSize, textColor, secondaryTextSize }) => {
         strokeWidth={2}
       ></Svg>
       <div className="flex flex-col  leading-none">
-        <p className={` text-${textColor || 'black'} font-bold text-${textSize}`}>
-          {t("name")}
+        <p
+          className={` text-${textColor || 'black'} font-bold text-${textSize}`}
+        >
+          {t('name')}
         </p>
-        <p className={`text-${textColor || 'black'}  opacity-70 text-${secondaryTextSize}`}>
-        {t("secondary_name")}
+        <p
+          className={`text-${
+            textColor || 'black'
+          }  opacity-70 text-${secondaryTextSize}`}
+        >
+          {t('secondaryName')}
         </p>
       </div>
     </Link>

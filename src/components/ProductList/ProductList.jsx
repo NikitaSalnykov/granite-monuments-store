@@ -24,7 +24,6 @@ export const ProductList = ({ products }) => {
   const filterNew = useSelector(getFilterNew);
   const currentLanguage = i18n.language;
 
-
   const [currentPage, setCurrentPage] = useState(1);
   const limit = 8;
 
@@ -47,15 +46,15 @@ export const ProductList = ({ products }) => {
   // };
 
   const filteredProducts = (product) => {
-    if (!products) return product;
+    if (!products || products.length <= 0) return product;
 
     const price = filterPrice.replace(/\D/g, '');
 
     return product.filter((el) => {
       let categoryMatch;
-      const nameMatch = el.name.ru || el.name.ua
-        .toLowerCase()
-        .includes(filterName.toLowerCase());
+      const nameMatch =
+        el.name.ru.toLowerCase().includes(filterName.toLowerCase()) ||
+        el.name.ua.toLowerCase().includes(filterName.toLowerCase());
 
       if (filterCategory === t('monuments')) {
         const types = [
@@ -69,19 +68,19 @@ export const ProductList = ({ products }) => {
         );
       } else if (filterCategory === t('landscaping')) {
         const types = [
-          t('anti_settlement_slabs'),
-          t('paving_tiles'),
-          t('granite_tiles'),
+          t('antiSettlementSlabs'),
+          t('pavingTiles'),
+          t('graniteTiles'),
           t('fencing'),
-          t('tables_and_benches'),
-          t('vases_and_lamps'),
-          t('cubes_and_spheres'),
+          t('tablesAndBenches'),
+          t('vasesAndLamps'),
+          t('cubesAndSpheres'),
         ];
         categoryMatch = types.some((category) =>
           el.category.toLowerCase().includes(category.toLowerCase())
         );
-      } else if (filterCategory === t('related_products')) {
-        const types = [t('glass_photos'), t('plaques'), t('embedded_parts')];
+      } else if (filterCategory === t('relatedProducts')) {
+        const types = [t('glassPhotos'), t('plaques'), t('embeddedParts')];
         categoryMatch = types.some((category) =>
           el.category.toLowerCase().includes(category.toLowerCase())
         );
@@ -115,15 +114,21 @@ export const ProductList = ({ products }) => {
 
   return (
     <>
-      {paginatedProducts(products) && (
+      {paginatedProducts(products) && paginatedProducts(products).length > 0 ? (
         <div className="mx-auto">
           <div className="grid grid-cols-2 gap-x-8 gap-y-4 md:grid-cols-4">
             {paginatedProducts(products).map((product, index) => (
               <ProductCard
                 key={product.id}
                 image={product.mainPhoto}
-                name={currentLanguage === "ua" ? product.name.ua : product.name.ru}
-                description={currentLanguage === "ua" ? product.description.ua : product.description.ru}
+                name={
+                  currentLanguage === 'ua' ? product.name.ua : product.name.ru
+                }
+                description={
+                  currentLanguage === 'ua'
+                    ? product.description.ua
+                    : product.description.ru
+                }
                 price={product.price}
                 discount={product.discount}
                 category={product.category}
@@ -138,6 +143,8 @@ export const ProductList = ({ products }) => {
             />
           )}
         </div>
+      ) : (
+        <div className="text-center h-screen align-middle">Не знайдено</div>
       )}
     </>
   );

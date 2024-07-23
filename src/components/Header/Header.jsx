@@ -46,42 +46,42 @@ const Header = () => {
                 title={t('landscaping')}
                 links={[
                   {
-                    title: t('anti_settlement_slabs'),
+                    title: t('antiSettlementSlabs'),
                     link: '/landscaping/antisettlementslabs',
                   },
                   {
-                    title: t('paving_tiles'),
+                    title: t('pavingTiles'),
                     link: '/landscaping/pavingtiles',
                   },
                   {
-                    title: t('granite_tiles'),
+                    title: t('graniteTiles'),
                     link: '/landscaping/granitetiles',
                   },
                   { title: t('fencing'), link: '/landscaping/fencing' },
                   {
-                    title: t('tables_and_benches'),
+                    title: t('tablesAndBenches'),
                     link: '/landscaping/tablesandbenches',
                   },
                   {
-                    title: t('vases_and_lamps'),
+                    title: t('vasesAndLamps'),
                     link: '/landscaping/vasesandlamps',
                   },
                   {
-                    title: t('cubes_and_spheres'),
+                    title: t('cubesAndSpheres'),
                     link: '/landscaping/cubesandspheres',
                   },
                 ]}
               />
               <Dropdown
-                title={t('related_products')}
+                title={t('relatedProducts')}
                 links={[
                   {
-                    title: t('glass_photos'),
+                    title: t('glassPhotos'),
                     link: '/relatedproducts/glassphotos',
                   },
                   { title: t('plaques'), link: '/relatedproducts/plaques' },
                   {
-                    title: t('embedded_parts'),
+                    title: t('embeddedParts'),
                     link: '/relatedproducts/embeddedparts',
                   },
                 ]}
@@ -91,13 +91,13 @@ const Header = () => {
                 to={'/buildingmaterials'}
                 className=" text-center px-2 py-2 cursor-pointer rounded-sm font-medium hover:bg-gray-100 flex items-center justify-center"
               >
-                {t('building_materials')}
+                {t('buildingMaterials')}
               </Link>
               <Link
                 to={'/services'}
                 className="px-2 py-2 text-center  cursor-pointer rounded-sm font-medium hover:bg-gray-100 flex items-center justify-center"
               >
-                {t('extra_services')}
+                {t('extraServices')}
               </Link>
               <Link
                 to={'/about'}

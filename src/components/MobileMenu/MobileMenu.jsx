@@ -85,68 +85,147 @@ export const MobileMenu = ({ isOpen, onCloseModal }) => {
 
                 <div className="flex h-full flex-col justify-between overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200">
                   <div className="flex flex-col gap-6 text-white text-xl py-[30px] ">
-                    <Accordion  title={t('monuments')}>
-                    <div className="flex flex-col gap-4 items-center ">
-                      <div className="px-1 py-1 cursor-pointer rounded-sm text-lg">
-                      <Link to={'/monuments/availability'} onClick={() => closeMenu()}>{t('availability')} </Link>
+                    <Accordion title={t('monuments')}>
+                      <div className="flex flex-col gap-4 items-center ">
+                        <div className="px-1 py-1 cursor-pointer rounded-sm text-lg">
+                          <Link
+                            to={'/monuments/availability'}
+                            onClick={() => closeMenu()}
+                          >
+                            {t('availability')}{' '}
+                          </Link>
+                        </div>
+                        <div className="px-1 py-1 cursor-pointer rounded-sm text-lg">
+                          <Link
+                            to={'/monuments/vertical'}
+                            onClick={() => closeMenu()}
+                          >
+                            {t('vertical')}
+                          </Link>
+                        </div>
+                        <div className="px-1 py-1 cursor-pointer rounded-sm text-lg">
+                          <Link
+                            to={'monuments/horizontal'}
+                            onClick={() => closeMenu()}
+                          >
+                            {t('horizontal')}
+                          </Link>
+                        </div>
+                        <div className="px-1 py-1 cursor-pointer rounded-sm text-lg">
+                          <Link
+                            to={'monuments/small'}
+                            onClick={() => closeMenu()}
+                          >
+                            {t('small')}
+                          </Link>
+                        </div>
                       </div>
-                      <div className="px-1 py-1 cursor-pointer rounded-sm text-lg">
-                      <Link to={'/monuments/vertical'} onClick={() => closeMenu()}>{t('vertical')}</Link>
-                      </div>
-                      <div className="px-1 py-1 cursor-pointer rounded-sm text-lg">
-                      <Link to={'monuments/horizontal'} onClick={() => closeMenu()}>{t('horizontal')}</Link>
-                      </div>
-                      <div className="px-1 py-1 cursor-pointer rounded-sm text-lg">
-                      <Link to={'monuments/small'} onClick={() => closeMenu()}>{t('small')}</Link>
-                      </div>
-                    </div>
                     </Accordion>
-                    <Accordion  title={t('landscaping')}>
-                    <div className="flex flex-col gap-2 items-center ">
-                      <div className="px-1 py-1 cursor-pointer rounded-sm text-lg">
-                      <Link to={'/landscaping/antisettlementslabs'} onClick={() => closeMenu()}>{t('anti_settlement_slabs')}</Link>
+                    <Accordion title={t('landscaping')}>
+                      <div className="flex flex-col gap-2 items-center ">
+                        <div className="px-1 py-1 cursor-pointer rounded-sm text-lg">
+                          <Link
+                            to={'/landscaping/antisettlementslabs'}
+                            onClick={() => closeMenu()}
+                          >
+                            {t('antiSettlementSlabs')}
+                          </Link>
+                        </div>
+                        <div className="px-1 py-1 cursor-pointer rounded-sm text-lg">
+                          <Link
+                            to={'/landscaping/pavingtiles'}
+                            onClick={() => closeMenu()}
+                          >
+                            {t('pavingTiles')}
+                          </Link>
+                        </div>
+                        <div className="px-1 py-1 cursor-pointer rounded-sm text-lg">
+                          <Link
+                            to={'/landscaping/granitetiles'}
+                            onClick={() => closeMenu()}
+                          >
+                            {t('graniteTiles')}
+                          </Link>
+                        </div>
+                        <div className="px-1 py-1 cursor-pointer rounded-sm text-lg">
+                          <Link
+                            to={'/landscaping/fencing'}
+                            onClick={() => closeMenu()}
+                          >
+                            {t('fencing')}
+                          </Link>
+                        </div>
+                        <div className="px-1 py-1 cursor-pointer rounded-sm text-lg">
+                          <Link
+                            to={'/landscaping/tablesandbenches'}
+                            onClick={() => closeMenu()}
+                          >
+                            {t('tablesAndBenches')}
+                          </Link>
+                        </div>
+                        <div className="px-1 py-1 cursor-pointer rounded-sm text-lg">
+                          <Link
+                            to={'/landscaping/vasesandlamps'}
+                            onClick={() => closeMenu()}
+                          >
+                            {t('vasesAndLamps')}
+                          </Link>
+                        </div>
+                        <div className="px-1 py-1 cursor-pointer rounded-sm text-lg">
+                          <Link
+                            to={'/landscaping/cubesandspheres'}
+                            onClick={() => closeMenu()}
+                          >
+                            {t('cubesAndSpheres')}
+                          </Link>
+                        </div>
                       </div>
-                      <div className="px-1 py-1 cursor-pointer rounded-sm text-lg">
-                      <Link to={'/landscaping/pavingtiles'}  onClick={() => closeMenu()}>{t('paving_tiles')}</Link>
-                      </div>
-                      <div className="px-1 py-1 cursor-pointer rounded-sm text-lg">
-                      <Link to={'/landscaping/granitetiles'}  onClick={() => closeMenu()}>{t('granite_tiles')}</Link>
-                      </div>
-                      <div className="px-1 py-1 cursor-pointer rounded-sm text-lg">
-                      <Link to={'/landscaping/fencing'}  onClick={() => closeMenu()}>{t('fencing')}</Link>
-                      </div>
-                      <div className="px-1 py-1 cursor-pointer rounded-sm text-lg">
-                      <Link to={'/landscaping/tablesandbenches'}  onClick={() => closeMenu()}>{t('tables_and_benches')}</Link>
-                      </div>
-                      <div className="px-1 py-1 cursor-pointer rounded-sm text-lg">
-                      <Link to={'/landscaping/vasesandlamps'}  onClick={() => closeMenu()}>{t('vases_and_lamps')}</Link>
-                      </div>
-                      <div className="px-1 py-1 cursor-pointer rounded-sm text-lg">
-                      <Link to={'/landscaping/cubesandspheres'}  onClick={() => closeMenu()}>{t('cubes_and_spheres')}</Link>
-                      </div>
-                    </div>
                     </Accordion>
-                    <Accordion  title={t('related_products')}>
-                    <div className="flex flex-col gap-4 items-center ">
-                      <div className="px-1 py-1 cursor-pointer rounded-sm text-lg">
-                      <Link to={'/relatedproducts/glassphotos'}  onClick={() => closeMenu()}>{t('glass_photos')}</Link>
+                    <Accordion title={t('relatedProducts')}>
+                      <div className="flex flex-col gap-4 items-center ">
+                        <div className="px-1 py-1 cursor-pointer rounded-sm text-lg">
+                          <Link
+                            to={'/relatedproducts/glassphotos'}
+                            onClick={() => closeMenu()}
+                          >
+                            {t('glassPhotos')}
+                          </Link>
+                        </div>
+                        <div className="px-1 py-1 cursor-pointer rounded-sm  text-lg">
+                          <Link
+                            to={'/relatedproducts/plaques'}
+                            onClick={() => closeMenu()}
+                          >
+                            {t('plaques')}
+                          </Link>
+                        </div>
+                        <div className="px-1 py-1 cursor-pointer rounded-sm text-lg">
+                          <Link
+                            to={'/relatedproducts/embeddedparts'}
+                            onClick={() => closeMenu()}
+                          >
+                            {t('embeddedParts')}
+                          </Link>
+                        </div>
                       </div>
-                      <div className="px-1 py-1 cursor-pointer rounded-sm  text-lg">
-                      <Link to={'/relatedproducts/plaques'}  onClick={() => closeMenu()}>{t('plaques')}</Link>
-                      </div>
-                      <div className="px-1 py-1 cursor-pointer rounded-sm text-lg">
-                      <Link to={'/relatedproducts/embeddedparts'}  onClick={() => closeMenu()}>{t('embedded_parts')}</Link>
-                      </div>
-                    </div>
                     </Accordion>
                     <div className="px-4 py-2 cursor-pointer rounded-sm font-semibold flex items-center justify-center">
-                    <Link to={'/buildingmaterials'}  onClick={() => closeMenu()}>{t('building_materials')}</Link>
+                      <Link
+                        to={'/buildingmaterials'}
+                        onClick={() => closeMenu()}
+                      >
+                        {t('buildingMaterials')}
+                      </Link>
                     </div>
                     <div className=" px-4 py-2 cursor-pointer rounded-sm font-semibold flex items-center justify-center">
-                    <Link to={'/services'}  onClick={() => closeMenu()}>{t('extra_services')}</Link>
+                      <Link to={'/services'} onClick={() => closeMenu()}>
+                        {t('extraServices')}
+                      </Link>
                     </div>
                     <div className="px-4 py-2 cursor-pointer rounded-sm font-semibold flex items-center justify-center">
-                    <Link to={'/contacts'}  onClick={() => closeMenu()}>{t('contacts')}</Link>
+                      <Link to={'/contacts'} onClick={() => closeMenu()}>
+                        {t('contacts')}
+                      </Link>
                     </div>
                   </div>
 

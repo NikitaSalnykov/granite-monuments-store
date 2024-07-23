@@ -1,22 +1,57 @@
-import { useTranslation } from "react-i18next";
-import { CategoriesList } from "../CategoriesList/CategoriesList"
-import { Title } from "../Title/Title";
-
+import { useTranslation } from 'react-i18next';
+import { CategoriesList } from '../CategoriesList/CategoriesList';
+import { Title } from '../Title/Title';
+import monumentsImg from '../../images/Памятники.webp';
+import landscapingImg from '../../images/Благоустройство.png';
+import services from '../../images/img-1.jpg';
+import relatedproductsImg from '../../images/Сопутствующие-товары.webp';
+import buildingmaterials from '../../images/Стройматериалы.png';
+import extraImg from '../../images/img-2.jpg';
 export const AllCategories = () => {
-
   const { t } = useTranslation();
 
-  const categories = [  { title: t('monuments'), link: '/monuments', img: "https://lviv.media/static/content/files/f/2d/73b6c579b38e13841d29b0fe8c15d2df.jpg"  },
-  { title: t('landscaping'), link: '/landscaping', img: "https://lviv.media/static/content/files/f/2d/73b6c579b38e13841d29b0fe8c15d2df.jpg" },
-  { title: t('related_products'), link: '/relatedproducts', img: "https://lviv.media/static/content/files/f/2d/73b6c579b38e13841d29b0fe8c15d2df.jpg" },
-  { title: t('building_materials'), link: '/buildingmaterials', img: "https://lviv.media/static/content/files/f/2d/73b6c579b38e13841d29b0fe8c15d2df.jpg" },
-  { title: t('extra_services'), link: '/services', img: "https://lviv.media/static/content/files/f/2d/73b6c579b38e13841d29b0fe8c15d2df.jpg" }, 
-  { title: t('contacts'), link: '/about', img: "https://lviv.media/static/content/files/f/2d/73b6c579b38e13841d29b0fe8c15d2df.jpg" }, ]
+  const categories = [
+    {
+      title: t('monuments'),
+      link: '/monuments',
+      img: monumentsImg,
+    },
+    {
+      title: t('landscaping'),
+      link: '/landscaping',
+      img: landscapingImg,
+    },
+    {
+      title: t('relatedProducts'),
+      link: '/relatedproducts',
+      img: relatedproductsImg,
+    },
+    {
+      title: t('buildingMaterials'),
+      link: '/buildingmaterials',
+      img: buildingmaterials,
+    },
+    {
+      title: t('extraServices'),
+      link: '/services',
+      img: services,
+    },
+    {
+      title: t('contacts'),
+      link: '/about',
+      img: extraImg,
+    },
+  ];
 
   return (
     <div>
-      <Title title={"Всі категорії"} description={"Гарантуємо повний пакет послуг від виробництва пам'ятників до повного благоустрію"}/>
-      <CategoriesList categories={categories} sm={true}/>
+      <Title
+        title={'Всі категорії'}
+        description={
+          "Гарантуємо повний пакет послуг від виробництва пам'ятників до повного благоустрію"
+        }
+      />
+      <CategoriesList categories={categories} sm={true} />
     </div>
-  )
-}
+  );
+};
