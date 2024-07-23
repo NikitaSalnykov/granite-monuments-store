@@ -4,6 +4,7 @@ import {
   deleteProduct,
   fetchProducts,
   getProductById,
+  updateAvailability,
   updateProduct,
 } from './productsOperation';
 
@@ -120,6 +121,30 @@ const productsStateSlice = createSlice({
     builder.addCase(updateProduct.rejected, (state, action) => {
       state.error = action.payload;
     });
+
+        //update availability
+
+        builder.addCase(updateAvailability.pending, pendingFunc);
+
+        builder.addCase(updateAvailability.fulfilled, (state, action) => {
+          const updatedProduct = action.payload;
+    
+          const updatedItems = state.items.map((product) =>
+            product._id === updatedProduct._id ? updatedProduct : product
+          );
+    
+          return {
+            ...state,
+            items: updatedItems,
+            isLoading: false,
+            error: null,
+            isProductUpdated: true
+          };
+        });
+    
+        builder.addCase(updateAvailability.rejected, (state, action) => {
+          state.error = action.payload;
+        });
   },
 });
 

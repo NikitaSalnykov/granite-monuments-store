@@ -88,16 +88,16 @@ export const MobileMenu = ({ isOpen, onCloseModal }) => {
                     <Accordion  title={t('monuments')}>
                     <div className="flex flex-col gap-4 items-center ">
                       <div className="px-1 py-1 cursor-pointer rounded-sm text-lg">
-                      <Link to={'/memorials/availability'} onClick={() => closeMenu()}>{t('availability')} </Link>
+                      <Link to={'/monuments/availability'} onClick={() => closeMenu()}>{t('availability')} </Link>
                       </div>
                       <div className="px-1 py-1 cursor-pointer rounded-sm text-lg">
-                      <Link to={'/memorials/vertical'} onClick={() => closeMenu()}>{t('vertical')}</Link>
+                      <Link to={'/monuments/vertical'} onClick={() => closeMenu()}>{t('vertical')}</Link>
                       </div>
                       <div className="px-1 py-1 cursor-pointer rounded-sm text-lg">
-                      <Link to={'memorials/horizontal'} onClick={() => closeMenu()}>{t('horizontal')}</Link>
+                      <Link to={'monuments/horizontal'} onClick={() => closeMenu()}>{t('horizontal')}</Link>
                       </div>
                       <div className="px-1 py-1 cursor-pointer rounded-sm text-lg">
-                      <Link to={'memorials/small'} onClick={() => closeMenu()}>{t('small')}</Link>
+                      <Link to={'monuments/small'} onClick={() => closeMenu()}>{t('small')}</Link>
                       </div>
                     </div>
                     </Accordion>

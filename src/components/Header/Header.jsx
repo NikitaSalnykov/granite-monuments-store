@@ -36,10 +36,10 @@ const Header = () => {
               <Dropdown
                 title={t('monuments')}
                 links={[
-                  { title: t('availability'), link: '/memorials/availability' },
-                  { title: t('vertical'), link: '/memorials/vertical' },
-                  { title: t('horizontal'), link: 'memorials/horizontal' },
-                  { title: t('small'), link: 'memorials/small' },
+                  { title: t('availability'), link: '/monuments/availability' },
+                  { title: t('vertical'), link: '/monuments/vertical' },
+                  { title: t('horizontal'), link: 'monuments/horizontal' },
+                  { title: t('small'), link: 'monuments/small' },
                 ]}
               />
               <Dropdown

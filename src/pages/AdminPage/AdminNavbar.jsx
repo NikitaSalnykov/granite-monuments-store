@@ -60,21 +60,21 @@ export const AdminNavbar = ({
           >
             + {selectedCategory}
           </div>
-          <div
+        </div>
+      </div>
+
+      <div
+        className="lg:hidden w-fullborder-none flex justify-center"
+      >
+        <div className="flex flex-wrap flex-col justify-center gap-4 items-center bg-[#ffffffa9] w-[400px] p-4 mb-2  rounded-lg ">
+                    <div
             onClick={onToogleLeavingModal}
             className="hover:cursor-pointer text-sm hover:opacity-85 text-center underline"
           >
             Выйти из аккаунта
           </div>
-        </div>
-      </div>
-
-      <div
-        id="sideNav"
-        className="lg:hidden w-full rounded-lg border-none p-4 flex justify-center"
-      >
-        <div className="flex flex-wrap justify-center gap-4 items-center justify-center">
-          <div
+<div className="flex gap-4">
+<div
             onClick={() => changeCategory('products')}
             className={`cursor-pointer px-2 py-1 flex items-center space-x-4 rounded-md text-gray-500 group ${
               selectedCategory === 'products' && 'text-white bg-black'
@@ -90,19 +90,17 @@ export const AdminNavbar = ({
           >
             Reviews
           </div>
-          <Filter nameFilter={true} />
-          <div
+</div>
+<div className="flex gap-4 flex-wrap items-center justify-center">
+<div
             onClick={handleToggleModal}
-            className="hover:cursor-pointer hover:opacity-85 shadow-md py-2 w-full md:w-[300px] font-bold bg-black text-white rounded-full uppercase text-center"
+            className="cursor-pointer bg-green-600 px-2 py-1 flex items-center space-x-4 rounded-md text-white text-center"
           >
-            + {selectedCategory}
+            {selectedCategory === "product" ? "Добавить товар" : "Добавить отзыв"}
           </div>
-          <div
-            onClick={onToogleLeavingModal}
-            className="hover:cursor-pointer text-sm hover:opacity-85 text-center underline"
-          >
-            Выйти из аккаунта
-          </div>
+
+</div>
+          <Filter nameFilter={true} />
         </div>
       </div>
 

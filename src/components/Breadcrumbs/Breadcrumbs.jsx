@@ -18,9 +18,9 @@ const Breadcrumbs = ({ name }) => {
 
   function createNavLink(el) {
     switch (el) {
-      case 'memorials':
+      case 'monuments':
         return (
-          <Link to={'/memorials'} className="p-[2px] md:p-1">
+          <Link to={'/monuments'} className="p-[2px] md:p-1">
              {t('monuments')}
           </Link>
         );
@@ -28,25 +28,25 @@ const Breadcrumbs = ({ name }) => {
           return null;
         case 'availability':
           return (
-            <Link to={'/memorials/availability'} className="p-[2px] md:p-1">
+            <Link to={'/monuments/availability'} className="p-[2px] md:p-1">
                {t('availability')}
             </Link>
           );
       case 'vertical':
         return (
-          <Link to={'/memorials/vertical'} className="p-[2px] md:p-1">
+          <Link to={'/monuments/vertical'} className="p-[2px] md:p-1">
             {t('vertical')}
           </Link>
         );
       case 'horizontal':
         return (
-          <Link to={'/memorials/horizontal'} className="p-[2px] md:p-1">
+          <Link to={'/monuments/horizontal'} className="p-[2px] md:p-1">
             {t('horizontal')}
           </Link>
         );
       case 'small':
         return (
-          <Link to={'/memorials/small'} className="p-[2px] md:p-1">
+          <Link to={'/monuments/small'} className="p-[2px] md:p-1">
           {t('small')}
           </Link>
         );

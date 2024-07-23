@@ -9,9 +9,37 @@ import {
 } from '../../../Redux/products/productsSelectors';
 import { productEditSchema } from '../../../schemas/ProductEditSchema';
 import { resetProductUpdated } from '../../../Redux/products/productsSlice';
+import { useTranslation } from 'react-i18next';
 
-const categories = ['fff', 'aaaa', 'cccc', 'dddd'];
-const type = ['1111', '2222', '3333', '4444'];
+const categories = [
+  { title: 'monuments', t: 'monuments' },
+  { title: 'landscaping', t: 'landscaping' },
+  { title: 'relatedproducts', t: 'related_products' },
+  {title: "buildingmaterials", t:"building_materials"}
+
+];
+const monuments = [
+  { title: 'availability', t: 'availability' },
+  { title: 'vertical', t: 'vertical' },
+  { title: 'horizontal', t: 'horizontal' },
+  { title: 'small', t: 'small' },
+];
+const landscaping = [
+  { title: 'antiSettlementSlabs', t: 'anti_settlement_slabs' },
+  { title: 'pavingTiles', t: 'paving_tiles' },
+  { title: 'graniteTiles', t: 'granite_tiles' },
+  { title: 'fencing', t: 'fencing' },
+  { title: 'tablesAndBenches', t: 'tables_and_benches' },
+  { title: 'vasesAndLamps', t: 'vases_and_lamps' },
+  { title: 'cubesAndSpheres', t: 'cubes_and_spheres' },
+];
+
+const relatedproducts = [
+  { title: 'glassPhotos', t: 'glass_photos' },
+  { title: 'plaques', t: 'plaques' },
+  { title: 'embeddedParts', t: 'embedded_parts' },
+];
+
 
 const errorTextStyle =
   'pl-4 absolute -bottom-5 text-rose-500 text-xs font-normal top-6 left-[60px] xl:left-[85px]';
@@ -26,6 +54,7 @@ export const EditProductForm = ({ onCloseModal, product }) => {
   const isProductUpdated = useSelector(getIsProductUpdated);
   const errorProducts = useSelector(getErrorProducts);
   const [errorMessage, setErrorMessage] = useState('');
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (isProductUpdated) {
@@ -48,8 +77,8 @@ export const EditProductForm = ({ onCloseModal, product }) => {
       descriptionUA: product.description.ua,
       article: product.article,
       discount: product.discount || 0,
-      mainPhoto: null,
-      extraPhotos: null,
+      mainPhoto: product.mainPhoto,
+      extraPhotos: product.extraPhotos,
     },
     validateOnChange: false,
     validateOnBlur: true,
@@ -128,57 +157,69 @@ export const EditProductForm = ({ onCloseModal, product }) => {
             {renderInputField('Название UA', 'nameUA')}
             {renderInputField('Название RU', 'nameRU')}
             <div className="flex-col">
-                <div className="flex justify-between w-full relative flex-wrap gap-2 items-center">
-                  <label className={labelStyle} htmlFor="category">
-                    Категория:
-                  </label>
-                  <select
-                    className={`w-[150px] text-xs outline-none border-b-black border-[1px] p-1 ${
-                      errors['category'] && 'border-rose-400'
-                    }`}
-                    id="category"
-                    name="category"
-                    value={formikValues['category']}
-                    onChange={formik.handleChange}
-                  >
-                    <option value="" disabled>Выберите категорию</option>
-                    {categories.map((el, index) => (
-                      <option key={index} value={el}>
-                        {el}
+              <div className="flex justify-between w-full relative flex-wrap gap-2 items-center">
+                <label className={labelStyle} htmlFor="category">
+                  Категория:
+                </label>
+                <select
+                  className={`w-[150px] text-xs outline-none border-b-black border-[1px] p-1 ${
+                    errors['category'] && 'border-rose-400'
+                  }`}
+                  id="category"
+                  name="category"
+                  value={formikValues['category']}
+                  onChange={formik.handleChange}
+                >
+                  {categories.map((el, index) => (
+                    <option key={index} value={el.title}>
+                      {t(el.t)}
+                    </option>
+                  ))}
+                </select>
+                {errors['category'] && (
+                  <p className={errorTextStyle}>{errors['category']}</p>
+                )}
+              </div>
+            </div>
+           {formikValues['category'] !== 'buildingmaterials' && <div className="flex-col">
+              <div className="flex justify-between w-full relative flex-wrap gap-2 items-center">
+                <label className={labelStyle} htmlFor="type">
+                  Тип:
+                </label>
+                <select
+                  className={`w-[150px] text-xs outline-none border-b-black border-[1px] p-1 ${
+                    errors['type'] && 'border-rose-400'
+                  }`}
+                  id="type"
+                  name="type"
+                  value={formikValues['type']}
+                  onChange={formik.handleChange}
+                >
+                  {formikValues['category'] === 'monuments' &&
+                    monuments.map((el, index) => (
+                      <option key={index} value={el.title}>
+                        {t(el.t)}
                       </option>
                     ))}
-                  </select>
-                  {errors['category'] && (
-                    <p className={errorTextStyle}>{errors['category']}</p>
-                  )}
-                </div>
-            </div>
-            <div className="flex-col">
-                <div className="flex justify-between w-full relative flex-wrap gap-2 items-center">
-                  <label className={labelStyle} htmlFor="type">
-                    Тип:
-                  </label>
-                  <select
-                    className={`w-[150px] text-xs outline-none border-b-black border-[1px] p-1 ${
-                      errors['type'] && 'border-rose-400'
-                    }`}
-                    id="type"
-                    name="type"
-                    value={formikValues['type']}
-                    onChange={formik.handleChange}
-                  >
-                    <option value="" disabled>Выберите тип</option>
-                    {type.map((el, index) => (
-                      <option key={index} value={el}>
-                        {el}
+                  {formikValues['category'] === 'landscaping' &&
+                    landscaping.map((el, index) => (
+                      <option key={index} value={el.title}>
+                        {t(el.t)}
                       </option>
                     ))}
-                  </select>
-                  {errors['type'] && (
-                    <p className={errorTextStyle}>{errors['type']}</p>
-                  )}
-                </div>
+                  {formikValues['category'] === 'relatedproducts' &&
+                    relatedproducts.map((el, index) => (
+                      <option key={index} value={el.title}>
+                        {t(el.t)}
+                      </option>
+                    ))}
+                </select>
+                {errors['type'] && (
+                  <p className={errorTextStyle}>{errors['type']}</p>
+                )}
+              </div>
             </div>
+              }
             {renderInputField('Цена', 'price')}
             {renderInputField('Скидка', 'discount')}
             {renderInputField('Артикль', 'article')}
@@ -240,9 +281,9 @@ export const EditProductForm = ({ onCloseModal, product }) => {
         </p>
       )}
 
-      <div className="flex justify-end mt-10">
+      <div className="flex justify-center mt-10">
         <button
-          className="text-sm py-2 px-4 bg-blue-500 text-white rounded-md"
+          className="hover:blue-gradient hover:text-white h-10 px-5 py-2 rounded-3xl border-2 border-black justify-center items-center gap-2 inline-flex  text-black text-base font-bold font-['Manrope']tracking-wide hover:bg-black"
           type="submit"
           disabled={isLoading}
         >

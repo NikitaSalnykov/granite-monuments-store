@@ -46,8 +46,8 @@ export const Filter = ({
   }, [pathname]);
 
   const applyFiltersFromPathname = () => {
-    if (pathname.includes('memorials')) {
-      dispatch(setFilterCategory('memorials'));
+    if (pathname.includes('monuments')) {
+      dispatch(setFilterCategory('monuments'));
     } else if (pathname.includes('landscaping')) {
       dispatch(setFilterCategory('landscaping'));
     } else if (pathname.includes('relatedproducts')) {
@@ -145,9 +145,9 @@ export const Filter = ({
             />
           </div>
         )}
-        <div className="flex gap-4 mx-auto">
+        <div className="flex gap-4 mx-auto flex-wrap justify-center items-center">
           {filterCategory && (
-            <div className="flex justify-center items-center">
+            <div className="flex justify-center items-center max-w-[100px] lg:max-w-[200px]">
               <label className="sr-only" style={{ marginRight: '14px' }} htmlFor="filterCategory">
                 Категория
               </label>
@@ -158,14 +158,14 @@ export const Filter = ({
                 value={category}
               >
                 <option value="products">Всі категорії</option>
-                <option value="memorials">{t('monuments')}</option>
+                <option value="monuments">{t('monuments')}</option>
                 <option value="landscaping">{t('landscaping')}</option>
                 <option value="relatedproducts">{t('related_products')}</option>
               </select>
             </div>
           )}
-          {((filterType && category === 'memorials')) && (
-            <div className="flex justify-center items-center">
+          {((filterType && category === 'monuments')) && (
+            <div className="flex justify-center items-center max-w-[100px] lg:max-w-[200px]">
               <label className="sr-only" style={{ marginRight: '14px' }} htmlFor="filterType">
                 Тип
               </label>
@@ -184,7 +184,7 @@ export const Filter = ({
             </div>
           )}
           {(filterType && category === 'landscaping') && (
-            <div className="flex justify-center items-center">
+            <div className="flex justify-center items-center max-w-[100px] lg:max-w-[200px]">
               <label className="sr-only" style={{ marginRight: '14px' }} htmlFor="filterType">
                 Тип
               </label>
@@ -206,7 +206,7 @@ export const Filter = ({
             </div>
           )}
           {(filterType && category === 'relatedProducts') && (
-            <div className="flex justify-center items-center">
+            <div className="flex justify-center items-center max-w-[100px] lg:max-w-[200px]">
               <label className="sr-only" style={{ marginRight: '14px' }} htmlFor="filterType">
                 Тип
               </label>
@@ -224,7 +224,7 @@ export const Filter = ({
             </div>
           )}
           {filterPrice && (
-            <div className="flex justify-center items-center">
+            <div className="flex justify-center items-center max-w-[100px]">
               <label className="sr-only" style={{ marginRight: '14px' }} htmlFor="filterPrice">
                 Ціна
               </label>
@@ -240,34 +240,38 @@ export const Filter = ({
               </select>
             </div>
           )}
-          {filterNew && (
-            <div className="flex justify-center items-center">
-              <input
-                id="filterNew"
-                type="checkbox"
-                checked={isNew}
-                onChange={handleFilterNew}
-                className="form-checkbox h-5 w-5 text-indigo-600 rounded-lg"
-              />
-              <label htmlFor="filterNew" className="ml-2 text-gray-700">
-                Новинка
-              </label>
+{(filterNew || filterSale) &&
+            <div className=" flex gap-4 justify-center items-center">
+              {filterNew && (
+              <div className="flex justify-center items-center">
+                <input
+                  id="filterNew"
+                  type="checkbox"
+                  checked={isNew}
+                  onChange={handleFilterNew}
+                  className="form-checkbox h-5 w-5 text-indigo-600 rounded-lg"
+                />
+                <label htmlFor="filterNew" className="ml-2 text-gray-700 text-sm md:text-md">
+                  Новинка
+                </label>
+              </div>
+            )}
+            {filterSale && (
+              <div className="flex justify-center items-center">
+                <input
+                  id="filterSale"
+                  type="checkbox"
+                  checked={isCheckedSale}
+                  onChange={handleFilterSale}
+                  className="form-checkbox h-5 w-5 text-indigo-600 rounded-lg"
+                />
+                <label htmlFor="filterSale" className="ml-2 text-gray-700 text-sm md:text-md">
+                  Розпродаж
+                </label>
+              </div>
+            )}
             </div>
-          )}
-          {filterSale && (
-            <div className="flex justify-center items-center">
-              <input
-                id="filterSale"
-                type="checkbox"
-                checked={isCheckedSale}
-                onChange={handleFilterSale}
-                className="form-checkbox h-5 w-5 text-indigo-600 rounded-lg"
-              />
-              <label htmlFor="filterSale" className="ml-2 text-gray-700">
-                Розпродаж
-              </label>
-            </div>
-          )}
+}
         </div>
       </div>
     </div>

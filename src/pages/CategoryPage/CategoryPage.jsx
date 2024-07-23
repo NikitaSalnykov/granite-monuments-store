@@ -4,13 +4,16 @@ import { ProductList } from '../../components/ProductList/ProductList'
 import { Container } from '../../components/Container/Container'
 import { Section } from '../../components/Section/Section'
 import photo from '../../images/example.webp'
+import { useDispatch, useSelector } from 'react-redux';
+import { getProducts } from '../../Redux/products/productsSelectors';
+import { fetchProducts } from '../../Redux/products/productsOperation';
 
-const products = [
+const products1 = [
   {
     id: 1,
     image: photo,
     title: 'Надгробна плита 1',
-    category: "memorials",
+    category: "monuments",
     type: "vertical",
     description: 'Опис для надгробної плити 1 Опис для надгробної плити 1 Опис для надгробної плити 1 Опис для надгробної плити 1',
     price: '5000 грн'
@@ -19,7 +22,7 @@ const products = [
     id: 2,
     image: photo,
     title: 'Пам\'ятник 2',
-    category: "memorials",
+    category: "monuments",
     type: "vertical",
     description: 'Опис для пам\'ятника 2',
     discount: 15,
@@ -29,7 +32,7 @@ const products = [
     id: 3,
     image: photo,
     title: 'Надгробна плита 3',
-    category: "memorials",
+    category: "monuments",
     type: "vertical",
     description: 'Опис для надгробної плити 3',
     discount: 20,
@@ -39,7 +42,7 @@ const products = [
     id: 4,
     image: photo,
     title: 'Пам\'ятник 4',
-    category: "memorials",
+    category: "monuments",
     type: "vertical",
     description: 'Опис для пам\'ятника 4',
     discount: 25,
@@ -49,7 +52,7 @@ const products = [
     id: 5,
     image: photo,
     title: 'Надгробна плита 5',
-    category: "memorials",
+    category: "monuments",
     type: "vertical",
     description: 'Опис для надгробної плити 5',
     discount: 30,
@@ -59,7 +62,7 @@ const products = [
     id: 6,
     image: photo,
     title: 'Пам\'ятник 6',
-    category: "memorials",
+    category: "monuments",
     type: "vertical",
     description: 'Опис для пам\'ятника 6',
     discount: 5,
@@ -69,7 +72,7 @@ const products = [
     id: 7,
     image: photo,
     title: 'Надгробна плита 7',
-    category: "memorials",
+    category: "monuments",
     type: "vertical",
     description: 'Опис для надгробної плити 7',
     discount: 50,
@@ -79,7 +82,7 @@ const products = [
     id: 8,
     image: photo,
     title: 'Пам\'ятник 8',
-    category: "memorials",
+    category: "monuments",
     type: "vertical",
     description: 'Опис для пам\'ятника 8',
     discount: 35,
@@ -89,7 +92,7 @@ const products = [
     id: 9,
     image: photo,
     title: 'Надгробна плита 9',
-    category: "memorials",
+    category: "monuments",
     type: "vertical",
     description: 'Опис для надгробної плити 9',
     discount: 40,
@@ -99,7 +102,7 @@ const products = [
     id: 10,
     image: photo,
     title: 'Пам\'ятник 10',
-    category: "memorials",
+    category: "monuments",
     type: "vertical",
     description: 'Опис для пам\'ятника 10',
     discount: 45,
@@ -108,12 +111,20 @@ const products = [
 ];
 
 const CategoryPage = () => {
+  const dispatch = useDispatch()
+  const products = useSelector(getProducts)
 
-
+  useEffect(() => {
+  dispatch(fetchProducts())
+  }, [dispatch])
+  
+  
   return (
    <Section>
      <Container className='h-screen'>
+      <div className="mb-4 md:mb-8">
       <Filter nameFilter={true} filterType={true} filterCategory={true} filterPrice={true} filterNew={true} filterSale={true} />
+      </div>
       <ProductList products={products}/>
     </Container>
    </Section>

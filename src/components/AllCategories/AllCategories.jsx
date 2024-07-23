@@ -6,7 +6,7 @@ export const AllCategories = () => {
 
   const { t } = useTranslation();
 
-  const categories = [  { title: t('monuments'), link: '/memorials', img: "https://lviv.media/static/content/files/f/2d/73b6c579b38e13841d29b0fe8c15d2df.jpg"  },
+  const categories = [  { title: t('monuments'), link: '/monuments', img: "https://lviv.media/static/content/files/f/2d/73b6c579b38e13841d29b0fe8c15d2df.jpg"  },
   { title: t('landscaping'), link: '/landscaping', img: "https://lviv.media/static/content/files/f/2d/73b6c579b38e13841d29b0fe8c15d2df.jpg" },
   { title: t('related_products'), link: '/relatedproducts', img: "https://lviv.media/static/content/files/f/2d/73b6c579b38e13841d29b0fe8c15d2df.jpg" },
   { title: t('building_materials'), link: '/buildingmaterials', img: "https://lviv.media/static/content/files/f/2d/73b6c579b38e13841d29b0fe8c15d2df.jpg" },

@@ -12,11 +12,12 @@ import { resetProductCreated } from '../../../Redux/products/productsSlice';
 import { useTranslation } from 'react-i18next';
 
 const categories = [
-  { title: 'memorials', t: 'monuments' },
+  { title: 'monuments', t: 'monuments' },
   { title: 'landscaping', t: 'landscaping' },
   { title: 'relatedproducts', t: 'related_products' },
+  {title: "buildingmaterials", t:"building_materials"}
 ];
-const memorials = [
+const monuments = [
   { title: 'availability', t: 'availability' },
   { title: 'vertical', t: 'vertical' },
   { title: 'horizontal', t: 'horizontal' },
@@ -66,7 +67,7 @@ export const AddProductForm = ({ onCloseModal }) => {
     initialValues: {
       nameRU: '',
       nameUA: '',
-      category: '',
+      category: 'monuments',
       type: '',
       price: '',
       descriptionRU: '',
@@ -179,7 +180,7 @@ export const AddProductForm = ({ onCloseModal }) => {
                 )}
               </div>
             </div>
-            <div className="flex-col">
+            {formikValues['category'] !== 'buildingmaterials' && <div className="flex-col">
               <div className="flex justify-between w-full relative flex-wrap gap-2 items-center">
                 <label className={labelStyle} htmlFor="type">
                   Тип:
@@ -193,8 +194,8 @@ export const AddProductForm = ({ onCloseModal }) => {
                   value={formikValues['type']}
                   onChange={formik.handleChange}
                 >
-                  {formikValues['category'] === 'memorials' &&
-                    memorials.map((el, index) => (
+                  {formikValues['category'] === 'monuments' &&
+                    monuments.map((el, index) => (
                       <option key={index} value={el.title}>
                         {t(el.t)}
                       </option>
@@ -217,6 +218,7 @@ export const AddProductForm = ({ onCloseModal }) => {
                 )}
               </div>
             </div>
+              }
             {renderInputField('Цена', 'price')}
             {renderInputField('Скидка', 'discount')}
             {renderInputField('Артикль', 'article')}
@@ -278,7 +280,7 @@ export const AddProductForm = ({ onCloseModal }) => {
             <button
               type="submit"
               disabled={false}
-              className="Frame36 hover:blue-gradientsmOnly:h-10 h-10 px-5 py-2 rounded-3xl border-2 border-blue justify-center items-center gap-2 inline-flex text-blue text-base font-normal font-['Manrope'] tracking-wide leading-relaxed"
+              className=" hover:blue-gradient hover:text-white h-10 px-5 py-2 rounded-3xl border-2 border-black justify-center items-center gap-2 inline-flex  text-black text-base font-bold font-['Manrope']tracking-wide hover:bg-black"
             >
               Создать продукт
             </button>

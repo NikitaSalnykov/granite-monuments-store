@@ -16,7 +16,7 @@ const BuildingMaterialsPage = lazy(() => import('./pages/BuildingMaterialsPage/B
 const ExtraServicesPage = lazy(() => import('./pages/ExtraServicesPage/ExtraServicesPage'));
 const LandscapingPage = lazy(() => import('./pages/LandscapingPage/LandscapingPage'));
 const RelatedProductsPage = lazy(() => import('./pages/RelatedProductsPage/RelatedProductsPage'));
-const MemorialsPage = lazy(() => import('./pages/MemorialsPage/MemorialsPage'));
+const MonumentsPage = lazy(() => import('./pages/MonumentsPage/MonumentsPage'));
 const ProductPage = lazy(() => import('./pages/ProductPage/ProductPage'));
 const CategoryPage = lazy(() => import('./pages/CategoryPage/CategoryPage'));
 const FavoritePage = lazy(() => import('./pages/FavoritePage/FavoritePage'));
@@ -42,8 +42,8 @@ function App() {
             <Route index element={<MainPage />} />
             <Route path="home" element={<MainPage />} />
 
-            <Route path="memorials">
-              <Route index element={<MemorialsPage />} />
+            <Route path="monuments">
+              <Route index element={<MonumentsPage />} />
               <Route path=":category" element={<CategoryPage />} />
               <Route path=":category/:id" element={<ProductPage />} />
             </Route>

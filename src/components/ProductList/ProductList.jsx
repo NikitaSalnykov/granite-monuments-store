@@ -15,12 +15,15 @@ import { Pagination } from '../Pagination/Pagination';
 
 export const ProductList = ({ products }) => {
   const { t } = useTranslation();
+  const { i18n } = useTranslation();
   const filterName = useSelector(getFilterName);
   const filterCategory = useSelector(getFilterCategory);
   const filterPrice = useSelector(getFilterPrice);
   const filterType = useSelector(getFilterType);
   const filterSale = useSelector(getFilterSale);
   const filterNew = useSelector(getFilterNew);
+  const currentLanguage = i18n.language;
+
 
   const [currentPage, setCurrentPage] = useState(1);
   const limit = 8;
@@ -50,7 +53,7 @@ export const ProductList = ({ products }) => {
 
     return product.filter((el) => {
       let categoryMatch;
-      const nameMatch = el.title
+      const nameMatch = el.name.ru || el.name.ua
         .toLowerCase()
         .includes(filterName.toLowerCase());
 
@@ -118,9 +121,9 @@ export const ProductList = ({ products }) => {
             {paginatedProducts(products).map((product, index) => (
               <ProductCard
                 key={product.id}
-                image={product.image}
-                title={product.title}
-                description={product.description}
+                image={product.mainPhoto}
+                name={currentLanguage === "ua" ? product.name.ua : product.name.ru}
+                description={currentLanguage === "ua" ? product.description.ua : product.description.ru}
                 price={product.price}
                 discount={product.discount}
                 category={product.category}

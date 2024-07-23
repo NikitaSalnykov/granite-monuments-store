@@ -57,6 +57,18 @@ export const updateProduct = createAsyncThunk(
   }
 );
 
+export const updateAvailability = createAsyncThunk(
+  'products/updateAvailability',
+  async ({ id, arg }, thunkAPI) => {
+    try {
+      const { data } = await instance.patch(`/api/products/${id}/availability`, arg);
+      return data;
+    } catch (evt) {
+      return thunkAPI.rejectWithValue(evt.message);
+    }
+  }
+);
+
 export const deleteProduct = createAsyncThunk(
   'products/deleteProducts',
   async (arg, thunkAPI) => {
