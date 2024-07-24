@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { MobileMenu } from '../MobileMenu/MobileMenu';
 import { Dropdown } from '../Dropdown/Dropdown';
@@ -168,7 +168,7 @@ const Header = () => {
                       <button
                         onClick={() => changeLanguage('ua')}
                         className={`${
-                          currentLanguage === 'ua'
+                          currentLanguage.includes('ua')
                             ? 'font-semibold'
                             : 'opacity-75'
                         }`}
@@ -181,7 +181,7 @@ const Header = () => {
                       <button
                         onClick={() => changeLanguage('ru')}
                         className={`${
-                          currentLanguage === 'ru'
+                          currentLanguage.includes('ru')
                             ? 'font-semibold'
                             : 'opacity-75'
                         }`}

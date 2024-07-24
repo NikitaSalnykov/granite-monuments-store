@@ -16,13 +16,13 @@ import { Pagination } from '../Pagination/Pagination';
 export const ProductList = ({ products }) => {
   const { t } = useTranslation();
   const { i18n } = useTranslation();
+  const currentLanguage = i18n.language;
   const filterName = useSelector(getFilterName);
   const filterCategory = useSelector(getFilterCategory);
   const filterPrice = useSelector(getFilterPrice);
   const filterType = useSelector(getFilterType);
   const filterSale = useSelector(getFilterSale);
   const filterNew = useSelector(getFilterNew);
-  const currentLanguage = i18n.language;
 
   const [currentPage, setCurrentPage] = useState(1);
   const limit = 8;
@@ -116,19 +116,14 @@ export const ProductList = ({ products }) => {
     <>
       {paginatedProducts(products) && paginatedProducts(products).length > 0 ? (
         <div className="mx-auto">
-          <div className="grid grid-cols-2 gap-x-8 gap-y-4 md:grid-cols-4">
+          <div className="grid grid-cols-2 gap-x-8 gap-y-4 md:grid-cols-3 lg:grid-cols-5">
             {paginatedProducts(products).map((product, index) => (
               <ProductCard
-                key={product.id}
+                key={product._id}
+                id={product._id}
                 image={product.mainPhoto}
-                name={
-                  currentLanguage === 'ua' ? product.name.ua : product.name.ru
-                }
-                description={
-                  currentLanguage === 'ua'
-                    ? product.description.ua
-                    : product.description.ru
-                }
+                name={product.name}
+                description={product.description}
                 price={product.price}
                 discount={product.discount}
                 category={product.category}
@@ -144,7 +139,9 @@ export const ProductList = ({ products }) => {
           )}
         </div>
       ) : (
-        <div className="text-center h-screen align-middle">{t('not_found')}</div>
+        <div className="text-center h-screen align-middle">
+          {t('not_found')}
+        </div>
       )}
     </>
   );

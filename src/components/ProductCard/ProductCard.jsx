@@ -14,13 +14,14 @@ export const ProductCard = ({
   price,
   discount,
 }) => {
-  const {t} = useTranslation()
-
+  const { t } = useTranslation();
+  const { i18n } = useTranslation();
+  const currentLanguage = i18n.language;
 
   return (
-    <div key={id} className="relative">
+    <div className="relative ">
       <Link to={`/${category}/${type}/${id}`}>
-        <div className="h-[200px] md:h-[400px] md:w-[350px] rounded-lg bg-slate-300 text-center overflow-hidden">
+        <div className="h-[200px] md:h-[300px] rounded-lg bg-slate-300 text-center overflow-hidden">
           <img
             className="object-cover w-full h-full"
             src={`${image}`}
@@ -28,21 +29,23 @@ export const ProductCard = ({
           />
         </div>
         {discount > 0 && (
-          <div className="absolute top-0 left-0">
+          <div className="absolute top-0 left-0 ">
             <p className="text-xs md:text-md p-1 bg-red text-white">
               {discount}%
             </p>
           </div>
         )}
-        <div className="flex flex-col justify-between py-2">
+        <div className="flex flex-col justify-between py-2 min-h-[210px] md:min-h-[170px]">
           <h4 className="text-xl font-semibold text-gray-800 hover:underline">
-            {name}
+            {currentLanguage === 'ua' ? name.ua : name.ru}
           </h4>
           <span className="text-sm text-gray-500">
-            {cutText(description, 150)}
+            {currentLanguage === 'ua'
+              ? cutText(description.ua, 150)
+              : cutText(description.ru, 150)}
           </span>
         </div>
-        <div className="flex gap-2 items-center justify-between">
+        <div className="flex gap-2 items-center justify-between mt-2 md:mt-4">
           <div className="flex gap-2 items-center">
             <p className="md:text-xl font-bold">{price}</p>
           </div>

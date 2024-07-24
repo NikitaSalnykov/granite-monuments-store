@@ -1,6 +1,5 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./src/**/*.{js,jsx,ts,tsx}'],
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     screens: {
@@ -20,7 +19,7 @@ module.exports = {
         padding: {
           DEFAULT: '0',
           sm: '1.25rem',
-          md: '2rem',
+          md: '1rem',
           xl: '1rem',
         },
       },
@@ -36,7 +35,7 @@ module.exports = {
         grey: '#454545',
         lightGrey: '#616161',
         lightGreen: '#9fd936',
-        secondaryText: "#323841",
+        secondaryText: '#323841',
       },
       boxShadow: {
         default: '3px 8px 14px 0px rgba(136, 198, 253, 0.19)',

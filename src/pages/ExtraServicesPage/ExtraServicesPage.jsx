@@ -37,15 +37,14 @@ const ExtraServicesPage = () => {
                 >
                   {t('delivery_title')}
                 </h2>
-                <div className="mdOnly:flex mdOnly:items-start mdOnly:justify-start mdOnly:gap-8">
+                <div className="mdOnly:flex-col mdOnly:items-start mdOnly:justify-center mdOnly:gap-8">
                   <p
                     className={`text-md md:text-xl  md:text-start   mdOnly:text-center font-light`}
                   >
-                  {t('delivery_text')}
-
+                    {t('delivery_text')}
                   </p>
                   <div
-                    className={`flex flex-col sm:flex-row justify-center md:justify-end mt-4 mdOnly:mt-0 md:mt-8`}
+                    className={`flex flex-col sm:flex-row justify-center mt-4 md:mt-8 lg:justify-start`}
                   >
                     <Link to={''}>
                       <Button>Дізнатися</Button>
@@ -71,7 +70,7 @@ const ExtraServicesPage = () => {
                 >
                   Доставка
                 </h2>
-                <div className="mdOnly:flex mdOnly:items-start mdOnly:justify-start mdOnly:gap-8">
+                <div className="mdOnly:flex-col mdOnly:items-start mdOnly:justify-start mdOnly:gap-8">
                   <p
                     className={`text-md md:text-xl md:text-start  mdOnly:text-center font-light`}
                   >
@@ -85,7 +84,7 @@ const ExtraServicesPage = () => {
                     atque, debitis cum esse sed ullam ea. Maxime, ipsa?
                   </p>
                   <div
-                    className={`flex flex-col sm:flex-row justify-center md:justify-start mt-4 mdOnly:mt-0 md:mt-8`}
+                    className={`flex flex-col sm:flex-row justify-center lg:justify-start mt-4 md:mt-8`}
                   >
                     <Link to={''}>
                       <Button>Дізнатися</Button>

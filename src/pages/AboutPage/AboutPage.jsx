@@ -7,6 +7,7 @@ import { Reviews } from '../../components/Reviews/Reviews';
 import monumentsImg from '../../images/Памятники.webp';
 import landscapingImg from '../../images/Благоустройство.png';
 import services from '../../images/img-1.jpg';
+import { ContactList } from '../../components/ContactsList/ContactList';
 
 const AboutPage = () => {
   const { t } = useTranslation();
@@ -15,13 +16,9 @@ const AboutPage = () => {
     <>
       <Section>
         <Container>
-          <Title
-            title={t('about')}
-            description={
-              t('about_us_text')
-            }
-          />
-          <div className="mt-10 grid grid-cols-1 gap-6 lg:gap-12  md:grid-cols-3">
+          <Title title={t('about')} description={t('about_us_text')} />
+          <ContactList />
+          <div className="mt-10 grid grid-cols-1 gap-6 lg:gap-12  md:grid-cols-2 lg:md:grid-cols-3">
             <div className="relative flex flex-col bg-clip-border rounded-xl bg-transparent text-gray-700 shadow-md  min-h-[20rem]  items-end overflow-hidden bg-slate-400">
               <img
                 src={monumentsImg}
@@ -30,10 +27,10 @@ const AboutPage = () => {
               />
               <div className="absolute inset-0 bg-black/70"></div>
               <div className="p-6 relative flex flex-col justify-end">
-                <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-white">
+                <h4 className="block antialiased tracking-normal font-sans text-lg lg:text-2xl font-semibold leading-snug text-white">
                   {t('monuments')}
                 </h4>
-                <p className="block antialiased font-sans text-base font-light leading-relaxed text-white my-2 ">
+                <p className="block antialiased font-sans text-sm lg:text-md font-light leading-relaxed text-white my-2 ">
                   {t('about_monuments')}
                 </p>
               </div>
@@ -46,10 +43,10 @@ const AboutPage = () => {
               />
               <div className="absolute inset-0 bg-black/70"></div>
               <div className="p-6 relative flex flex-col justify-end">
-                <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-white">
+                <h4 className="block antialiased tracking-normal font-sans text-lg lg:text-2xl font-semibold leading-snug text-white">
                   {t('landscaping')}
                 </h4>
-                <p className="block antialiased font-sans text-base font-light leading-relaxed text-white my-2 ">
+                <p className="block antialiased font-sans text-sm lg:text-md font-light leading-relaxed text-white my-2 ">
                   {t('about_landscaping')}
                 </p>
               </div>
@@ -62,14 +59,14 @@ const AboutPage = () => {
               />
               <div className="absolute inset-0 bg-black/70"></div>
               <div className="p-6 relative flex flex-col justify-end">
-                <h4 className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-white">
+                <h4 className="block antialiased tracking-normal font-sans text-lg lg:text-2xl font-semibold leading-snug text-white">
                   {t('relatedProducts')},
                 </h4>
-                <p className="block antialiased tracking-normal font-sans text-2xl font-semibold leading-snug text-white">
+                <p className="block antialiased tracking-normal font-sans text-lg lg:text-2xl font-semibold leading-snug text-white">
                   {' '}
                   {t('extraServices')}
                 </p>
-                <p className="block antialiased font-sans text-base font-light leading-relaxed text-white my-2 ">
+                <p className="block antialiased font-sans text-sm lg:text-md font-light leading-relaxed text-white my-2 ">
                   {t('about_secondary')}
                 </p>
               </div>
