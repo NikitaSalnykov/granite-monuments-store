@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import Svg from '../Svg/Svg'
 import { useLocation } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 export const FloatingButtons = () => {
   const [onButtonClick, setOnButtonClick] = useState(false)
-
+  const {t} = useTranslation()
   const location = useLocation()
   const pathname = location.pathname
   console.log(location);
@@ -34,7 +35,7 @@ export const FloatingButtons = () => {
         ></path>
       </svg> :
         <div className='flex gap-6 justify-center items-center'>
-        <p className='text-white font-semibold text-xs w-16'>Ми завжди онлайн:</p>
+        <p className='text-white font-semibold text-xs w-16'>{t('always_online')}</p>
         <div className="flex gap-4">
         <Svg id={'icon-telegram'} size={42} fill={'white'}/>
         <Svg id={'icon-viber'} size={42} fill={'white'}/>

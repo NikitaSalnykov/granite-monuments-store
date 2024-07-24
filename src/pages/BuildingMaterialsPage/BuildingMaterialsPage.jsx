@@ -11,7 +11,6 @@ import { getProducts } from '../../Redux/products/productsSelectors';
 
 const BuildingMaterialsPage = () => {
   const { t } = useTranslation();
-  const { i18n } = useTranslation();
   const dispatch = useDispatch();
   const products = useSelector(getProducts);
 

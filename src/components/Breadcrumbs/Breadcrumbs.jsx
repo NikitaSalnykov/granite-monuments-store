@@ -6,8 +6,8 @@ import Svg from '../Svg/Svg';
 const Breadcrumbs = ({ name }) => {
   const [arr, setArr] = useState([]);
   const { t } = useTranslation();
-  const currentUrl = window.location.href;
-
+  const currentUrl = window.location.href;  
+  
   useEffect(() => {
     const url = new URL(currentUrl);
     const path = url.pathname;

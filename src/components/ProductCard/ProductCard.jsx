@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import placeholder from '../../images/placeholder.jpg';
 import { cutText } from '../../helpers/cutText';
+import { useTranslation } from 'react-i18next';
 
 export const ProductCard = ({
   id,
@@ -13,8 +14,8 @@ export const ProductCard = ({
   price,
   discount,
 }) => {
-  const imagePath = image ? `${image.replace(/\\/g, '/')}` : placeholder;
-  console.log(image);
+  const {t} = useTranslation()
+
 
   return (
     <div key={id} className="relative">
@@ -46,7 +47,7 @@ export const ProductCard = ({
             <p className="md:text-xl font-bold">{price}</p>
           </div>
           <div className="py-1 px-2 smOnly:text-xs md:px-3 border-[1px] border-grey">
-            Подробнее
+            {t('more')}
           </div>
         </div>
       </Link>

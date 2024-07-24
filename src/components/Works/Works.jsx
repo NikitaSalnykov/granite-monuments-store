@@ -1,6 +1,7 @@
 import React from 'react';
 import { Title } from '../Title/Title';
 import { WorksList } from './WorksList';
+import { useTranslation } from 'react-i18next';
 
 const worksArr = [
   {
@@ -38,9 +39,12 @@ const worksArr = [
 ];
 
 export const Works = () => {
+
+const {t} = useTranslation()
+
   return (
     <>
-      <Title title={'Наші роботи'} />
+      <Title title={t('our_works')} />
       <WorksList worksArr={worksArr} />
     </>
   );

@@ -10,6 +10,7 @@ const isLoginOrRegisterRequest = (config) => {
   );
 };
 
+
 const setUpInterceptor = (dispatch) => {
   let isRefreshing = false;
   let refreshPromise = null;

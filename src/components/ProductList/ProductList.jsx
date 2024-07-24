@@ -86,12 +86,12 @@ export const ProductList = ({ products }) => {
         );
       } else {
         categoryMatch =
-          filterCategory === 'Всі категорії' ||
+          filterCategory === t('all_categories') ||
           el.category.toLowerCase().includes(filterCategory.toLowerCase());
       }
 
       const colorMatch =
-        filterType === 'Всі типи' ||
+        filterType === t('all_types') ||
         el.type.toLowerCase().includes(filterType.toLowerCase());
       const discountMatch = !filterSale || el.discount > 0;
       const priceMatch = filterPrice === '' || +el.price < price;
@@ -144,7 +144,7 @@ export const ProductList = ({ products }) => {
           )}
         </div>
       ) : (
-        <div className="text-center h-screen align-middle">Не знайдено</div>
+        <div className="text-center h-screen align-middle">{t('not_found')}</div>
       )}
     </>
   );

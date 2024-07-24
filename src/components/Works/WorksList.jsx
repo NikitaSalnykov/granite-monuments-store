@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { WorksCard } from './WorksCard';
 import { Button } from '../Button/Button';
+import { useTranslation } from 'react-i18next';
 
 export const WorksList = ({ worksArr }) => {
   const [visibleCount, setVisibleCount] = useState(2);
+  const {t} = useTranslation()
 
   const handleLoadMore = () => {
     setVisibleCount((prevCount) => prevCount + 2);
@@ -35,14 +37,14 @@ export const WorksList = ({ worksArr }) => {
               {visibleCount < worksArr.length && (
             <div onClick={handleLoadMore}>
               <Button bg={false} >
-                Дивитися ще
+                {t('see_more')}
               </Button>
             </div>
           )}
           {visibleCount > worksArr.length && visibleCount !== worksArr.length && visibleCount !== 2 && (
             <div onClick={handleHide}>
               <Button bg={false} >
-                Cховати
+                {t('hide')}
               </Button>
             </div>
           )}

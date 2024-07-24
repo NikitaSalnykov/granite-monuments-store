@@ -35,20 +35,14 @@ const ExtraServicesPage = () => {
                 <h2
                   className={`text-xl md:text-3xl text-center md:text-start   text-blue-900 mdOnly:text-center leading-tight font-medium`}
                 >
-                  Доставка
+                  {t('delivery_title')}
                 </h2>
                 <div className="mdOnly:flex mdOnly:items-start mdOnly:justify-start mdOnly:gap-8">
                   <p
                     className={`text-md md:text-xl  md:text-start   mdOnly:text-center font-light`}
                   >
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Commodi inventore, officiis corporis fugiat, excepturi
-                    aliquid laboriosam ad esse ex, deleniti repellendus nisi
-                    illo voluptate sed iusto facere ullam asperiores quia? Lorem
-                    ipsum dolor, sit amet consectetur adipisicing elit.
-                    Consequuntur consequatur inventore, neque accusamus
-                    voluptatum modi facere suscipit recusandae minus sunt nam
-                    atque, debitis cum esse sed ullam ea. Maxime, ipsa?
+                  {t('delivery_text')}
+
                   </p>
                   <div
                     className={`flex flex-col sm:flex-row justify-center md:justify-end mt-4 mdOnly:mt-0 md:mt-8`}

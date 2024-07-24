@@ -168,7 +168,7 @@ export const Filter = ({
                 className="smOnly:w-[120px] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block md:w-full p-2.5"
                 value={category}
               >
-                <option value="products">Всі категорії</option>
+                <option value="products">{t('all_categories')}</option>
                 <option value="monuments">{t('monuments')}</option>
                 <option value="landscaping">{t('landscaping')}</option>
                 <option value="relatedproducts">{t('relatedProducts')}</option>
@@ -182,7 +182,7 @@ export const Filter = ({
                 style={{ marginRight: '14px' }}
                 htmlFor="filterType"
               >
-                Тип
+                {t('type')}
               </label>
               <select
                 id="filterType"
@@ -190,7 +190,7 @@ export const Filter = ({
                 className="smOnly:min-w-[100px] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 value={type}
               >
-                <option value="all">Всі типи</option>
+                <option value="all">{t('all_types')}</option>
                 <option value="availability">{t('availability')}</option>
                 <option value="vertical">{t('vertical')}</option>
                 <option value="horizontal">{t('horizontal')}</option>
@@ -205,7 +205,7 @@ export const Filter = ({
                 style={{ marginRight: '14px' }}
                 htmlFor="filterType"
               >
-                Тип
+                {t('type')}
               </label>
               <select
                 id="filterType"
@@ -213,7 +213,7 @@ export const Filter = ({
                 className="smOnly:min-w-[100px] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 value={type}
               >
-                <option value="all">Всі типи</option>
+                <option value="all">{t('all_types')}</option>
                 <option value="antiSettlementSlabs">
                   {t('antiSettlementSlabs')}
                 </option>
@@ -235,7 +235,7 @@ export const Filter = ({
                 style={{ marginRight: '14px' }}
                 htmlFor="filterType"
               >
-                Тип
+                {t('type')}
               </label>
               <select
                 id="filterType"
@@ -243,7 +243,7 @@ export const Filter = ({
                 className="smOnly:min-w-[100px] bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 value={type}
               >
-                <option value="all">Всі типи</option>
+                <option value="all">{t('all_types')}</option>
                 <option value="glassPhotos">{t('glassPhotos')}</option>
                 <option value="plaques">{t('plaques')}</option>
                 <option value="embeddedParts">{t('embeddedParts')}</option>
@@ -257,7 +257,7 @@ export const Filter = ({
                 style={{ marginRight: '14px' }}
                 htmlFor="filterPrice"
               >
-                Ціна
+                {t('prices')}
               </label>
               <select
                 id="filterPrice"
@@ -265,9 +265,9 @@ export const Filter = ({
                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                 value={price}
               >
-                <option value="">Всі ціни</option>
-                <option value="min">Від дешевих до дорогих</option>
-                <option value="max">Від дорогих до дешевих</option>
+                <option value="">{t('all_prices')}</option>
+                <option value="min">{t('min_prices')}</option>
+                <option value="max">{t('max_prices')}</option>
               </select>
             </div>
           )}
@@ -286,7 +286,7 @@ export const Filter = ({
                     htmlFor="filterNew"
                     className="ml-2 text-gray-700 text-sm md:text-md"
                   >
-                    Новинка
+                    {t('new')}
                   </label>
                 </div>
               )}
@@ -303,7 +303,7 @@ export const Filter = ({
                     htmlFor="filterSale"
                     className="ml-2 text-gray-700 text-sm md:text-md"
                   >
-                    Розпродаж
+                   {t('sale')}
                   </label>
                 </div>
               )}

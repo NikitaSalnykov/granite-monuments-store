@@ -3,12 +3,13 @@ import { Section } from '../Section/Section';
 import Svg from '../Svg/Svg';
 import { Title } from '../Title/Title';
 import { Button } from '../Button/Button';
+import { useTranslation } from 'react-i18next';
 
 const reviewsArr = [{name:'Василь', date:'21-01-2024', title:"Заказывал памятник, остался доволен", text:"Очень быстро и качественно все установили, выражаю благодарность за профессионольный подход Сергея и его команду"}, {name:'Василь', date:'21-01-2024', title:"Заказывал памятник, остался доволен", text:"Очень быстро и качественно все установили, выражаю благодарность за профессионольный подход Сергея и его команду"}, {name:'Василь', date:'21-01-2024', title:"Заказывал памятник, остался доволен", text:"Очень быстро и качественно все установили, выражаю благодарность за профессионольный подход Сергея и его команду"}, {name:'Василь', date:'21-01-2024', title:"Заказывал памятник, остался доволен", text:"Очень быстро и качественно все установили, выражаю благодарность за профессионольный подход Сергея и его команду"}, {name:'Василь', date:'21-01-2024', title:"Заказывал памятник, остался доволен", text:"Очень быстро и качественно все установили, выражаю благодарность за профессионольный подход Сергея и его команду"}, {name:'Василь', date:'21-01-2024', title:"Заказывал памятник, остался доволен", text:"Очень быстро и качественно все установили, выражаю благодарность за профессионольный подход Сергея и его команду"}]
 
 export const Reviews = () => {
   const [visibleCount, setVisibleCount] = useState(4);
-
+  const {t} = useTranslation()
   const handleLoadMore = () => {
     setVisibleCount((prevCount) => prevCount + 2);
   };
@@ -20,7 +21,7 @@ export const Reviews = () => {
 
   return (
     <Section>
-      <Title title={'Відгуки клієнтів'} description={""}/>
+      <Title title={t('reviews')} description={t('reviews_description')}/>
       <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4 md:gap-4 lg:gap-12 lg:px-12 items-start">
 
         {reviewsArr.slice(0, visibleCount).map((el, index) => (
@@ -55,14 +56,14 @@ export const Reviews = () => {
               {visibleCount < reviewsArr.length && (
             <div onClick={handleLoadMore}>
               <Button bg={false} >
-                Дивитися ще
+                {t('see_more')}
               </Button>
             </div>
           )}
 {visibleCount > 4 && (
   <div onClick={handleHide}>
     <Button bg={false}>
-      Cховати
+      {t('hide')}
     </Button>
   </div>
           )}

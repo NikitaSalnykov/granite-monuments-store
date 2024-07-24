@@ -8,8 +8,9 @@ import relatedproductsImg from '../../images/Сопутствующие-това
 import buildingmaterials from '../../images/Стройматериалы.png';
 import extraImg from '../../images/img-2.jpg';
 export const AllCategories = () => {
+  
   const { t } = useTranslation();
-
+  
   const categories = [
     {
       title: t('monuments'),
@@ -46,10 +47,8 @@ export const AllCategories = () => {
   return (
     <div>
       <Title
-        title={'Всі категорії'}
-        description={
-          "Гарантуємо повний пакет послуг від виробництва пам'ятників до повного благоустрію"
-        }
+        title={t('all_categories')}
+        description={t('all_categories_descr')}
       />
       <CategoriesList categories={categories} sm={true} />
     </div>
