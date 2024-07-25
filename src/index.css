@@ -16,7 +16,7 @@ body {
   width: 100%;
   height: 100vh;
   margin: 0;
-  
+  font-family: 'Morope', sans-serif;
 }
 h1,
 h2,
@@ -204,3 +204,4 @@ button {
 ::-webkit-scrollbar {
   border-radius: 15px;
 }
+

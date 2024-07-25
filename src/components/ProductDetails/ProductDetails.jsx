@@ -32,60 +32,26 @@ const ProductDetails = ({
         />
       </div>
       <div className="xl:w-2/5 lg:w-1/2 lg:ml-8 lg:mt-0 mt-6">
-        <div className="border-b border-gray-200 pb-6">
-          <p className="text-sm leading-none text-gray-600 ">
-            <span className=" font-semibold">{t('category')}:</span>{' '}
-            {t(category)}
+        <div className="border-b border-gray-400 pb-6">
+          <p className="text-sm leading-none text-black ">
+            {t(category)} / {t(type)}
           </p>
           <h1 className="lg:text-2xl text-xl font-semibold lg:leading-6 leading-7 text-gray-800  mt-2">
             {currentLanguage === 'ua' ? name.ua : name.ru}
           </h1>
         </div>
-        <div className="py-4 border-b border-gray-200 flex items-center justify-between">
-          <p className="text-base leading-4 text-gray-800 ">Colours</p>
+        <div className="py-4 border-b border-gray-400 flex items-center justify-between">
+          <p className="text-base leading-4 text-gray-800 "> {t('category')}</p>
           <div className="flex items-center justify-center">
-            <p className="text-sm leading-none text-gray-600 ">
-              Smoke Blue with red accents
+            <p className="text-sm leading-none text-black ">
+            {t(category)}
             </p>
-            <div className="w-6 h-6 bg-gradient-to-b from-gray-900 to-indigo-500 ml-3 mr-4 cursor-pointer"></div>
-            <svg
-              className="cursor-pointer text-gray-300 "
-              width="6"
-              height="10"
-              viewBox="0 0 6 10"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M1 1L5 5L1 9"
-                stroke="currentColor"
-                strokeWidth="1.25"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
           </div>
         </div>
-        <div className="py-4 border-b border-gray-200 flex items-center justify-between">
-          <p className="text-base leading-4 text-gray-800 ">Size</p>
+        <div className="py-4 border-b border-gray-400 flex items-center justify-between">
+          <p className="text-base leading-4 text-gray-800 "> {t('type')}</p>
           <div className="flex items-center justify-center">
-            <p className="text-sm leading-none text-gray-600  mr-3">38.2</p>
-            <svg
-              className="text-gray-300  cursor-pointer"
-              width="6"
-              height="10"
-              viewBox="0 0 6 10"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M1 1L5 5L1 9"
-                stroke="currentColor"
-                strokeWidth="1.25"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+            <p className="text-sm leading-none text-black"> {t(type)}</p>
           </div>
         </div>
         <button className=" focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 text-base flex items-center justify-center leading-none text-white bg-gray-800 w-full py-4 hover:bg-gray-700">
@@ -128,29 +94,23 @@ const ProductDetails = ({
           </svg>
           Check availability in store
         </button>
-        <div>
-          <p className="xl:pr-48 text-base lg:leading-tight leading-normal text-gray-600  mt-7">
+        <div className='flex flex-col gap-2 mt-7'>
+        <div className="flex flex-col gap-1">
+        <p className=' font-semibold'>Description:</p>
+          <p className="lg:pr-48 text-base lg:leading-tight leading-normal text-black">
             {currentLanguage === 'ua' ? description.ua : description.ru}
           </p>
-          <p className="text-base leading-4 mt-7 text-gray-600 ">
-            Product Code: 8BN321AF2IF0NYA
-          </p>
-          <p className="text-base leading-4 mt-4 text-gray-600 ">
-            Length: 13.2 inches
-          </p>
-          <p className="text-base leading-4 mt-4 text-gray-600 ">
-            Height: 10 inches
-          </p>
-          <p className="text-base leading-4 mt-4 text-gray-600 ">
-            Depth: 5.1 inches
+        </div>
+          <p className="text-base leading-4 mt-7 text-black ">
+            <span className='font-semibold'>Article:</span> 8BN321AF2IF0NYA
           </p>
           <div>
-            <div className="border-t border-b py-4 mt-7 border-gray-200">
+            <div className="border-t border-b py-4 mt-7 border-gray-400">
               <div
                 className="flex justify-between items-center cursor-pointer"
                 onClick={() => toggleSection(setShippingVisible)}
               >
-                <p className="text-base leading-4 text-gray-800 ">
+                <p className="text-base leading-4 text-gray-800 font-semibold">
                   Shipping and returns
                 </p>
                 <button
@@ -160,7 +120,7 @@ const ProductDetails = ({
                   <svg
                     className={`transform ${
                       isShippingVisible ? 'rotate-180' : ''
-                    } text-gray-300 `}
+                    } text-gray-800 `}
                     width="10"
                     height="6"
                     viewBox="0 0 10 6"
@@ -178,7 +138,7 @@ const ProductDetails = ({
                 </button>
               </div>
               {isShippingVisible && (
-                <p className="pt-4 text-base leading-normal pr-12 text-gray-600 ">
+                <p className="pt-4 text-base leading-normal pr-12 text-black ">
                   You will be responsible for paying for your own shipping costs
                   for returning your item. Shipping costs are nonrefundable
                 </p>
@@ -187,12 +147,12 @@ const ProductDetails = ({
           </div>
         </div>
         <div>
-          <div className="border-b py-4 border-gray-200">
+          <div className="border-b py-4 border-gray-400">
             <div
               className="flex justify-between items-center cursor-pointer"
               onClick={() => toggleSection(setContactVisible)}
             >
-              <p className="text-base leading-4 text-gray-800 ">Contact us</p>
+              <p className="text-base leading-4 text-gray-800 font-semibold">Contact us</p>
               <button
                 className="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 rounded"
                 aria-label="show or hide"
@@ -200,7 +160,7 @@ const ProductDetails = ({
                 <svg
                   className={`transform ${
                     isContactVisible ? 'rotate-180' : ''
-                  } text-gray-300 `}
+                  } text-gray-800 `}
                   width="10"
                   height="6"
                   viewBox="0 0 10 6"
@@ -218,7 +178,7 @@ const ProductDetails = ({
               </button>
             </div>
             {isContactVisible && (
-              <p className="pt-4 text-base leading-normal pr-12 text-gray-600 ">
+              <p className="pt-4 text-base leading-normal pr-12 text-black ">
                 If you have any questions on how to return your item to us,
                 contact us at info@fashion.com
               </p>

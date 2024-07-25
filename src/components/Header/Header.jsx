@@ -28,11 +28,11 @@ const Header = () => {
           <div className="flex justify-between items-center">
             <div className="flex gap-8">
               <div className="flex items-center">
-                <Logo size={48} secondaryTextSize={'sm'} />
+                <Logo size={40} secondaryTextSize={'sm'} />
               </div>
             </div>
 
-            <div className="hidden lg:flex gap-x-4 text-sm">
+            <div className="hidden lg:flex gap-x-4 text-sm font-manrope">
               <Dropdown
                 title={t('monuments')}
                 links={[

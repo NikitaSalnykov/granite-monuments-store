@@ -21,8 +21,8 @@ const ProductPage = () => {
   console.log(product);
 
   return (
-    <div className="">
-      <ProductDetails
+    <div className="min-h-screen">
+      {product && <ProductDetails
         image={product.mainPhoto}
         name={product.name}
         description={product.description}
@@ -30,7 +30,7 @@ const ProductPage = () => {
         discount={product.discount}
         category={product.category}
         type={product.type}
-      />
+      />}
     </div>
   );
 };

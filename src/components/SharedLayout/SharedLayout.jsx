@@ -7,6 +7,7 @@ import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
 import { Background } from '../Background/Background';
 import Loader from '../Loader/Loader';
 import { FloatingButtons } from '../FloatingButtons/FloatingButtons';
+import { Border } from '../Border/Border';
 const SharedLayout = () => {
   const handleNavigate = () => {
     window.scrollTo(0, 0);
@@ -25,16 +26,16 @@ const SharedLayout = () => {
 
       <div className="relative overflow-hidden">
 
-      <div className="pt-[60px] px-4 lg:px-12">  
-      <Breadcrumbs/>
-      </div>
+<div className="pt-[60px] px-4 lg:px-12">  
+<Breadcrumbs/>
+</div>
 
-      <Suspense fallback={<Loader/>}>
-            <Outlet/>
-            <Background />
-      </Suspense>
+<Suspense fallback={<Loader/>}>
+      <Outlet/>
+      <Background />
+</Suspense>
 
-      </div>
+</div>
       <footer>
         <Footer />
       </footer>

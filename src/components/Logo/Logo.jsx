@@ -8,28 +8,32 @@ export const Logo = ({ size, textSize, textColor, secondaryTextSize }) => {
   return (
     <Link
       to="/"
-      className="-m-1.5 p-1.5 flex justify-center items-center gap-2"
+      className="-m-1.5 p-1.5 flex justify-center items-center"
     >
       <Svg
-        id={'icon-logo'}
+        id={'icon-logo1'}
         size={size}
-        fill={'black'}
+        fill={textColor || 'black'}
         stroke={'white'}
         strokeWidth={2}
       ></Svg>
       <div className="flex flex-col  leading-none">
         <p
-          className={` text-${textColor || 'black'} font-bold text-${textSize}`}
+          className={` text-${textColor || 'black'} font-manrope uppercase text-${textSize}`}
         >
           {t('name')}
         </p>
+
+        <div className={`w-full h-[1px] bg-${textColor || 'black'} opacity-80 mt-[2px]`}></div>
+        
         <p
           className={`text-${
             textColor || 'black'
-          }  opacity-70 text-${secondaryTextSize}`}
+          }  font-manrope  opacity-70 text-${secondaryTextSize}`}
         >
           {t('secondaryName')}
         </p>
+    
       </div>
     </Link>
   );
