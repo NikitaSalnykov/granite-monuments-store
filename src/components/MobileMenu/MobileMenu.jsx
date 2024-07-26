@@ -223,7 +223,7 @@ export const MobileMenu = ({ isOpen, onCloseModal }) => {
                       </Link>
                     </div>
                     <div className="px-4 py-2 cursor-pointer rounded-sm font-semibold flex items-center justify-center tracking-widest ">
-                      <Link to={'/contacts'} onClick={() => closeMenu()}>
+                      <Link to={'/about'} onClick={() => closeMenu()}>
                         {t('contacts')}
                       </Link>
                     </div>

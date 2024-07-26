@@ -4,7 +4,8 @@ import { setToken, delToken } from '../operations/handleToken';
 import { data } from 'autoprefixer';
 
 export const instance = axios.create({
-  baseURL: 'http://localhost:3000',
+  // baseURL: 'http://localhost:3000',
+  baseURL: 'https://granite-monuments-store.onrender.com',
 });
 
 // register
@@ -106,28 +107,29 @@ export const forgotPassword = createAsyncThunk(
   'auth/forgotPassword',
   async (arg, thunkAPI) => {
     try {
-      const { data } = await instance.post(`/api/auth/password/forgot`, arg,  { headers: { 'Content-Type': 'application/json' } });
+      const { data } = await instance.post(`/api/auth/password/forgot`, arg, {
+        headers: { 'Content-Type': 'application/json' },
+      });
       console.log(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error.response.status);
-
     }
   }
-)
-
-  export const resetPassword = createAsyncThunk(
-    'auth/resetPassword',
-    async (arg, thunkAPI) => {
-      try {
-        const { data } = await instance.post(`/api/auth/password/reset`, arg,  { headers: { 'Content-Type': 'application/json' } });
-        return { user: data.user };
-  
-      } catch (error) {
-        return thunkAPI.rejectWithValue(error.response.status);
-      }
-    }
 );
 
+export const resetPassword = createAsyncThunk(
+  'auth/resetPassword',
+  async (arg, thunkAPI) => {
+    try {
+      const { data } = await instance.post(`/api/auth/password/reset`, arg, {
+        headers: { 'Content-Type': 'application/json' },
+      });
+      return { user: data.user };
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.response.status);
+    }
+  }
+);
 
 export const fetchUsers = createAsyncThunk(
   'users/fetchUsers',
