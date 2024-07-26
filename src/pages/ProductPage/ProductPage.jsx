@@ -7,6 +7,10 @@ import {
   getProductById,
 } from '../../Redux/products/productsOperation';
 import { getSelectedProducts } from '../../Redux/products/productsSelectors';
+import { SwiperCards } from '../../components/Swiper/SwiperCards';
+import { Section } from '../../components/Section/Section';
+import { Container } from '../../components/Container/Container';
+import { ProductsRecommendation } from '../../components/ProductsRecommendation/ProductsRecommendation';
 
 const ProductPage = () => {
   const { id } = useParams();
@@ -21,7 +25,9 @@ const ProductPage = () => {
   console.log(product);
 
   return (
-    <div className="min-h-screen">
+<div className='min-h-screen'>
+<Section>
+    <Container>
       {product && <ProductDetails
         image={product.mainPhoto}
         name={product.name}
@@ -31,7 +37,15 @@ const ProductPage = () => {
         category={product.category}
         type={product.type}
       />}
-    </div>
+
+{product &&
+   <div className="pb-12">
+    <ProductsRecommendation type={product.type} category={product.category} discount={true}/>   
+   </div>
+   }
+    </Container>
+   </Section>
+   </div>
   );
 };
 

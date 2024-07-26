@@ -50,6 +50,7 @@ const LandscapingPage = () => {
   return (
     <Section>
       <Container>
+        <div className="min-h-screen">
         <Title
           title={t('landscaping')}
           description={t('landscapingDescription')}
@@ -59,6 +60,7 @@ const LandscapingPage = () => {
         ) : (
           <Loader />
         )}
+        </div>
       </Container>
     </Section>
   );

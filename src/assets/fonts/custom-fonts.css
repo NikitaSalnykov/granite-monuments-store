@@ -3,6 +3,15 @@
     src: url('./Manrope-VariableFont_wght.ttf') format('truetype');
 }
 
+@font-face {
+    font-family: 'ViaodaLibre';
+    src: url('./ViaodaLibre-Regular.ttf') format('truetype');
+}
+
 .manrope {
     font-family: 'Manrope', sans-serif;
+}
+
+.viola {
+    font-family: 'ViaodaLibre', sans-serif;
 }

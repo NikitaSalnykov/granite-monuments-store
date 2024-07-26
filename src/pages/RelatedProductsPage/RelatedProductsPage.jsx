@@ -30,6 +30,7 @@ const RelatedProductsPage = () => {
   return (
     <Section>
       <Container>
+        <div className="min-h-screen">
         <Title
           title={t('relatedProducts')}
           description={t('landscapingDescription')}
@@ -39,6 +40,7 @@ const RelatedProductsPage = () => {
         ) : (
           <Loader />
         )}
+        </div>
       </Container>
     </Section>
   );

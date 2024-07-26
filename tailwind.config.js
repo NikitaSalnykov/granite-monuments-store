@@ -12,6 +12,7 @@ module.exports = {
     },
     fontFamily: {
       manrope: ['Manrope', 'sans-serif'],
+      viola: ['ViaodaLibre', 'sans-serif']
     },
     extend: {
       container: {

@@ -35,7 +35,7 @@ export const FloatingButtons = () => {
         ></path>
       </svg> :
         <div className='flex gap-6 justify-center items-center'>
-        <p className='text-white font-semibold text-xs w-16'>{t('always_online')}</p>
+        <p className='text-white font-semibold font-manrope text-xs w-16'>{t('always_online')}</p>
         <div className="flex gap-4">
         <Svg id={'icon-telegram'} size={42} fill={'white'}/>
         <Svg id={'icon-viber'} size={42} fill={'white'}/>

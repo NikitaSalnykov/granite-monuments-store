@@ -50,8 +50,9 @@ const productsStateSlice = createSlice({
     // fetch
 
     builder.addCase(fetchProducts.pending, pendingFunc);
-    builder.addCase(fetchProducts.fulfilled, (_, action) => {
+    builder.addCase(fetchProducts.fulfilled, (state, action) => {
       return {
+        ...state,
         items: action.payload,
         isLoading: false,
         error: null,

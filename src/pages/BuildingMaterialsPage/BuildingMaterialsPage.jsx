@@ -21,6 +21,7 @@ const BuildingMaterialsPage = () => {
   return (
     <Section>
       <Container>
+        <div className="min-h-screen">
         <Title
           title={t('buildingMaterials')}
           description={t('landscapingDescription')}
@@ -35,6 +36,7 @@ const BuildingMaterialsPage = () => {
         />
         <div className="mt-4 md:mt-8">
           <ProductList products={products} />
+        </div>
         </div>
       </Container>
     </Section>

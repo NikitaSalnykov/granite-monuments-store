@@ -11,28 +11,21 @@ const MonumentsPage = () => {
 
   const categories = [
     {
-      title: t('antiSettlementSlabs'),
-      category: 'monuments',
-      type: '',
-      link: '/monuments/availability',
-      img: 'https://lviv.media/static/content/files/f/2d/73b6c579b38e13841d29b0fe8c15d2df.jpg',
-    },
-    {
-      title: t('pavingTiles'),
+      title: t('vertical'),
       link: '/monuments/vertical',
       category: 'monuments',
       type: 'vertical',
       img: 'https://lviv.media/static/content/files/f/2d/73b6c579b38e13841d29b0fe8c15d2df.jpg',
     },
     {
-      title: t('graniteTiles'),
+      title: t('horizontal'),
       link: '/monuments/horizontal',
       category: 'monuments',
       type: 'horizontal',
       img: 'https://lviv.media/static/content/files/f/2d/73b6c579b38e13841d29b0fe8c15d2df.jpg',
     },
     {
-      title: t('fencing'),
+      title: t('small'),
       link: '/monuments/small',
       category: 'monuments',
       type: 'small',
@@ -43,6 +36,7 @@ const MonumentsPage = () => {
   return (
     <Section>
       <Container>
+        <div className="h-screen">
         <Title
           title={t('monuments')}
           description={t('landscapingDescription')}
@@ -52,6 +46,7 @@ const MonumentsPage = () => {
         ) : (
           <Loader />
         )}
+        </div>
       </Container>
     </Section>
   );

@@ -24,7 +24,7 @@ const Header = () => {
     <div>
       <div className="bg-[#fffffffd] z-50 fixed mx-auto w-full lg:px-8 border-b ">
         <div className="w-full h-auto blur-lg absolute top-0 right-0"></div>
-        <div className="py-3 px-6">
+        <div className="py-4 px-6 mx-auto max-w-7xl lg:max-w-full">
           <div className="flex justify-between items-center">
             <div className="flex gap-8">
               <div className="flex items-center">
@@ -89,19 +89,19 @@ const Header = () => {
 
               <Link
                 to={'/buildingmaterials'}
-                className=" text-center px-2 py-2 cursor-pointer rounded-sm font-medium hover:bg-gray-100 flex items-center justify-center"
+                className=" text-center px-2 py-2 cursor-pointer rounded-sm font-manrope hover:bg-gray-100 flex items-center justify-center"
               >
                 {t('buildingMaterials')}
               </Link>
               <Link
                 to={'/services'}
-                className="px-2 py-2 text-center  cursor-pointer rounded-sm font-medium hover:bg-gray-100 flex items-center justify-center"
+                className="px-2 py-2 text-center  cursor-pointer rounded-sm font-manrope hover:bg-gray-100 flex items-center justify-center"
               >
                 {t('extraServices')}
               </Link>
               <Link
                 to={'/about'}
-                className="px-2 py-2 text-center  cursor-pointer rounded-sm font-medium hover:bg-gray-100 flex items-center justify-center"
+                className="px-2 py-2 text-center  cursor-pointer rounded-sm font-manrope hover:bg-gray-100 flex items-center justify-center"
               >
                 {t('about')}
               </Link>
@@ -126,7 +126,7 @@ const Header = () => {
                       clipRule="evenodd"
                     />
                   </svg>
-                  <span className="text-sm font-medium">{t('favorites')}</span>
+                  <span className="text-sm font-manrope">{t('favorites')}</span>
                 </Link>
 
                 {/* <div className="flex cursor-pointer items-center gap-x-1 rounded-md py-2 px-4 hover:bg-gray-100">
@@ -142,7 +142,7 @@ const Header = () => {
                     clipRule="evenodd"
                   />
                 </svg>
-                <span className="text-sm font-medium">Обране</span>
+                <span className="text-sm font-manrope">Обране</span>
               </div> */}
 
                 {/* <div className="flex cursor-pointer items-center gap-x-1 rounded-md py-2 px-4 hover:bg-gray-100">
@@ -159,7 +159,7 @@ const Header = () => {
                     3
                   </span>
                 </div>
-                <span className="text-sm font-medium">Cart</span>
+                <span className="text-sm font-manrope">Cart</span>
               </div> */}
 
                 {currentLanguage && (
@@ -206,11 +206,11 @@ const Header = () => {
                       clipRule="evenodd"
                     />
                   </svg>
-                  <span className="text-xs font-medium">{t('locate')}</span>
+                  <span className="text-xs font-manrope">{t('locate')}</span>
                 </div>
                 <div className="flex gap-x-2 py-1">
                   <Svg id={'icon-phone'} size={14} fill={'gray'} />
-                  <p className="cursor-pointer rounded-sm text-xs font-medium hover:bg-gray-100">
+                  <p className="cursor-pointer rounded-sm text-xs font-manrope hover:bg-gray-100">
                     +38056345654
                   </p>
                 </div>

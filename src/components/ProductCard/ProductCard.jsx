@@ -35,7 +35,7 @@ export const ProductCard = ({
             </p>
           </div>
         )}
-        <div className="flex flex-col py-2 min-h-[210px] md:min-h-[170px]">
+        <div className="flex flex-col py-2 max-h-[210px] md:max-h-[170px]">
           <h4 className="text-xl font-semibold text-gray-800 hover:underline">
             {currentLanguage === 'ua' ? name.ua : name.ru}
           </h4>

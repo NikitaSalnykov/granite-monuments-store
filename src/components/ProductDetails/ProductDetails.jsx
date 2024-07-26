@@ -23,8 +23,8 @@ const ProductDetails = ({
   };
 
   return (
-    <div className="lg:flex items-start justify-center pb-12 2xl:px-20 lg:px-6 px-4">
-      <div className="w-full flex justify-center h-[400px] md:h-[600px] lg:w-2/5">
+    <div className="lg:flex items-start justify-between pb-12 font-manrope">
+      <div className="w-full flex justify-center h-[400px] md:h-[600px] lg:w-2/4 rounded-lg overflow-hidden">
         <img
           className="w-full h-full object-cover"
           alt="image of a girl posing"

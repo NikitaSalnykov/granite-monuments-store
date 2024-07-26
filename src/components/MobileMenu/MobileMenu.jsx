@@ -63,7 +63,7 @@ export const MobileMenu = ({ isOpen, onCloseModal }) => {
       {isOpen &&
         createPortal(
           <div
-            className={`lg:hidden transition-all duration-300 ${
+            className={`lg:hidden transition-all duration-300 font-viola ${
               isOpenAnimation ? 'opacity-100' : 'opacity-0'
             } modal-overlay flex items-center justify-center fixed bg-black bg-opacity-100 top-0 left-0 w-full h-full z-50`}
           >
@@ -83,11 +83,11 @@ export const MobileMenu = ({ isOpen, onCloseModal }) => {
                   />
                 </div>
 
-                <div className="flex h-full flex-col justify-between overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-200">
+                <div className="flex h-full flex-col justify-between overflow-y-auto scrollbar-thin  scrollbar-thumb-gray-500 scrollbar-track-gray-200">
                   <div className="flex flex-col gap-6 text-white text-xl py-[30px] ">
                     <Accordion title={t('monuments')}>
-                      <div className="flex flex-col gap-4 items-center ">
-                        <div className="px-1 py-1 cursor-pointer rounded-sm text-lg">
+                      <div className="flex flex-col gap-4 items-center text-gray-200 font-manrope">
+                        <div className="px-1 py-1 cursor-pointer rounded-sm text-lg ">
                           <Link
                             to={'/monuments/availability'}
                             onClick={() => closeMenu()}
@@ -122,7 +122,7 @@ export const MobileMenu = ({ isOpen, onCloseModal }) => {
                       </div>
                     </Accordion>
                     <Accordion title={t('landscaping')}>
-                      <div className="flex flex-col gap-2 items-center ">
+                      <div className="flex flex-col gap-2 items-center text-gray-300 font-manrope">
                         <div className="px-1 py-1 cursor-pointer rounded-sm text-lg">
                           <Link
                             to={'/landscaping/antisettlementslabs'}
@@ -182,8 +182,8 @@ export const MobileMenu = ({ isOpen, onCloseModal }) => {
                       </div>
                     </Accordion>
                     <Accordion title={t('relatedProducts')}>
-                      <div className="flex flex-col gap-4 items-center ">
-                        <div className="px-1 py-1 cursor-pointer rounded-sm text-lg">
+                      <div className="flex flex-col gap-4 items-center text-gray-200 font-manrope">
+                        <div className="px-1 py-1 cursor-pointer rounded-sm text-lg ">
                           <Link
                             to={'/relatedproducts/glassphotos'}
                             onClick={() => closeMenu()}
@@ -209,7 +209,7 @@ export const MobileMenu = ({ isOpen, onCloseModal }) => {
                         </div>
                       </div>
                     </Accordion>
-                    <div className="px-4 py-2 cursor-pointer rounded-sm font-semibold flex items-center justify-center">
+                    <div className="px-4  py-2 cursor-pointer rounded-sm font-semibold flex items-center justify-center tracking-widest ">
                       <Link
                         to={'/buildingmaterials'}
                         onClick={() => closeMenu()}
@@ -217,12 +217,12 @@ export const MobileMenu = ({ isOpen, onCloseModal }) => {
                         {t('buildingMaterials')}
                       </Link>
                     </div>
-                    <div className=" px-4 py-2 cursor-pointer rounded-sm font-semibold flex items-center justify-center">
+                    <div className=" px-4 py-2 cursor-pointer rounded-sm font-semibold flex items-center justify-center tracking-widest ">
                       <Link to={'/services'} onClick={() => closeMenu()}>
                         {t('extraServices')}
                       </Link>
                     </div>
-                    <div className="px-4 py-2 cursor-pointer rounded-sm font-semibold flex items-center justify-center">
+                    <div className="px-4 py-2 cursor-pointer rounded-sm font-semibold flex items-center justify-center tracking-widest ">
                       <Link to={'/contacts'} onClick={() => closeMenu()}>
                         {t('contacts')}
                       </Link>

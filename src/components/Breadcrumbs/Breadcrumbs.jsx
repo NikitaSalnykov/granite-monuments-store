@@ -171,7 +171,7 @@ const Breadcrumbs = ({ name }) => {
   }
 
   return (
-    <div className="text-xs flex flex-wrap gap-1 w-full md:text-sm py-6">
+    <div className="text-sm flex flex-wrap gap-1 w-full md:text-sm  lg:text-md py-6 mx-auto max-w-7xl lg:max-w-full font-manrope">
       <div className="flex justify-center items-center gap-1 p-[2px] md:p-1">
         <Svg id={'icon-mobile-menu-open'} size={14} fill={'black'} />
         <Link to={'/'} className="">
