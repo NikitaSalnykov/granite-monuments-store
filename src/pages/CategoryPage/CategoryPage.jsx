@@ -4,12 +4,17 @@ import { ProductList } from '../../components/ProductList/ProductList';
 import { Container } from '../../components/Container/Container';
 import { Section } from '../../components/Section/Section';
 import { useDispatch, useSelector } from 'react-redux';
-import { getProducts } from '../../Redux/products/productsSelectors';
+import {
+  getIsLoadingProducts,
+  getProducts,
+} from '../../Redux/products/productsSelectors';
 import { fetchProducts } from '../../Redux/products/productsOperation';
+import { SkeletonProduct } from '../../components/Loader/SkeletonProduct/SkeletonProduct';
 
 const CategoryPage = () => {
   const dispatch = useDispatch();
   const products = useSelector(getProducts);
+  const isLoading = useSelector(getIsLoadingProducts);
 
   useEffect(() => {
     dispatch(fetchProducts());
@@ -28,7 +33,7 @@ const CategoryPage = () => {
             filterSale={true}
           />
         </div>
-        <ProductList products={products} />
+        {!isLoading ? <ProductList products={products} /> : <SkeletonProduct />}
       </Container>
     </Section>
   );

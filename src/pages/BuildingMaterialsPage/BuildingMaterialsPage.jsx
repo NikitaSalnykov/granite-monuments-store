@@ -7,12 +7,17 @@ import { Title } from '../../components/Title/Title';
 import { useTranslation } from 'react-i18next';
 import { fetchProducts } from '../../Redux/products/productsOperation';
 import { useDispatch, useSelector } from 'react-redux';
-import { getProducts } from '../../Redux/products/productsSelectors';
+import {
+  getIsLoadingProducts,
+  getProducts,
+} from '../../Redux/products/productsSelectors';
+import { SkeletonProduct } from '../../components/Loader/SkeletonProduct/SkeletonProduct';
 
 const BuildingMaterialsPage = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const products = useSelector(getProducts);
+  const isLoading = useSelector(getIsLoadingProducts);
 
   useEffect(() => {
     dispatch(fetchProducts());
@@ -22,21 +27,25 @@ const BuildingMaterialsPage = () => {
     <Section>
       <Container>
         <div className="min-h-screen">
-        <Title
-          title={t('buildingMaterials')}
-          description={t('landscapingDescription')}
-        />
+          <Title
+            title={t('buildingMaterials')}
+            description={t('landscapingDescription')}
+          />
 
-        <Filter
-          nameFilter={true}
-          filterType={true}
-          filterPrice={true}
-          filterNew={true}
-          filterSale={true}
-        />
-        <div className="mt-4 md:mt-8">
-          <ProductList products={products} />
-        </div>
+          <Filter
+            nameFilter={true}
+            filterType={true}
+            filterPrice={true}
+            filterNew={true}
+            filterSale={true}
+          />
+          <div className="mt-4 md:mt-8">
+            {!isLoading ? (
+              <ProductList products={products} />
+            ) : (
+              <SkeletonProduct />
+            )}
+          </div>
         </div>
       </Container>
     </Section>

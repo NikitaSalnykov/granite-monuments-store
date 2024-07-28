@@ -1,6 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProducts } from '../../Redux/products/productsOperation';
-import { getProducts } from '../../Redux/products/productsSelectors';
+import {
+  getIsLoadingProducts,
+  getProducts,
+} from '../../Redux/products/productsSelectors';
 import { SwiperCards } from '../Swiper/SwiperCards';
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -15,6 +18,7 @@ export const ProductsRecommendation = ({
 
   const dispatch = useDispatch();
   const products = useSelector(getProducts);
+  const isLoading = useSelector(getIsLoadingProducts);
   let title;
 
   useEffect(() => {
@@ -75,9 +79,15 @@ export const ProductsRecommendation = ({
         filterProducts(products).length > 0 && (
           <div className="flex flex-col gap-4 ">
             {title && <h3 className="text-lg md:text-xl ">{title}</h3>}
-            <div className="p-2">
-              <SwiperCards products={filterProducts(products)} />
-            </div>
+            {!isLoading ? (
+              <div className="p-2">
+                <SwiperCards products={filterProducts(products)} />
+              </div>
+            ) : (
+              <div className="grid grid-cols-1">
+                <div className="w-full rounded-lg h-[250px] md:h-[350px] lg:h-[450px] bg-slate-200 animate-pulse md:mx-4 lg:mx-8"></div>
+              </div>
+            )}
           </div>
         )}
     </>

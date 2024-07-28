@@ -1,7 +1,7 @@
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Autoplay, Scrollbar, A11y } from 'swiper/modules';
-import {ProductCard} from '../ProductCard/ProductCard'
+import { ProductCard } from '../ProductCard/ProductCard';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -10,7 +10,6 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
 export const SwiperCards = ({ products }) => {
-
   const breakpoints = {
     1280: {
       slidesPerView: 4,
@@ -44,8 +43,8 @@ export const SwiperCards = ({ products }) => {
           {products.map((product, index) => (
             <SwiperSlide
               key={index}
-              className="w-full min-h-[450px] pb-4"
-              style={{"display": "flex", "justifyContent": "center"}}
+              className="w-full min-h-[250px] pb-4"
+              style={{ display: 'flex', justifyContent: 'center' }}
             >
               <ProductCard
                 key={product._id}
