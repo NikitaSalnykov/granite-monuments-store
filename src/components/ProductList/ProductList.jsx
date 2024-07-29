@@ -45,6 +45,8 @@ export const ProductList = ({ products }) => {
   //   return filteredProducts(sortedProductObjects);
   // };
 
+  console.log(products);
+
   const filteredProducts = (product) => {
     if (!products || products.length <= 0) return product;
 
@@ -90,14 +92,14 @@ export const ProductList = ({ products }) => {
           el.category.toLowerCase().includes(filterCategory.toLowerCase());
       }
 
-      const colorMatch =
+      const pricerMatch =
         filterType === t('all_types') ||
         el.type.toLowerCase().includes(filterType.toLowerCase());
       const discountMatch = !filterSale || el.discount > 0;
       const priceMatch = filterPrice === '' || +el.price < price;
 
       return (
-        nameMatch && categoryMatch && colorMatch && discountMatch && priceMatch
+        nameMatch && categoryMatch && pricerMatch && discountMatch && priceMatch
       );
     });
   };

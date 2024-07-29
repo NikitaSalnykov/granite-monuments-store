@@ -12,12 +12,12 @@ export const productSchema = yup.object({
   category: yup
     .string('Цвет должен состоять только из букв')
     .min(2, 'Цвет должна содержать минимум 2 символа')
-    .required('Укажите название'),
+    .required('Укажите категорию'),
 
   type: yup
   .string('Цвет должен состоять только из букв')
   .min(2, 'Цвет должна содержать минимум 2 символа')
-  .required('Укажите название'),
+  .required('Укажите тип'),
 
 
   price: yup
@@ -25,6 +25,11 @@ export const productSchema = yup.object({
     .typeError('Цена должна содержать только цифры')
     .required('Укажите цену'),
 
+
+    article: yup
+    .string('Цена должна содержать только цифры и буквы')    
+    .min(1, 'Артикль должна содержать минимум 1 символа')
+    .required('Укажите артикль'),
 
 
     discount: yup

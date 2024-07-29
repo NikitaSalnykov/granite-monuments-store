@@ -6,7 +6,7 @@ import {
   fetchProducts,
   getProductById,
 } from '../../Redux/products/productsOperation';
-import { getSelectedProducts } from '../../Redux/products/productsSelectors';
+import { getIsLoadingSelectedProduct, getSelectedProducts } from '../../Redux/products/productsSelectors';
 import { SwiperCards } from '../../components/Swiper/SwiperCards';
 import { Section } from '../../components/Section/Section';
 import { Container } from '../../components/Container/Container';
@@ -22,11 +22,14 @@ const ProductPage = () => {
   }, [dispatch]);
 
   const product = useSelector(getSelectedProducts);
+  const isLoading = useSelector(getIsLoadingSelectedProduct)
+
   console.log(product);
 
   return (
 <div className='min-h-screen'>
 <Section>
+  {!isLoading ?
     <Container>
       {product && <ProductDetails
         image={product.mainPhoto}
@@ -38,12 +41,23 @@ const ProductPage = () => {
         type={product.type}
       />}
 
-{product &&
-   <div className="pb-12">
-    <ProductsRecommendation type={product.type} category={product.category} discount={true}/>   
-   </div>
-   }
+
+   (<div className="pb-12">
+    {product && <ProductsRecommendation type={product.type} category={product.category} discount={true}/>  }
+   </div>)
     </Container>
+       : (<Container>
+       <div className="flex flex-col lg:flex-row gap-4">
+       <div className=" bg-slate-200 animate-pulse w-full rounded-lg h-[450px] md:h-[600px] lg:w-1/2"></div>
+    <div className="flex flex-col gap-4 lg:w-1/2">
+      <div className=" bg-slate-200 animate-pulse w-full rounded-lg h-[50px] lg:w-full"></div>
+       <div className=" bg-slate-200 animate-pulse w-full rounded-lg h-[50px] lg:w-full"></div>
+       <div className=" bg-slate-200 animate-pulse w-full rounded-lg h-[150px] lg:w-full"></div>
+       <div className=" bg-slate-200 animate-pulse w-full rounded-lg h-[150px] lg:h-[400px] lg:w-full"></div>
+    </div>
+
+       </div>
+       </Container>)}
    </Section>
    </div>
   );

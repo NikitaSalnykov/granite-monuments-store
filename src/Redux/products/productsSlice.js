@@ -12,6 +12,7 @@ const initialProducts = {
   items: [],
   isLoading: false,
   error: null,
+  isLoadingSelectedProduct: null,
   selectedProduct: null,
   isProductCreated: false,
   isProductUpdated: false,
@@ -22,6 +23,7 @@ const rejectFunc = (state, action) => {
   return {
     items: state.items,
     isLoading: false,
+    isLoadingSelectedProduct: false,
     error: action.payload,
     total: 0,
   };
@@ -63,12 +65,19 @@ const productsStateSlice = createSlice({
 
     //getProductById
 
-    builder.addCase(getProductById.pending, pendingFunc);
+    builder.addCase(getProductById.pending, (state, action) => {
+      return {
+        ...state,
+        items: state.items,
+        isLoadingSelectedProduct: true,
+        error: null,
+      };
+    });
     builder.addCase(getProductById.fulfilled, (state, action) => {
       return {
         ...state,
         selectedProduct: action.payload,
-        isLoading: false,
+        isLoadingSelectedProduct: false,
         error: null,
       };
     });

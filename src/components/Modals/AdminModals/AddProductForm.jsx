@@ -40,7 +40,7 @@ const relatedproducts = [
 ];
 
 const errorTextStyle =
-  'pl-4 absolute -bottom-5 text-rose-500 text-xs font-normal top-6 left-[60px] xl:left-[85px]';
+  'pl-4 absolute -bottom-5 text-rose-500 text-xs font-normal top-2 left-[160px] xl:left-[85px]';
 const labelStyle =
   "text-neutral-900 text-sm font-semibold font-['Manrope'] tracking-wide mdOnly:text-[16px]";
 const inputStyle =
@@ -63,11 +63,12 @@ export const AddProductForm = ({ onCloseModal }) => {
     }
   }, [isProductCreated, errorProducts, onCloseModal, dispatch]);
 
+
   const formik = useFormik({
     initialValues: {
       nameRU: '',
       nameUA: '',
-      category: 'monuments',
+      category: '',
       type: '',
       price: '',
       descriptionRU: '',
@@ -169,6 +170,9 @@ export const AddProductForm = ({ onCloseModal }) => {
                   value={formikValues['category']}
                   onChange={formik.handleChange}
                 >
+                  <option value=''>
+                      Выберете категорию
+                    </option>
                   {categories.map((el, index) => (
                     <option key={index} value={el.title}>
                       {t(el.t)}
@@ -176,7 +180,7 @@ export const AddProductForm = ({ onCloseModal }) => {
                   ))}
                 </select>
                 {errors['category'] && (
-                  <p className={errorTextStyle}>{errors['category']}</p>
+                  <p className={`${errorTextStyle} top-[10px] `}></p>
                 )}
               </div>
             </div>
@@ -195,6 +199,9 @@ export const AddProductForm = ({ onCloseModal }) => {
                     value={formikValues['type']}
                     onChange={formik.handleChange}
                   >
+                                      <option value=''>
+                      Выберете тип
+                    </option>
                     {formikValues['category'] === 'monuments' &&
                       monuments.map((el, index) => (
                         <option key={index} value={el.title}>
@@ -215,7 +222,7 @@ export const AddProductForm = ({ onCloseModal }) => {
                       ))}
                   </select>
                   {errors['type'] && (
-                    <p className={errorTextStyle}>{errors['type']}</p>
+                    <p className={`${errorTextStyle} top-[30px]`}></p>
                   )}
                 </div>
               </div>
@@ -248,7 +255,7 @@ export const AddProductForm = ({ onCloseModal }) => {
               }}
             />
             {errors['mainPhoto'] && (
-              <p className={`${errorTextStyle} top-[-20px] left-[20%]`}>
+              <p className={`${errorTextStyle} top-[20px] left-[40%]`}>
                 {errors['mainPhoto']}
               </p>
             )}

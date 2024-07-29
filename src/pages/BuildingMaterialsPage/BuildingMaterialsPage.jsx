@@ -18,6 +18,7 @@ const BuildingMaterialsPage = () => {
   const dispatch = useDispatch();
   const products = useSelector(getProducts);
   const isLoading = useSelector(getIsLoadingProducts);
+  const filteredProducts = products.filter(el => el.category === "buildingmaterials")
 
   useEffect(() => {
     dispatch(fetchProducts());
@@ -41,7 +42,7 @@ const BuildingMaterialsPage = () => {
           />
           <div className="mt-4 md:mt-8">
             {!isLoading ? (
-              <ProductList products={products} />
+              <ProductList products={filteredProducts} />
             ) : (
               <SkeletonProduct />
             )}

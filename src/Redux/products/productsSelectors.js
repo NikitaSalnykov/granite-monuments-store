@@ -5,3 +5,4 @@ export const getErrorProducts = (state) => state.products.error;
 export const getTotal = (state) => state.products.total;
 export const getIsProductCreated = (state) => state.products.isProductCreated;
 export const getIsProductUpdated = (state) => state.products.isProductUpdated;
+export const getIsLoadingSelectedProduct = (state) => state.products.isLoadingSelectedProduct;

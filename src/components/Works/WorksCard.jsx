@@ -17,7 +17,7 @@ export const WorksCard = ({
         reverseOrientation ? 'lg:flex-row-reverse ' : 'lg:flex-row'
       } gap-4 lg:gap-8`}
     >
-      <div className="flex md:mx-auto w-full  lg:w-1/2 h-[300px] md:h-auto lg:h-[400px] rounded-lg overflow-hidden">
+      <div className="flex md:mx-auto w-full  lg:w-1/2 h-[300px] md:h-auto lg:h-[400px] rounded-lg overflow-hidden bg-slate-200">
         <img className="w-full h-auto object-cover" src={img} alt={title} />
       </div>
       <div className="w-full md:w-full mx-auto lg:w-1/2 flex flex-col  justify-center lg:pr-10 gap-4 lg:gap-6">

@@ -26,6 +26,7 @@ export const Filter = ({
   filterNew = false,
   filterSale = false,
   value,
+  isAdminPage=false
 }) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
@@ -54,6 +55,10 @@ export const Filter = ({
       dispatch(setFilterCategory('landscaping'));
     } else if (pathname.toLocaleLowerCase().includes('relatedproducts')) {
       dispatch(setFilterCategory('relatedProducts'));
+    } else if (pathname.toLocaleLowerCase().includes('products')) {
+      dispatch(setFilterCategory(''))
+      dispatch(setFilterType(''))
+
     }
 
     // Дополнительные условия для типа, цены и других фильтров
@@ -103,14 +108,23 @@ export const Filter = ({
 
   const handleFilterType = ({ currentTarget }) => {
     dispatch(setFilterType(currentTarget.value));
-    navigate(`/${category.toLowerCase()}/${currentTarget.value.toLowerCase()}`);
+    if(!isAdminPage) navigate(`/${category.toLowerCase()}/${currentTarget.value.toLowerCase()}`);
   };
 
   const handleFilterCategory = ({ currentTarget }) => {
-    dispatch(setFilterCategory(currentTarget.value));
-    if (currentTarget.value.toLowerCase() === 'products')
-      return navigate(`/products`);
-    navigate(`/${currentTarget.value.toLowerCase()}/all`);
+    if(!isAdminPage) {
+      dispatch(setFilterCategory(currentTarget.value));
+      if (currentTarget.value.toLowerCase() === 'products') {
+        return navigate(`/products`)
+      };
+     navigate(`/${currentTarget.value.toLowerCase()}/all`);
+    } else {
+      dispatch(setFilterCategory(currentTarget.value));
+      if (currentTarget.value.toLowerCase() === 'products') {
+       dispatch(setFilterCategory(''));
+      };
+
+    }
   };
 
   const handleFilterPrice = ({ currentTarget }) => {

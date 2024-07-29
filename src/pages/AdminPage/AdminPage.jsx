@@ -10,7 +10,14 @@ import {
   getReviews,
 } from '../../Redux/reviews/reviewsSelectors';
 import { useDispatch, useSelector } from 'react-redux';
-import { getFilterName } from '../../Redux/filter/filterSlice';
+import {
+  getFilterCategory,
+  getFilterType,
+  getFilterName,
+  getFilterNew,
+  getFilterPrice,
+  getFilterSale,
+} from '../../Redux/filter/filterSlice';
 import Loader from '../../components/Loader/Loader';
 import {
   fetchProducts,
@@ -42,6 +49,11 @@ const AdminPage = () => {
   const { t } = useTranslation();
   const isLoadingProducts = useSelector(getIsLoadingProducts);
   const filterName = useSelector(getFilterName);
+  const filterCategory = useSelector(getFilterCategory);
+  const filterPrice = useSelector(getFilterPrice);
+  const filterType = useSelector(getFilterType);
+  const filterSale = useSelector(getFilterSale);
+  const filterNew = useSelector(getFilterNew)
 
   useEffect(() => {
     dispatch(fetchProducts());
@@ -82,24 +94,70 @@ const AdminPage = () => {
 
   const changeCategory = (category) => {
     setSelectedCategory(category);
-    console.log(products);
   };
+
   console.log(products);
 
-  const filteredProducts = (products) => {
-    if (!products) return products;
-    return products
-      .filter(
-        (el) =>
-          el &&
-          (el.name.ua.toLowerCase().includes(filterName.toLowerCase()) ||
-            el.name.ru.toLowerCase().includes(filterName.toLowerCase()))
-      )
-      .sort((a, b) => {
-        const dateA = new Date(a.createdAt);
-        const dateB = new Date(b.createdAt);
-        return dateB - dateA;
-      });
+  const filteredProducts = (product) => {
+    if (!products || products.length <= 0) return product;
+
+    const price = filterPrice.replace(/\D/g, '');
+
+    return product.filter((el) => {
+      let categoryMatch;
+      const nameMatch =
+        el.name.ru.toLowerCase().includes(filterName.toLowerCase()) ||
+        el.name.ua.toLowerCase().includes(filterName.toLowerCase());
+
+        const category =
+        el.category.toLowerCase().includes(filterCategory.toLowerCase()) 
+
+        console.log(filterCategory);
+
+      if (filterCategory === t('monuments')) {
+        const types = [
+          t('availability'),
+          t('vertical'),
+          t('horizontal'),
+          t('small'),
+        ];
+        categoryMatch = types.some((category) =>
+          el.category.toLowerCase().includes(category.toLowerCase())
+        );
+      } else if (filterCategory === t('landscaping')) {
+        const types = [
+          t('antiSettlementSlabs'),
+          t('pavingTiles'),
+          t('graniteTiles'),
+          t('fencing'),
+          t('tablesAndBenches'),
+          t('vasesAndLamps'),
+          t('cubesAndSpheres'),
+        ];
+        categoryMatch = types.some((category) =>
+          el.category.toLowerCase().includes(category.toLowerCase())
+        );
+      } else if (filterCategory === t('relatedProducts')) {
+        const types = [t('glassPhotos'), t('plaques'), t('embeddedParts')];
+        categoryMatch = types.some((category) =>
+          el.category.toLowerCase().includes(category.toLowerCase())
+        );
+      } else {
+        categoryMatch =
+          filterCategory === t('all_categories') ||
+          el.category.toLowerCase().includes('');
+      }
+
+      const colorMatch =
+        filterType === t('all_types') ||
+        el.type.toLowerCase().includes(filterType.toLowerCase());
+      const discountMatch = !filterSale || el.discount > 0;
+      const priceMatch = filterPrice === '' || +el.price < price;
+
+      return (
+        nameMatch && category && categoryMatch && colorMatch && discountMatch && priceMatch
+      );
+    });
   };
 
   const filteredReviews = (reviews) => {
@@ -266,7 +324,9 @@ const AdminPage = () => {
               </table>
             </div>
           ) : (
-            <Loader />
+            <div className='bg-slate-200 h-screen w-full rounded-lg mb-10 animate-pulse'>
+
+            </div>
           )}
         </div>
       </div>
