@@ -10,6 +10,7 @@ import {
 } from '../../Redux/products/productsSelectors';
 import { fetchProducts } from '../../Redux/products/productsOperation';
 import { SkeletonProduct } from '../../components/Loader/SkeletonProduct/SkeletonProduct';
+import { setFilterCategory, setFilterName, setFilterNew, setFilterPrice, setFilterSale, setFilterType } from '../../Redux/filter/filterSlice';
 
 const CategoryPage = () => {
   const dispatch = useDispatch();
@@ -19,6 +20,19 @@ const CategoryPage = () => {
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
+
+  
+  useEffect(() => {
+    return () => {
+      dispatch(setFilterName(''));
+      dispatch(setFilterCategory('')); 
+      dispatch(setFilterType('')); 
+      dispatch(setFilterPrice('')); 
+      dispatch(setFilterSale(false)); 
+      dispatch(setFilterNew(false)); 
+      console.log(2);
+    };
+  }, []);
 
   return (
     <Section>

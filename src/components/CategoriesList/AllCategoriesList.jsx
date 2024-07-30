@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 
-export const CategoriesList = ({ categories, sm }) => {
-  console.log(categories);
+export const AllCategoriesList = ({ categories, sm }) => {
   return (
     <>
       {categories && categories.length > 0 && (
@@ -12,7 +11,7 @@ export const CategoriesList = ({ categories, sm }) => {
         >
           {categories.map((el, index) => (
             <li key={index}>
-              <Link to={`/products?category=${el.category}&type=${el.type}`}>
+              <Link to={`${el.link}`}>
                 <div className="relative w-full h-[110px] md:h-[300px] lg:h-[280px] grayscale-[0%] hover:shadow-xl bg-slate-200 over:bg-opacity-60 transition cursor-pointer  rounded-lg overflow-hidden">
                   <img
                     className="object-cover w-full h-auto mdOnly:h-full brightness-[50%] hover:brightness-[80%]"

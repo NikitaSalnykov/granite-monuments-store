@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import image from '../../images/example.webp';
 import { ProductCard } from '../ProductCard/ProductCard';
 import {
@@ -9,9 +9,11 @@ import {
   getFilterPrice,
   getFilterSale,
 } from '../../Redux/filter/filterSlice';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { Pagination } from '../Pagination/Pagination';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { setFilterCategory, setFilterType, setFilterName, setFilterNew, setFilterPrice, setFilterSale } from '../../Redux/filter/filterSlice';
 
 export const ProductList = ({ products }) => {
   const { t } = useTranslation();
@@ -23,41 +25,69 @@ export const ProductList = ({ products }) => {
   const filterType = useSelector(getFilterType);
   const filterSale = useSelector(getFilterSale);
   const filterNew = useSelector(getFilterNew);
+  const dispatch = useDispatch();
 
   const [currentPage, setCurrentPage] = useState(1);
   const limit = 8;
+  const navigate = useNavigate();
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const name = params.get('name');
+  const category = params.get('category');
+  const type = params.get('type');
+  const price = params.get('price');
+  const sale = params.get('sale');
+  const newFilter = params.get('new');
+  const page = params.get('page');
 
-  // const newProducts = (products) => {
+  useEffect(() => {
+    if (name) dispatch(setFilterName(name));
+    if (category) dispatch(setFilterCategory(category)) 
+    if (type) dispatch(setFilterType(type)) 
+    if (price) dispatch(setFilterPrice(price)) 
+    if (sale) dispatch(setFilterSale(sale)) 
+    if (newFilter) dispatch(setFilterNew(newFilter)) 
+    if (page) setCurrentPage(Number(page)) 
+    if (category === 'products') {
+      dispatch(setFilterType(''));
+      dispatch(setFilterCategory(''));
+    }
+  }, [location.search, dispatch]);
 
-  //   if (!filterNew) {
-  //     return filteredProducts(products)
-  //   }
+  
 
-  //   const productsWithTimestamps = products.map((el) => ({
-  //     timestamp: new Date(el.createdAt).getTime(),
-  //     product: el,
-  //   }));
+  useEffect(() => {
+    const queryParams = new URLSearchParams();
 
-  //   const sortedProducts = productsWithTimestamps.sort(
-  //     (a, b) => b.timestamp - a.timestamp
-  //   );
-  //   const sortedProductObjects = sortedProducts.map((item) => item.product);
-  //   return filteredProducts(sortedProductObjects);
-  // };
+    if (filterName) queryParams.set('name', filterName);
+    if (filterType && filterCategory !== 'products') queryParams.set('type', filterType);
+    if (filterCategory){ 
+      if(filterCategory !== category) {
+        dispatch(setFilterType(''));
+        queryParams.delete('type')
+      }
+      queryParams.set('category', filterCategory);
+    }
+    if (filterPrice) queryParams.set('price', filterPrice);
+    if (filterNew) queryParams.set('new', filterNew);
+    if (filterSale) queryParams.set('sale', filterSale);
+    if (currentPage) queryParams.set('page', currentPage);
 
-  console.log(products);
 
-  const filteredProducts = (product) => {
-    if (!products || products.length <= 0) return product;
+    navigate(`${location.pathname}?${queryParams.toString()}`);
+  }, [filterName, filterCategory, filterType, filterPrice, filterNew, filterSale, currentPage, navigate, location.pathname]);
 
+  const filteredProducts = (products) => {
+    if (!products || products.length <= 0) return products;
+  
     const price = filterPrice.replace(/\D/g, '');
-
-    return product.filter((el) => {
+  
+    return products.filter((el) => {
       let categoryMatch;
       const nameMatch =
         el.name.ru.toLowerCase().includes(filterName.toLowerCase()) ||
         el.name.ua.toLowerCase().includes(filterName.toLowerCase());
-
+  
       if (filterCategory === t('monuments')) {
         const types = [
           t('availability'),
@@ -91,29 +121,54 @@ export const ProductList = ({ products }) => {
           filterCategory === t('all_categories') ||
           el.category.toLowerCase().includes(filterCategory.toLowerCase());
       }
-
-      const pricerMatch =
+  
+      const typeMatch =
         filterType === t('all_types') ||
         el.type.toLowerCase().includes(filterType.toLowerCase());
+  
       const discountMatch = !filterSale || el.discount > 0;
-      const priceMatch = filterPrice === '' || +el.price < price;
-
+  
       return (
-        nameMatch && categoryMatch && pricerMatch && discountMatch && priceMatch
+        nameMatch && categoryMatch && typeMatch && discountMatch
       );
+    }).sort((a, b) => {
+      if (filterPrice === 'min') {
+        return a.price - b.price;
+      } 
+       if (filterPrice === 'max') {
+        return b.price - a.price;
+      } 
+      return ''; // если фильтрация по цене не задана
     });
   };
-
+  
+  const newProducts = (products) => {
+    if (!filterNew) {
+      return filteredProducts(products);
+    }
+  
+    const productsWithTimestamps = products.map((el) => ({
+      timestamp: new Date(el.createdAt).getTime(),
+      product: el,
+    }));
+  
+    const sortedProducts = productsWithTimestamps.sort(
+      (a, b) => b.timestamp - a.timestamp
+    );
+    const sortedProductObjects = sortedProducts.map((item) => item.product);
+    return filteredProducts(sortedProductObjects);
+  };
+  
   const paginatedProducts = (products) =>
-    filteredProducts(products).slice(
+    newProducts(products).slice(
       (currentPage - 1) * limit,
       currentPage * limit
     );
-
+  
   const handleClickPage = (target) => {
     setCurrentPage(target.selected + 1);
   };
-
+  
   return (
     <>
       {paginatedProducts(products) && paginatedProducts(products).length > 0 ? (
@@ -146,5 +201,4 @@ export const ProductList = ({ products }) => {
         </div>
       )}
     </>
-  );
-};
+  );}

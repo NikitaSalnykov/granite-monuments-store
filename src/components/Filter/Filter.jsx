@@ -36,71 +36,11 @@ export const Filter = ({
   const isNew = useSelector(getFilterNew);
   const price = useSelector(getFilterPrice);
   const sale = useSelector(getFilterSale);
-  let navigate = useNavigate();
-  const location = useLocation();
-  const pathname = location.pathname;
 
   const [isCheckedSale, setCheckedSale] = useState(
     value === 'sale' ? true : false
   );
-
-  useEffect(() => {
-    applyFiltersFromPathname();
-  }, [pathname]);
-
-  const applyFiltersFromPathname = () => {
-    if (pathname.toLocaleLowerCase().includes('monuments')) {
-      dispatch(setFilterCategory('monuments'));
-    } else if (pathname.toLocaleLowerCase().includes('landscaping')) {
-      dispatch(setFilterCategory('landscaping'));
-    } else if (pathname.toLocaleLowerCase().includes('relatedproducts')) {
-      dispatch(setFilterCategory('relatedProducts'));
-    } else if (pathname.toLocaleLowerCase().includes('products')) {
-      dispatch(setFilterCategory(''))
-      dispatch(setFilterType(''))
-
-    }
-
-    // Дополнительные условия для типа, цены и других фильтров
-    if (pathname.toLocaleLowerCase().includes('availability')) {
-      dispatch(setFilterType('availability'));
-    } else if (pathname.toLocaleLowerCase().includes('vertical')) {
-      dispatch(setFilterType('vertical'));
-    } else if (pathname.toLocaleLowerCase().includes('horizontal')) {
-      dispatch(setFilterType('horizontal'));
-    } else if (pathname.toLocaleLowerCase().includes('small')) {
-      dispatch(setFilterType('small'));
-    } else if (pathname.toLocaleLowerCase().includes('antiSettlementSlabs')) {
-      dispatch(setFilterType('antiSettlementSlabs'));
-    } else if (pathname.toLocaleLowerCase().includes('pavingTiles')) {
-      dispatch(setFilterType('pavingTiles'));
-    } else if (pathname.toLocaleLowerCase().includes('graniteTiles')) {
-      dispatch(setFilterType('graniteTiles'));
-    } else if (pathname.toLocaleLowerCase().includes('fencing')) {
-      dispatch(setFilterType('fencing'));
-    } else if (pathname.toLocaleLowerCase().includes('tablesAndBenches')) {
-      dispatch(setFilterType('tablesAndBenches'));
-    } else if (pathname.toLocaleLowerCase().includes('vasesAndLamps')) {
-      dispatch(setFilterType('vasesAndLamps'));
-    } else if (pathname.toLocaleLowerCase().includes('cubesAndSpheres')) {
-      dispatch(setFilterType('cubesAndSpheres'));
-    } else if (pathname.toLocaleLowerCase().includes('glassPhotos')) {
-      dispatch(setFilterType('glassPhotos'));
-    } else if (pathname.toLocaleLowerCase().includes('plaques')) {
-      dispatch(setFilterType('plaques'));
-    } else if (pathname.toLocaleLowerCase().includes('embeddedParts')) {
-      dispatch(setFilterType('embeddedParts'));
-    } else if (pathname.toLocaleLowerCase().includes('all')) {
-      dispatch(setFilterType(''));
-    }
-
-    // Пример для других фильтров
-    // if (pathname.toLocaleLowerCase().includes('minprice')) {
-    //   dispatch(setFilterPrice('min'));
-    // } else if (pathname.toLocaleLowerCase().includes('maxprice')) {
-    //   dispatch(setFilterPrice('max'));
-    // }
-  };
+  
 
   const handleFilter = ({ currentTarget }) => {
     dispatch(setFilterName(currentTarget.value));
@@ -108,23 +48,10 @@ export const Filter = ({
 
   const handleFilterType = ({ currentTarget }) => {
     dispatch(setFilterType(currentTarget.value));
-    if(!isAdminPage) navigate(`/${category.toLowerCase()}/${currentTarget.value.toLowerCase()}`);
   };
 
   const handleFilterCategory = ({ currentTarget }) => {
-    if(!isAdminPage) {
-      dispatch(setFilterCategory(currentTarget.value));
-      if (currentTarget.value.toLowerCase() === 'products') {
-        return navigate(`/products`)
-      };
-     navigate(`/${currentTarget.value.toLowerCase()}/all`);
-    } else {
-      dispatch(setFilterCategory(currentTarget.value));
-      if (currentTarget.value.toLowerCase() === 'products') {
-       dispatch(setFilterCategory(''));
-      };
-
-    }
+    dispatch(setFilterCategory(currentTarget.value));
   };
 
   const handleFilterPrice = ({ currentTarget }) => {

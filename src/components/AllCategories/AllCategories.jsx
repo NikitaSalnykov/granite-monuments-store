@@ -7,6 +7,7 @@ import services from '../../images/img-1.jpg';
 import relatedproductsImg from '../../images/Сопутствующие-товары.webp';
 import buildingmaterials from '../../images/Стройматериалы.png';
 import extraImg from '../../images/img-2.jpg';
+import { AllCategoriesList } from '../CategoriesList/AllCategoriesList';
 export const AllCategories = () => {
   
   const { t } = useTranslation();
@@ -50,7 +51,7 @@ export const AllCategories = () => {
         title={t('all_categories')}
         description={t('all_categories_descr')}
       />
-      <CategoriesList categories={categories} sm={true} />
+      <AllCategoriesList categories={categories} sm={true} />
     </div>
   );
 };

@@ -12,21 +12,21 @@ const MonumentsPage = () => {
   const categories = [
     {
       title: t('vertical'),
-      link: '/monuments/vertical',
+      link: 'products?category=monuments&type=vertical',
       category: 'monuments',
       type: 'vertical',
       img: 'https://lviv.media/static/content/files/f/2d/73b6c579b38e13841d29b0fe8c15d2df.jpg',
     },
     {
       title: t('horizontal'),
-      link: '/monuments/horizontal',
+      link: 'products?category=monuments&type=horizontal',
       category: 'monuments',
       type: 'horizontal',
       img: 'https://lviv.media/static/content/files/f/2d/73b6c579b38e13841d29b0fe8c15d2df.jpg',
     },
     {
       title: t('small'),
-      link: '/monuments/small',
+      link: 'products?category=monuments&type=small',
       category: 'monuments',
       type: 'small',
       img: 'https://lviv.media/static/content/files/f/2d/73b6c579b38e13841d29b0fe8c15d2df.jpg',

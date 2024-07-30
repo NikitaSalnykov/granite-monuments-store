@@ -42,26 +42,16 @@ function App() {
             <Route index element={<MainPage />} />
             <Route path="home" element={<MainPage />} />
 
-            <Route path="monuments">
-              <Route index element={<MonumentsPage />} />
-              <Route path=":category" element={<CategoryPage />} />
-              <Route path=":category/:id" element={<ProductPage />} />
+            <Route path="products">
+              <Route index element={<CategoryPage />} />
+              <Route path=":id" element={<ProductPage />} />
             </Route>
 
-            <Route path="landscaping">
-              <Route index element={<LandscapingPage />} />
-              <Route path=":category" element={<CategoryPage />} />
-              <Route path=":category/:id" element={<ProductPage />} />
-            </Route>
-
-            <Route path="relatedproducts">
-              <Route index element={<RelatedProductsPage />} />
-              <Route path=":category" element={<CategoryPage />} />
-              <Route path=":category/:id" element={<ProductPage />} />
-            </Route>
+            <Route path="monuments" element={<MonumentsPage />} />
+            <Route path="landscaping" element={<LandscapingPage />} />
+            <Route path="relatedproducts" element={<RelatedProductsPage />} />
 
             <Route path="buildingmaterials" element={<BuildingMaterialsPage />} />
-            <Route path="products" element={<CategoryPage />} />
             <Route path="services" element={<ExtraServicesPage />} />
             <Route path="about" element={<AboutPage />} />
             <Route path="favorite" element={<FavoritePage />} />

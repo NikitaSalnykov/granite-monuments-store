@@ -12,37 +12,44 @@ const LandscapingPage = () => {
   const categories = [
     {
       title: t('antiSettlementSlabs'),
-      link: '/landscaping/antisettlementslabs',
+      category: 'landscaping',
+      type: "antisettlementslabs",
       img: 'https://lviv.media/static/content/files/f/2d/73b6c579b38e13841d29b0fe8c15d2df.jpg',
     },
     {
       title: t('pavingTiles'),
-      link: '/landscaping/pavingtiles',
+      category: 'landscaping',
+      type: "pavingtiles",
       img: 'https://lviv.media/static/content/files/f/2d/73b6c579b38e13841d29b0fe8c15d2df.jpg',
     },
     {
       title: t('graniteTiles'),
-      link: '/landscaping/granitetiles',
+      category: 'landscaping',
+      type: "granitetiles",
       img: 'https://lviv.media/static/content/files/f/2d/73b6c579b38e13841d29b0fe8c15d2df.jpg',
     },
     {
       title: t('fencing'),
-      link: '/landscaping/fencing',
+      category: 'landscaping',
+      type: "fencing",
       img: 'https://lviv.media/static/content/files/f/2d/73b6c579b38e13841d29b0fe8c15d2df.jpg',
     },
     {
       title: t('tablesAndBenches'),
-      link: '/landscaping/tablesandbenches',
+      category: 'landscaping',
+      type: "tablesandbenches",
       img: 'https://lviv.media/static/content/files/f/2d/73b6c579b38e13841d29b0fe8c15d2df.jpg',
     },
     {
       title: t('vasesAndLamps'),
-      link: '/landscaping/vasesandlamps',
+      category: 'landscaping',
+      type: "vasesandlamps",
       img: 'https://lviv.media/static/content/files/f/2d/73b6c579b38e13841d29b0fe8c15d2df.jpg',
     },
     {
       title: t('cubesAndSpheres'),
-      link: '/landscaping/cubesandspheres',
+      category: 'landscaping',
+      type: "cubesandspheres",
       img: 'https://lviv.media/static/content/files/f/2d/73b6c579b38e13841d29b0fe8c15d2df.jpg',
     },
   ];

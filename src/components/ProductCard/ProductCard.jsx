@@ -20,7 +20,7 @@ export const ProductCard = ({
 
   return (
     <div className="relative ">
-      <Link to={`/${category}/${type}/${id}`}>
+      <Link to={`/products/${id}`}>
         <div className="h-[200px] md:h-[300px] rounded-lg bg-slate-300 text-center overflow-hidden">
           <img
             className="object-cover w-full h-full"
