@@ -42,9 +42,9 @@ const ProductPage = () => {
       />}
 
 
-   (<div className="pb-12">
+   <div className="pb-12">
     {product && <ProductsRecommendation type={product.type} category={product.category} discount={true}/>  }
-   </div>)
+   </div>
     </Container>
        : (<Container>
        <div className="flex flex-col lg:flex-row gap-4">
