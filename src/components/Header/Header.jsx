@@ -36,10 +36,15 @@ const Header = () => {
               <Dropdown
                 title={t('monuments')}
                 links={[
-                  { title: t('availability'), link: '/monuments/availability' },
-                  { title: t('vertical'), link: '/monuments/vertical' },
-                  { title: t('horizontal'), link: 'monuments/horizontal' },
-                  { title: t('small'), link: 'monuments/small' },
+                  { title: t('availability'), 
+                  link: '/products?category=monuments&type=availability',
+                },
+                  { title: t('vertical'), 
+                  link: '/products?category=monuments&type=vertical' },
+                  { title: t('horizontal'), 
+                  link: 'products?category=monuments&type=horizontal' },
+                  { title: t('small'), 
+                  link: 'products?category=monuments&type=small' },
                 ]}
               />
               <Dropdown
@@ -47,28 +52,28 @@ const Header = () => {
                 links={[
                   {
                     title: t('antiSettlementSlabs'),
-                    link: '/landscaping/antisettlementslabs',
+                    link: '/products?category=landscaping&type=antiSettlementSlabs',
                   },
                   {
                     title: t('pavingTiles'),
-                    link: '/landscaping/pavingtiles',
+                    link: '/products?category=landscaping&type=pavingTiles',
                   },
                   {
                     title: t('graniteTiles'),
-                    link: '/landscaping/granitetiles',
+                    link: '/products?category=landscaping&type=graniteTiles',
                   },
-                  { title: t('fencing'), link: '/landscaping/fencing' },
+                  { title: t('fencing'), link: '/products?category=landscaping&type=fencing' },
                   {
                     title: t('tablesAndBenches'),
-                    link: '/landscaping/tablesandbenches',
+                    link: '/products?category=landscaping&type=tableSandBenches',
                   },
                   {
                     title: t('vasesAndLamps'),
-                    link: '/landscaping/vasesandlamps',
+                    link: '/products?category=landscaping&type=vasesAndLamps',
                   },
                   {
                     title: t('cubesAndSpheres'),
-                    link: '/landscaping/cubesandspheres',
+                    link: '/products?category=landscaping&type=cubesAndSpheres',
                   },
                 ]}
               />
@@ -77,12 +82,14 @@ const Header = () => {
                 links={[
                   {
                     title: t('glassPhotos'),
-                    link: '/relatedproducts/glassphotos',
+                    link: '/products?category=relatedProducts&type=glassPhotos',
                   },
-                  { title: t('plaques'), link: '/relatedproducts/plaques' },
+                  { title: t('plaques'), 
+                  link: '/products?category=relatedProducts&type=plaques' 
+                },
                   {
                     title: t('embeddedParts'),
-                    link: '/relatedproducts/embeddedparts',
+                    link: '/products?category=relatedProducts&type=embeddedParts',
                   },
                 ]}
               />

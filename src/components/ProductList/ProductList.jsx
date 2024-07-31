@@ -39,33 +39,33 @@ export const ProductList = ({ products }) => {
   const sale = params.get('sale');
   const newFilter = params.get('new');
   const page = params.get('page');
+  const queryParams = new URLSearchParams();
+
 
   useEffect(() => {
     if (name) dispatch(setFilterName(name));
-    if (category) dispatch(setFilterCategory(category)) 
+    if (category) {
+      dispatch(setFilterCategory(category))
+    }
     if (type) dispatch(setFilterType(type)) 
     if (price) dispatch(setFilterPrice(price)) 
     if (sale) dispatch(setFilterSale(sale)) 
     if (newFilter) dispatch(setFilterNew(newFilter)) 
     if (page) setCurrentPage(Number(page)) 
-    if (category === 'products') {
+    if (category === '') {
       dispatch(setFilterType(''));
       dispatch(setFilterCategory(''));
     }
+
   }, [location.search, dispatch]);
 
   
 
   useEffect(() => {
-    const queryParams = new URLSearchParams();
 
     if (filterName) queryParams.set('name', filterName);
-    if (filterType && filterCategory !== 'products') queryParams.set('type', filterType);
+    if (filterType && filterCategory !== '') queryParams.set('type', filterType);
     if (filterCategory){ 
-      if(filterCategory !== category) {
-        dispatch(setFilterType(''));
-        queryParams.delete('type')
-      }
       queryParams.set('category', filterCategory);
     }
     if (filterPrice) queryParams.set('price', filterPrice);

@@ -17,6 +17,12 @@ import {
   getFilterNew,
   getFilterPrice,
   getFilterSale,
+  setFilterName,
+  setFilterCategory,
+  setFilterType,
+  setFilterPrice,
+  setFilterSale,
+  setFilterNew,
 } from '../../Redux/filter/filterSlice';
 import Loader from '../../components/Loader/Loader';
 import {
@@ -65,6 +71,18 @@ const AdminPage = () => {
     isModalReviewOpen,
   ]);
 
+    
+  useEffect(() => {
+    return () => {
+      dispatch(setFilterName(''));
+      dispatch(setFilterCategory('')); 
+      dispatch(setFilterType('')); 
+      dispatch(setFilterPrice('')); 
+      dispatch(setFilterSale(false)); 
+      dispatch(setFilterNew(false)); 
+    };
+  }, []);
+
   useEffect(() => {
     dispatch(fetchReviews());
   }, [dispatch, isModalReviewOpen]);
@@ -94,6 +112,7 @@ const AdminPage = () => {
 
   const changeCategory = (category) => {
     setSelectedCategory(category);
+    dispatch(setFilterName(''));
   };
 
   console.log(products);

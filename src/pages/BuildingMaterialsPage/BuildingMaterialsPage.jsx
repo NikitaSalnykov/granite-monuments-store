@@ -12,6 +12,7 @@ import {
   getProducts,
 } from '../../Redux/products/productsSelectors';
 import { SkeletonProduct } from '../../components/Loader/SkeletonProduct/SkeletonProduct';
+import { setFilterCategory, setFilterName, setFilterNew, setFilterPrice, setFilterSale, setFilterType } from '../../Redux/filter/filterSlice';
 
 const BuildingMaterialsPage = () => {
   const { t } = useTranslation();
@@ -23,6 +24,17 @@ const BuildingMaterialsPage = () => {
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
+
+  useEffect(() => {
+    return () => {
+      dispatch(setFilterName(''));
+      dispatch(setFilterCategory('')); 
+      dispatch(setFilterType('')); 
+      dispatch(setFilterPrice('')); 
+      dispatch(setFilterSale(false)); 
+      dispatch(setFilterNew(false)); 
+    };
+  }, []);
 
   return (
     <Section>

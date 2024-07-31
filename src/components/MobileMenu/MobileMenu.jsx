@@ -89,7 +89,7 @@ export const MobileMenu = ({ isOpen, onCloseModal }) => {
                       <div className="flex flex-col gap-4 items-center text-gray-200 font-manrope">
                         <div className="px-1 py-1 cursor-pointer rounded-sm text-lg ">
                           <Link
-                            to={'/monuments/availability'}
+                            to={'/products?category=monuments&type=availability'}
                             onClick={() => closeMenu()}
                           >
                             {t('availability')}{' '}
@@ -97,7 +97,7 @@ export const MobileMenu = ({ isOpen, onCloseModal }) => {
                         </div>
                         <div className="px-1 py-1 cursor-pointer rounded-sm text-lg">
                           <Link
-                            to={'/monuments/vertical'}
+                            to={'/products?category=monuments&type=vertical'}
                             onClick={() => closeMenu()}
                           >
                             {t('vertical')}
@@ -105,7 +105,7 @@ export const MobileMenu = ({ isOpen, onCloseModal }) => {
                         </div>
                         <div className="px-1 py-1 cursor-pointer rounded-sm text-lg">
                           <Link
-                            to={'monuments/horizontal'}
+                            to={'/products?category=monuments&type=horizontal'}
                             onClick={() => closeMenu()}
                           >
                             {t('horizontal')}
@@ -113,7 +113,7 @@ export const MobileMenu = ({ isOpen, onCloseModal }) => {
                         </div>
                         <div className="px-1 py-1 cursor-pointer rounded-sm text-lg">
                           <Link
-                            to={'monuments/small'}
+                            to={'/products?category=monuments&type=small'}
                             onClick={() => closeMenu()}
                           >
                             {t('small')}
@@ -125,7 +125,7 @@ export const MobileMenu = ({ isOpen, onCloseModal }) => {
                       <div className="flex flex-col gap-2 items-center text-gray-300 font-manrope">
                         <div className="px-1 py-1 cursor-pointer rounded-sm text-lg">
                           <Link
-                            to={'/landscaping/antisettlementslabs'}
+                            to={'/products?category=landscaping&type=antiSettlementSlabs'}
                             onClick={() => closeMenu()}
                           >
                             {t('antiSettlementSlabs')}
@@ -133,7 +133,7 @@ export const MobileMenu = ({ isOpen, onCloseModal }) => {
                         </div>
                         <div className="px-1 py-1 cursor-pointer rounded-sm text-lg">
                           <Link
-                            to={'/landscaping/pavingtiles'}
+                            to={'/products?category=landscaping&type=pavingTiles'}
                             onClick={() => closeMenu()}
                           >
                             {t('pavingTiles')}
@@ -141,7 +141,7 @@ export const MobileMenu = ({ isOpen, onCloseModal }) => {
                         </div>
                         <div className="px-1 py-1 cursor-pointer rounded-sm text-lg">
                           <Link
-                            to={'/landscaping/granitetiles'}
+                            to={'/products?category=landscaping&type=graniteTiles'}
                             onClick={() => closeMenu()}
                           >
                             {t('graniteTiles')}
@@ -149,7 +149,7 @@ export const MobileMenu = ({ isOpen, onCloseModal }) => {
                         </div>
                         <div className="px-1 py-1 cursor-pointer rounded-sm text-lg">
                           <Link
-                            to={'/landscaping/fencing'}
+                            to={'/products?category=landscaping&type=fencing'}
                             onClick={() => closeMenu()}
                           >
                             {t('fencing')}
@@ -157,7 +157,7 @@ export const MobileMenu = ({ isOpen, onCloseModal }) => {
                         </div>
                         <div className="px-1 py-1 cursor-pointer rounded-sm text-lg">
                           <Link
-                            to={'/landscaping/tablesandbenches'}
+                            to={'/products?category=landscaping&type=tableSandBenches'}
                             onClick={() => closeMenu()}
                           >
                             {t('tablesAndBenches')}
@@ -165,7 +165,7 @@ export const MobileMenu = ({ isOpen, onCloseModal }) => {
                         </div>
                         <div className="px-1 py-1 cursor-pointer rounded-sm text-lg">
                           <Link
-                            to={'/landscaping/vasesandlamps'}
+                            to={'/products?category=landscaping&type=vasesAndLamps'}
                             onClick={() => closeMenu()}
                           >
                             {t('vasesAndLamps')}
@@ -173,7 +173,7 @@ export const MobileMenu = ({ isOpen, onCloseModal }) => {
                         </div>
                         <div className="px-1 py-1 cursor-pointer rounded-sm text-lg">
                           <Link
-                            to={'/landscaping/cubesandspheres'}
+                            to={'/products?category=landscaping&type=cubesAndSpheres'}
                             onClick={() => closeMenu()}
                           >
                             {t('cubesAndSpheres')}
@@ -185,7 +185,7 @@ export const MobileMenu = ({ isOpen, onCloseModal }) => {
                       <div className="flex flex-col gap-4 items-center text-gray-200 font-manrope">
                         <div className="px-1 py-1 cursor-pointer rounded-sm text-lg ">
                           <Link
-                            to={'/relatedproducts/glassphotos'}
+                            to={'/products?category=relatedProducts&type=glassPhotos'}
                             onClick={() => closeMenu()}
                           >
                             {t('glassPhotos')}
@@ -193,7 +193,7 @@ export const MobileMenu = ({ isOpen, onCloseModal }) => {
                         </div>
                         <div className="px-1 py-1 cursor-pointer rounded-sm  text-lg">
                           <Link
-                            to={'/relatedproducts/plaques'}
+                            to={'/products?category=relatedProducts&type=plaques'}
                             onClick={() => closeMenu()}
                           >
                             {t('plaques')}
@@ -201,7 +201,7 @@ export const MobileMenu = ({ isOpen, onCloseModal }) => {
                         </div>
                         <div className="px-1 py-1 cursor-pointer rounded-sm text-lg">
                           <Link
-                            to={'/relatedproducts/embeddedparts'}
+                            to={'/products?category=relatedProducts&type=embeddedParts'}
                             onClick={() => closeMenu()}
                           >
                             {t('embeddedParts')}

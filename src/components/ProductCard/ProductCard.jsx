@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import placeholder from '../../images/placeholder.jpg';
 import { cutText } from '../../helpers/cutText';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { getUser } from '../../Redux/auth/auth-selectors';
 
 export const ProductCard = ({
   id,
@@ -17,6 +19,7 @@ export const ProductCard = ({
   const { t } = useTranslation();
   const { i18n } = useTranslation();
   const currentLanguage = i18n.language;
+
 
   return (
     <div className="relative ">
