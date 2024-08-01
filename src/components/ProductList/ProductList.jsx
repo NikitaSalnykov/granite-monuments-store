@@ -13,7 +13,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { Pagination } from '../Pagination/Pagination';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { setFilterCategory, setFilterType, setFilterName, setFilterNew, setFilterPrice, setFilterSale } from '../../Redux/filter/filterSlice';
+import {
+  setFilterCategory,
+  setFilterType,
+  setFilterName,
+  setFilterNew,
+  setFilterPrice,
+  setFilterSale,
+} from '../../Redux/filter/filterSlice';
 
 export const ProductList = ({ products }) => {
   const { t } = useTranslation();
@@ -28,7 +35,7 @@ export const ProductList = ({ products }) => {
   const dispatch = useDispatch();
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [first, setfirst] = useState(null)
+  const [first, setfirst] = useState(null);
 
   const limit = 10;
   const navigate = useNavigate();
@@ -46,72 +53,82 @@ export const ProductList = ({ products }) => {
   useEffect(() => {
     if (name) dispatch(setFilterName(name));
     if (category) {
-      dispatch(setFilterCategory(category))
+      dispatch(setFilterCategory(category));
     }
-    if (type) dispatch(setFilterType(type)) 
-    if (price) dispatch(setFilterPrice(price)) 
-    if (sale) dispatch(setFilterSale(sale)) 
-    if (newFilter) dispatch(setFilterNew(newFilter)) 
-    if (page) setCurrentPage(Number(page)) 
+    if (type) dispatch(setFilterType(type));
+    if (price) dispatch(setFilterPrice(price));
+    if (sale) dispatch(setFilterSale(sale));
+    if (newFilter) dispatch(setFilterNew(newFilter));
+    if (page) setCurrentPage(Number(page));
     if (category === '') {
       dispatch(setFilterType(''));
       dispatch(setFilterCategory(''));
     }
 
-  if(location.pathname.includes('buildingMaterials')) {
-    dispatch(setFilterCategory(''))
-    dispatch(setFilterType(''))  
-  }
-
-
-
+    if (location.pathname.includes('buildingMaterials')) {
+      dispatch(setFilterCategory(''));
+      dispatch(setFilterType(''));
+    }
   }, [location.search, dispatch]);
 
-  
-
   useEffect(() => {
-
     if (filterName) queryParams.set('name', filterName);
-    if (filterType && filterCategory !== '') queryParams.set('type', filterType);
-    if (filterCategory){ 
+    if (filterType && filterCategory !== '')
+      queryParams.set('type', filterType);
+    if (filterCategory) {
       queryParams.set('category', filterCategory);
-
-
     }
     if (filterPrice) queryParams.set('price', filterPrice);
     if (filterNew) queryParams.set('new', filterNew);
-    if (filterSale) {queryParams.set('sale', filterSale)}
+    if (filterSale) {
+      queryParams.set('sale', filterSale);
+    }
     if (currentPage) queryParams.set('page', currentPage);
 
     navigate(`${location.pathname}?${queryParams.toString()}`);
 
     return () => {
-      queryParams.delete('sale')
-      queryParams.delete('new')
-      queryParams.delete('page')
-      queryParams.delete('price')
-      queryParams.delete('category')
-      queryParams.delete('type')
-      queryParams.delete('name')
+      queryParams.delete('sale');
+      queryParams.delete('new');
+      queryParams.delete('page');
+      queryParams.delete('price');
+      queryParams.delete('category');
+      queryParams.delete('type');
+      queryParams.delete('name');
 
       // navigate(`${location.pathname}?${queryParams.toString()}`);
-    }  
-      
-  
-  }, [filterName, filterCategory, filterType, filterPrice, filterNew, filterSale, currentPage, navigate, location.pathname]);
+    };
+  }, [
+    filterName,
+    filterCategory,
+    filterType,
+    filterPrice,
+    filterNew,
+    filterSale,
+    currentPage,
+    navigate,
+    location.pathname,
+  ]);
+
+  useEffect(() => {
+    dispatch(setFilterName(''));
+    dispatch(setFilterPrice(''));
+    dispatch(setFilterSale(false));
+    dispatch(setFilterNew(false));
+  }, [filterCategory, filterType, currentPage, navigate, location.pathname]);
 
   const filteredProducts = (products) => {
     if (!products || products.length <= 0) return products;
-  
+
     const price = filterPrice.replace(/\D/g, '');
-  
+
     return products
       .filter((el) => {
         let categoryMatch;
         const nameMatch =
           el.name.ru.toLowerCase().includes(filterName.toLowerCase()) ||
           el.name.ua.toLowerCase().includes(filterName.toLowerCase());
-  
+
         if (filterCategory === t('monuments')) {
           const types = [
             t('availability'),
@@ -140,65 +157,61 @@ export const ProductList = ({ products }) => {
           categoryMatch = types.some((category) =>
             el.category.toLowerCase().includes(category.toLowerCase())
           );
-        } 
-        else {
+        } else {
           categoryMatch =
             filterCategory === t('all_categories') ||
             el.category.toLowerCase().includes(filterCategory.toLowerCase());
         }
-  
+
         const typeMatch =
           filterType === t('all_types') ||
           el.type.toLowerCase().includes(filterType.toLowerCase());
-  
+
         return nameMatch && categoryMatch && typeMatch;
       })
       .sort((a, b) => {
         // Сортировка по скидке
         if (filterSale && a.discount > 0 && b.discount === 0) return -1;
         if (filterSale && a.discount === 0 && b.discount > 0) return 1;
-  
+
         // Сортировка по цене
         if (filterPrice === 'min') {
           return a.price - b.price;
-        } 
+        }
         if (filterPrice === 'max') {
           return b.price - a.price;
         }
-  // Сортировка по доступности
-  if (!a.availability && b.availability) return 1;
-  if (a.availability && !b.availability) return -1;
+        // Сортировка по доступности
+        if (!a.availability && b.availability) return 1;
+        if (a.availability && !b.availability) return -1;
         return 0; // Если фильтрация по цене не задана
       });
   };
-  
+
   const newProducts = (products) => {
     if (!filterNew) {
       return filteredProducts(products);
     }
-  
+
     const productsWithTimestamps = products.map((el) => ({
       timestamp: new Date(el.createdAt).getTime(),
       product: el,
     }));
-  
+
     const sortedProducts = productsWithTimestamps.sort(
       (a, b) => b.timestamp - a.timestamp
     );
     const sortedProductObjects = sortedProducts.map((item) => item.product);
     return filteredProducts(sortedProductObjects);
   };
-  
+
   const paginatedProducts = (products) =>
-    newProducts(products).slice(
-      (currentPage - 1) * limit,
-      currentPage * limit
-    );
-  
+    newProducts(products).slice((currentPage - 1) * limit, currentPage * limit);
+
   const handleClickPage = (target) => {
     setCurrentPage(target.selected + 1);
   };
-  
+
   return (
     <>
       {paginatedProducts(products) && paginatedProducts(products).length > 0 ? (
@@ -232,4 +245,5 @@ export const ProductList = ({ products }) => {
         </div>
       )}
     </>
-  );}
+  );
+};
