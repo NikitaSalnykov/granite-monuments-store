@@ -19,17 +19,18 @@ const BuildingMaterialsPage = () => {
   const dispatch = useDispatch();
   const products = useSelector(getProducts);
   const isLoading = useSelector(getIsLoadingProducts);
-  const filteredProducts = products.filter(el => el.category === "buildingmaterials")
+  const filteredProducts = products.filter(el => el.category === "buildingMaterials")
 
   useEffect(() => {
     dispatch(fetchProducts());
   }, [dispatch]);
 
   useEffect(() => {
+    
     return () => {
-      dispatch(setFilterName(''));
       dispatch(setFilterCategory('')); 
       dispatch(setFilterType('')); 
+      dispatch(setFilterName('')); 
       dispatch(setFilterPrice('')); 
       dispatch(setFilterSale(false)); 
       dispatch(setFilterNew(false)); 
@@ -44,21 +45,21 @@ const BuildingMaterialsPage = () => {
             title={t('buildingMaterials')}
             description={t('landscapingDescription')}
           />
-
-          <Filter
+ {!isLoading ?
+         <div>
+         <Filter
             nameFilter={true}
-            filterType={true}
             filterPrice={true}
             filterNew={true}
             filterSale={true}
           />
           <div className="mt-4 md:mt-8">
-            {!isLoading ? (
               <ProductList products={filteredProducts} />
-            ) : (
-              <SkeletonProduct />
-            )}
           </div>
+         </div>
+         : (
+          <SkeletonProduct />
+        )}
         </div>
       </Container>
     </Section>

@@ -8,11 +8,9 @@ export const FloatingButtons = () => {
   const {t} = useTranslation()
   const location = useLocation()
   const pathname = location.pathname
-  console.log(location);
   
   const handleButtonClick = () => {
    setOnButtonClick(!onButtonClick)
-   console.log(onButtonClick);
   } 
 
   return (

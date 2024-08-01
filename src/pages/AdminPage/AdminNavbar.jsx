@@ -24,7 +24,6 @@ export const AdminNavbar = ({
       onTogleProductModal();
     } else if (selectedCategory === 'reviews') {
       onTogleReviewModal();
-      console.log(selectedCategory);
     } else {
       console.log('Error');
     }

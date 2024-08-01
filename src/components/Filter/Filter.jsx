@@ -40,7 +40,7 @@ export const Filter = ({
   const [isCheckedSale, setCheckedSale] = useState(
     value === 'sale' ? true : false
   );
-  
+
 
   const handleFilter = ({ currentTarget }) => {
     dispatch(setFilterName(currentTarget.value));
@@ -114,6 +114,7 @@ export const Filter = ({
                 <option value="monuments">{t('monuments')}</option>
                 <option value="landscaping">{t('landscaping')}</option>
                 <option value="relatedProducts">{t('relatedProducts')}</option>
+                {isAdminPage && <option value="buildingMaterials">{t('buildingMaterials')}</option>}
               </select>
             </div>
           )}
@@ -237,7 +238,7 @@ export const Filter = ({
                   <input
                     id="filterSale"
                     type="checkbox"
-                    checked={isCheckedSale}
+                    checked={sale}
                     onChange={handleFilterSale}
                     className="form-checkbox h-5 w-5 text-indigo-600 rounded-lg"
                   />

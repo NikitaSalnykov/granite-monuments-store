@@ -54,6 +54,7 @@ const AdminPage = () => {
   const reviews = useSelector(getReviews);
   const { t } = useTranslation();
   const isLoadingProducts = useSelector(getIsLoadingProducts);
+  const isLoadingReview = useSelector(getIsLoadingReview)
   const filterName = useSelector(getFilterName);
   const filterCategory = useSelector(getFilterCategory);
   const filterPrice = useSelector(getFilterPrice);
@@ -68,20 +69,23 @@ const AdminPage = () => {
     isModalProductOpen,
     isModalEditProductOpen,
     isModalProductOpen,
-    isModalReviewOpen,
   ]);
 
-    
+
+
   useEffect(() => {
+  
     return () => {
       dispatch(setFilterName(''));
       dispatch(setFilterCategory('')); 
       dispatch(setFilterType('')); 
       dispatch(setFilterPrice('')); 
       dispatch(setFilterSale(false)); 
-      dispatch(setFilterNew(false)); 
-    };
-  }, []);
+      dispatch(setFilterNew(false));
+    }
+
+  }, [])
+  
 
   useEffect(() => {
     dispatch(fetchReviews());
@@ -115,68 +119,94 @@ const AdminPage = () => {
     dispatch(setFilterName(''));
   };
 
-  console.log(products);
 
-  const filteredProducts = (product) => {
-    if (!products || products.length <= 0) return product;
-
+  const filteredProducts = (products) => {
+    if (!products || products.length <= 0) return products;
+  
     const price = filterPrice.replace(/\D/g, '');
+  
+    return products
+      .filter((el) => {
+        let categoryMatch;
+        const nameMatch =
+          el.name.ru.toLowerCase().includes(filterName.toLowerCase()) ||
+          el.name.ua.toLowerCase().includes(filterName.toLowerCase());
+  
+        if (filterCategory === t('monuments')) {
+          const types = [
+            t('availability'),
+            t('vertical'),
+            t('horizontal'),
+            t('small'),
+          ];
+          categoryMatch = types.some((category) =>
+            el.category.toLowerCase().includes(category.toLowerCase())
+          );
+        } else if (filterCategory === t('landscaping')) {
+          const types = [
+            t('antiSettlementSlabs'),
+            t('pavingTiles'),
+            t('graniteTiles'),
+            t('fencing'),
+            t('tablesAndBenches'),
+            t('vasesAndLamps'),
+            t('cubesAndSpheres'),
+          ];
+          categoryMatch = types.some((category) =>
+            el.category.toLowerCase().includes(category.toLowerCase())
+          );
+        } else if (filterCategory === t('relatedProducts')) {
+          const types = [t('glassPhotos'), t('plaques'), t('embeddedParts')];
+          categoryMatch = types.some((category) =>
+            el.category.toLowerCase().includes(category.toLowerCase())
+          );
+        } 
+        else {
+          categoryMatch =
+            filterCategory === t('all_categories') ||
+            el.category.toLowerCase().includes(filterCategory.toLowerCase());
+        }
+  
+        const typeMatch =
+          filterType === t('all_types') ||
+          el.type.toLowerCase().includes(filterType.toLowerCase());
+  
+        return nameMatch && categoryMatch && typeMatch;
+      })
+      .sort((a, b) => {
+        // Сортировка по скидке
+        if (filterSale && a.discount > 0 && b.discount === 0) return -1;
+        if (filterSale && a.discount === 0 && b.discount > 0) return 1;
+  
+        // Сортировка по цене
+        if (filterPrice === 'min') {
+          return a.price - b.price;
+        } 
+        if (filterPrice === 'max') {
+          return b.price - a.price;
+        }
+  // Сортировка по доступности
+  if (!a.availability && b.availability) return 1;
+  if (a.availability && !b.availability) return -1;
+        return 0; // Если фильтрация по цене не задана
+      });
+  };
 
-    return product.filter((el) => {
-      let categoryMatch;
-      const nameMatch =
-        el.name.ru.toLowerCase().includes(filterName.toLowerCase()) ||
-        el.name.ua.toLowerCase().includes(filterName.toLowerCase());
-
-        const category =
-        el.category.toLowerCase().includes(filterCategory.toLowerCase()) 
-
-        console.log(filterCategory);
-
-      if (filterCategory === t('monuments')) {
-        const types = [
-          t('availability'),
-          t('vertical'),
-          t('horizontal'),
-          t('small'),
-        ];
-        categoryMatch = types.some((category) =>
-          el.category.toLowerCase().includes(category.toLowerCase())
-        );
-      } else if (filterCategory === t('landscaping')) {
-        const types = [
-          t('antiSettlementSlabs'),
-          t('pavingTiles'),
-          t('graniteTiles'),
-          t('fencing'),
-          t('tablesAndBenches'),
-          t('vasesAndLamps'),
-          t('cubesAndSpheres'),
-        ];
-        categoryMatch = types.some((category) =>
-          el.category.toLowerCase().includes(category.toLowerCase())
-        );
-      } else if (filterCategory === t('relatedProducts')) {
-        const types = [t('glassPhotos'), t('plaques'), t('embeddedParts')];
-        categoryMatch = types.some((category) =>
-          el.category.toLowerCase().includes(category.toLowerCase())
-        );
-      } else {
-        categoryMatch =
-          filterCategory === t('all_categories') ||
-          el.category.toLowerCase().includes('');
-      }
-
-      const colorMatch =
-        filterType === t('all_types') ||
-        el.type.toLowerCase().includes(filterType.toLowerCase());
-      const discountMatch = !filterSale || el.discount > 0;
-      const priceMatch = filterPrice === '' || +el.price < price;
-
-      return (
-        nameMatch && category && categoryMatch && colorMatch && discountMatch && priceMatch
-      );
-    });
+  const newProducts = (products) => {
+    if (!filterNew) {
+      return filteredProducts(products);
+    }
+  
+    const productsWithTimestamps = products.map((el) => ({
+      timestamp: new Date(el.createdAt).getTime(),
+      product: el,
+    }));
+  
+    const sortedProducts = productsWithTimestamps.sort(
+      (a, b) => b.timestamp - a.timestamp
+    );
+    const sortedProductObjects = sortedProducts.map((item) => item.product);
+    return filteredProducts(sortedProductObjects);
   };
 
   const filteredReviews = (reviews) => {
@@ -213,7 +243,7 @@ const AdminPage = () => {
         />
 
         <div className="lg:ml-64 lg:pl-4 lg:flex lg:flex-col lg:w-75% mx-[2px] md:mx-2 min-h-screen">
-          {!isLoadingProducts ? (
+          {!isLoadingProducts && !isLoadingReview ? (
             <div className="bg-white rounded-lg p-2 shadow-md mb-20  md:p-4 min-h-screen">
               <table className="table-auto w-full text-xs md:text-md lg:text-md">
                 <thead>
@@ -231,9 +261,9 @@ const AdminPage = () => {
                 <tbody>
                   {selectedCategory === 'products' &&
                     products &&
-                    filteredProducts(products).map((el, index) => (
-                      <>
-                        <tr className="" key={index}>
+                    newProducts(products).map((el, index) => (
+                      <React.Fragment key={el._id}>
+                        <tr className="" key={el._id}>
                           <td className="px-1 md:px-2 py-2 text-left align-center w-full md:w-1/3">
                             <div>
                               <h2 className=" font-semibold">{el.name.ru}</h2>
@@ -307,12 +337,12 @@ const AdminPage = () => {
                             </div>
                           </td>
                         </tr>
-                      </>
+                      </React.Fragment>
                     ))}
                   {selectedCategory === 'reviews' &&
                     reviews &&
                     filteredReviews(reviews).map((el, index) => (
-                      <tr className="border-b" key={index}>
+                      <tr className="border-b" key={el._id}>
                         <td className="px-1 md:px-2 py-2 text-left align-center w-1/4 md:w-1/2">
                           <div>
                             <h2>{el.author}</h2>

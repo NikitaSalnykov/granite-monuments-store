@@ -28,7 +28,9 @@ export const ProductList = ({ products }) => {
   const dispatch = useDispatch();
 
   const [currentPage, setCurrentPage] = useState(1);
-  const limit = 8;
+  const [first, setfirst] = useState(null)
+
+  const limit = 10;
   const navigate = useNavigate();
   const location = useLocation();
   const params = new URLSearchParams(location.search);
@@ -40,7 +42,6 @@ export const ProductList = ({ products }) => {
   const newFilter = params.get('new');
   const page = params.get('page');
   const queryParams = new URLSearchParams();
-
 
   useEffect(() => {
     if (name) dispatch(setFilterName(name));
@@ -57,6 +58,13 @@ export const ProductList = ({ products }) => {
       dispatch(setFilterCategory(''));
     }
 
+  if(location.pathname.includes('buildingMaterials')) {
+    dispatch(setFilterCategory(''))
+    dispatch(setFilterType(''))  
+  }
+
+
+
   }, [location.search, dispatch]);
 
   
@@ -67,14 +75,29 @@ export const ProductList = ({ products }) => {
     if (filterType && filterCategory !== '') queryParams.set('type', filterType);
     if (filterCategory){ 
       queryParams.set('category', filterCategory);
+
+
     }
     if (filterPrice) queryParams.set('price', filterPrice);
     if (filterNew) queryParams.set('new', filterNew);
-    if (filterSale) queryParams.set('sale', filterSale);
+    if (filterSale) {queryParams.set('sale', filterSale)}
     if (currentPage) queryParams.set('page', currentPage);
 
-
     navigate(`${location.pathname}?${queryParams.toString()}`);
+
+    return () => {
+      queryParams.delete('sale')
+      queryParams.delete('new')
+      queryParams.delete('page')
+      queryParams.delete('price')
+      queryParams.delete('category')
+      queryParams.delete('type')
+      queryParams.delete('name')
+
+      // navigate(`${location.pathname}?${queryParams.toString()}`);
+    }  
+      
+  
   }, [filterName, filterCategory, filterType, filterPrice, filterNew, filterSale, currentPage, navigate, location.pathname]);
 
   const filteredProducts = (products) => {
@@ -82,64 +105,71 @@ export const ProductList = ({ products }) => {
   
     const price = filterPrice.replace(/\D/g, '');
   
-    return products.filter((el) => {
-      let categoryMatch;
-      const nameMatch =
-        el.name.ru.toLowerCase().includes(filterName.toLowerCase()) ||
-        el.name.ua.toLowerCase().includes(filterName.toLowerCase());
+    return products
+      .filter((el) => {
+        let categoryMatch;
+        const nameMatch =
+          el.name.ru.toLowerCase().includes(filterName.toLowerCase()) ||
+          el.name.ua.toLowerCase().includes(filterName.toLowerCase());
   
-      if (filterCategory === t('monuments')) {
-        const types = [
-          t('availability'),
-          t('vertical'),
-          t('horizontal'),
-          t('small'),
-        ];
-        categoryMatch = types.some((category) =>
-          el.category.toLowerCase().includes(category.toLowerCase())
-        );
-      } else if (filterCategory === t('landscaping')) {
-        const types = [
-          t('antiSettlementSlabs'),
-          t('pavingTiles'),
-          t('graniteTiles'),
-          t('fencing'),
-          t('tablesAndBenches'),
-          t('vasesAndLamps'),
-          t('cubesAndSpheres'),
-        ];
-        categoryMatch = types.some((category) =>
-          el.category.toLowerCase().includes(category.toLowerCase())
-        );
-      } else if (filterCategory === t('relatedProducts')) {
-        const types = [t('glassPhotos'), t('plaques'), t('embeddedParts')];
-        categoryMatch = types.some((category) =>
-          el.category.toLowerCase().includes(category.toLowerCase())
-        );
-      } else {
-        categoryMatch =
-          filterCategory === t('all_categories') ||
-          el.category.toLowerCase().includes(filterCategory.toLowerCase());
-      }
+        if (filterCategory === t('monuments')) {
+          const types = [
+            t('availability'),
+            t('vertical'),
+            t('horizontal'),
+            t('small'),
+          ];
+          categoryMatch = types.some((category) =>
+            el.category.toLowerCase().includes(category.toLowerCase())
+          );
+        } else if (filterCategory === t('landscaping')) {
+          const types = [
+            t('antiSettlementSlabs'),
+            t('pavingTiles'),
+            t('graniteTiles'),
+            t('fencing'),
+            t('tablesAndBenches'),
+            t('vasesAndLamps'),
+            t('cubesAndSpheres'),
+          ];
+          categoryMatch = types.some((category) =>
+            el.category.toLowerCase().includes(category.toLowerCase())
+          );
+        } else if (filterCategory === t('relatedProducts')) {
+          const types = [t('glassPhotos'), t('plaques'), t('embeddedParts')];
+          categoryMatch = types.some((category) =>
+            el.category.toLowerCase().includes(category.toLowerCase())
+          );
+        } 
+        else {
+          categoryMatch =
+            filterCategory === t('all_categories') ||
+            el.category.toLowerCase().includes(filterCategory.toLowerCase());
+        }
   
-      const typeMatch =
-        filterType === t('all_types') ||
-        el.type.toLowerCase().includes(filterType.toLowerCase());
+        const typeMatch =
+          filterType === t('all_types') ||
+          el.type.toLowerCase().includes(filterType.toLowerCase());
   
-      const discountMatch = !filterSale || el.discount > 0;
+        return nameMatch && categoryMatch && typeMatch;
+      })
+      .sort((a, b) => {
+        // Сортировка по скидке
+        if (filterSale && a.discount > 0 && b.discount === 0) return -1;
+        if (filterSale && a.discount === 0 && b.discount > 0) return 1;
   
-      return (
-        nameMatch && categoryMatch && typeMatch && discountMatch
-      );
-    }).sort((a, b) => {
-      if (filterPrice === 'min') {
-        return a.price - b.price;
-      } 
-       if (filterPrice === 'max') {
-        return b.price - a.price;
-      } 
-      return ''; // если фильтрация по цене не задана
-    });
+        // Сортировка по цене
+        if (filterPrice === 'min') {
+          return a.price - b.price;
+        } 
+        if (filterPrice === 'max') {
+          return b.price - a.price;
+        }
+  // Сортировка по доступности
+  if (!a.availability && b.availability) return 1;
+  if (a.availability && !b.availability) return -1;
+        return 0; // Если фильтрация по цене не задана
+      });
   };
   
   const newProducts = (products) => {
@@ -185,6 +215,7 @@ export const ProductList = ({ products }) => {
                 discount={product.discount}
                 category={product.category}
                 type={product.type}
+                availability={product.availability}
               />
             ))}
           </div>

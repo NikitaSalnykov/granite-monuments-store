@@ -25,7 +25,6 @@ export const ProductsRecommendation = ({
     dispatch(fetchProducts());
   }, []);
 
-  console.log(category);
 
   const filterProducts = (products) => {
     if (!products || products.length < 0) return products;

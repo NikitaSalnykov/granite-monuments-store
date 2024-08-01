@@ -14,8 +14,8 @@ import { useTranslation } from 'react-i18next';
 const categories = [
   { title: 'monuments', t: 'monuments' },
   { title: 'landscaping', t: 'landscaping' },
-  { title: 'relatedproducts', t: 'relatedProducts' },
-  { title: 'buildingmaterials', t: 'buildingMaterials' },
+  { title: 'relatedProducts', t: 'relatedProducts' },
+  { title: 'buildingMaterials', t: 'buildingMaterials' },
 ];
 const monuments = [
   { title: 'availability', t: 'availability' },
@@ -98,7 +98,10 @@ export const AddProductForm = ({ onCloseModal }) => {
     formData.append('name[ua]', data.nameUA);
     formData.append('name[ru]', data.nameRU);
     formData.append('category', data.category);
-    formData.append('type', data.type);
+    if(data.category === "buildingMaterials") {
+      formData.append('type', 'all')} else {
+        formData.append('type', data.type);
+      };
     formData.append('price', data.price);
     formData.append('discount', data.discount);
     formData.append('description[ua]', data.descriptionUA);
@@ -184,7 +187,7 @@ export const AddProductForm = ({ onCloseModal }) => {
                 )}
               </div>
             </div>
-            {formikValues['category'] !== 'buildingmaterials' && (
+            {formikValues['category'] !== 'buildingMaterials' && (
               <div className="flex-col">
                 <div className="flex justify-between w-full relative flex-wrap gap-2 items-center">
                   <label className={labelStyle} htmlFor="type">
@@ -214,7 +217,7 @@ export const AddProductForm = ({ onCloseModal }) => {
                           {t(el.t)}
                         </option>
                       ))}
-                    {formikValues['category'] === 'relatedproducts' &&
+                    {formikValues['category'] === 'relatedProducts' &&
                       relatedproducts.map((el, index) => (
                         <option key={index} value={el.title}>
                           {t(el.t)}

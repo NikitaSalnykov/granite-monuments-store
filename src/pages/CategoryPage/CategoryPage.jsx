@@ -21,22 +21,25 @@ const CategoryPage = () => {
     dispatch(fetchProducts());
   }, [dispatch]);
 
+
   
   useEffect(() => {
+
     return () => {
       dispatch(setFilterName(''));
       dispatch(setFilterCategory('')); 
       dispatch(setFilterType('')); 
       dispatch(setFilterPrice('')); 
       dispatch(setFilterSale(false)); 
-      dispatch(setFilterNew(false)); 
-      console.log(2);
+      dispatch(setFilterNew(false));  
     };
   }, []);
 
   return (
     <Section>
       <Container className="h-screen">
+      {!isLoading ?
+        <>
         <div className="mb-4 md:mb-8">
           <Filter
             nameFilter={true}
@@ -47,7 +50,7 @@ const CategoryPage = () => {
             filterSale={true}
           />
         </div>
-        {!isLoading ? <ProductList products={products} /> : <SkeletonProduct />}
+         <ProductList products={products} /></> : <SkeletonProduct />}
       </Container>
     </Section>
   );

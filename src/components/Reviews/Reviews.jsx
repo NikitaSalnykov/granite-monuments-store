@@ -58,7 +58,6 @@ export const Reviews = () => {
   const { t } = useTranslation();
   const isLoading = useSelector(getIsLoadingReview);
 
-  console.log(reviews);
 
   useEffect(() => {
     dispatch(fetchReviews());

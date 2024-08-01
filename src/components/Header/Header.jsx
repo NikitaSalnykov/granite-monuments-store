@@ -37,14 +37,14 @@ const Header = () => {
                 title={t('monuments')}
                 links={[
                   { title: t('availability'), 
-                  link: '/products?category=monuments&type=availability',
+                  link: `/products?category=monuments&type=availability`,
                 },
                   { title: t('vertical'), 
-                  link: '/products?category=monuments&type=vertical' },
+                  link: `/products?category=monuments&type=vertical` },
                   { title: t('horizontal'), 
-                  link: 'products?category=monuments&type=horizontal' },
+                  link: `/products?category=monuments&type=horizontal` },
                   { title: t('small'), 
-                  link: 'products?category=monuments&type=small' },
+                  link: `/products?category=monuments&type=small` },
                 ]}
               />
               <Dropdown
@@ -95,7 +95,7 @@ const Header = () => {
               />
 
               <Link
-                to={'/buildingmaterials'}
+                to={'/buildingMaterials'}
                 className=" text-center px-2 py-2 cursor-pointer rounded-sm font-manrope hover:bg-gray-100 flex items-center justify-center"
               >
                 {t('buildingMaterials')}

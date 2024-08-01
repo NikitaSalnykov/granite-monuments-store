@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 
 export const CategoriesList = ({ categories, sm }) => {
-  console.log(categories);
   return (
     <>
       {categories && categories.length > 0 && (

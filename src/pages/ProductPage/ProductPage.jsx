@@ -14,7 +14,6 @@ import { ProductsRecommendation } from '../../components/ProductsRecommendation/
 
 const ProductPage = () => {
   const { id } = useParams();
-  console.log(id);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -24,7 +23,6 @@ const ProductPage = () => {
   const product = useSelector(getSelectedProducts);
   const isLoading = useSelector(getIsLoadingSelectedProduct)
 
-  console.log(product);
 
   return (
 <div className='min-h-screen'>
