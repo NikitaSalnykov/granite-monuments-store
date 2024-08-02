@@ -33,7 +33,7 @@ export const AdminNavbar = ({
     <>
       <div
         id="sideNav"
-        className="hidden lg:block bg-white w-64 fixed rounded-lg border-none "
+        className="hidden lg:block bg-white absolute w-64  rounded-lg border-none "
       >
         <div className="p-4 space-y-2 gap-2">
           <div
@@ -52,7 +52,16 @@ export const AdminNavbar = ({
           >
             Отзывы
           </div>
-          {selectedCategory === "products" ? <Filter nameFilter={true} filterNew={true} filterPrice={true} filterSale={true}/> : <Filter nameFilter={true} />}
+          {selectedCategory === 'products' ? (
+            <Filter
+              nameFilter={true}
+              filterNew={true}
+              filterPrice={true}
+              filterSale={true}
+            />
+          ) : (
+            <Filter nameFilter={true} />
+          )}
           <div
             onClick={handleToggleModal}
             className="hover:cursor-pointer hover:opacity-85 shadow-md p-2 font-bold bg-black text-white rounded-full uppercase text-center"
@@ -100,7 +109,16 @@ export const AdminNavbar = ({
                 : 'Добавить отзыв'}
             </div>
           </div>
-          {selectedCategory === "products" ? <Filter nameFilter={true} filterNew={true} filterPrice={true} filterSale={true}/> : <Filter nameFilter={true} />}
+          {selectedCategory === 'products' ? (
+            <Filter
+              nameFilter={true}
+              filterNew={true}
+              filterPrice={true}
+              filterSale={true}
+            />
+          ) : (
+            <Filter nameFilter={true} />
+          )}
         </div>
       </div>
 

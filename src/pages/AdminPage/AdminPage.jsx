@@ -55,13 +55,13 @@ const AdminPage = () => {
   const reviews = useSelector(getReviews);
   const { t } = useTranslation();
   const isLoadingProducts = useSelector(getIsLoadingProducts);
-  const isLoadingReview = useSelector(getIsLoadingReview)
+  const isLoadingReview = useSelector(getIsLoadingReview);
   const filterName = useSelector(getFilterName);
   const filterCategory = useSelector(getFilterCategory);
   const filterPrice = useSelector(getFilterPrice);
   const filterType = useSelector(getFilterType);
   const filterSale = useSelector(getFilterSale);
-  const filterNew = useSelector(getFilterNew)
+  const filterNew = useSelector(getFilterNew);
 
   useEffect(() => {
     dispatch(fetchProducts());
@@ -71,7 +71,6 @@ const AdminPage = () => {
     isModalEditProductOpen,
     isModalProductOpen,
   ]);
-  
 
   useEffect(() => {
     dispatch(fetchReviews());
@@ -105,25 +104,23 @@ const AdminPage = () => {
     dispatch(setFilterName(''));
   };
 
-
   const filteredProducts = (products) => {
     if (!products || products.length <= 0) return products;
-  
+
     const price = filterPrice.replace(/\D/g, '');
-  
+
     return products
       .filter((el) => {
         let categoryMatch;
 
-          const nameMatch =
+        const nameMatch =
           el.name.ru.toLowerCase().includes(filterName.toLowerCase()) ||
           t(el.category).toLowerCase().includes(filterName.toLowerCase()) ||
           t(el.type).toLowerCase().includes(t(filterName.toLowerCase())) ||
           el.name.ua.toLowerCase().includes(filterName.toLowerCase()) ||
           el.description.ua.toLowerCase().includes(filterName.toLowerCase()) ||
-          el.description.ru.toLowerCase().includes(filterName.toLowerCase())
+          el.description.ru.toLowerCase().includes(filterName.toLowerCase());
 
-  
         if (filterCategory === t('monuments')) {
           const types = [
             t('availability'),
@@ -152,34 +149,33 @@ const AdminPage = () => {
           categoryMatch = types.some((category) =>
             el.category.toLowerCase().includes(category.toLowerCase())
           );
-        } 
-        else {
+        } else {
           categoryMatch =
             filterCategory === t('all_categories') ||
             el.category.toLowerCase().includes(filterCategory.toLowerCase());
         }
-  
+
         const typeMatch =
           filterType === t('all_types') ||
           el.type.toLowerCase().includes(filterType.toLowerCase());
-  
+
         return nameMatch && categoryMatch && typeMatch;
       })
       .sort((a, b) => {
         // Сортировка по скидке
         if (filterSale && a.discount > 0 && b.discount === 0) return -1;
         if (filterSale && a.discount === 0 && b.discount > 0) return 1;
-  
+
         // Сортировка по цене
         if (filterPrice === 'min') {
           return a.price - b.price;
-        } 
+        }
         if (filterPrice === 'max') {
           return b.price - a.price;
         }
-  // Сортировка по доступности
-  if (!a.availability && b.availability) return 1;
-  if (a.availability && !b.availability) return -1;
+        // Сортировка по доступности
+        if (!a.availability && b.availability) return 1;
+        if (a.availability && !b.availability) return -1;
         return 0; // Если фильтрация по цене не задана
       });
   };
@@ -188,12 +184,12 @@ const AdminPage = () => {
     if (!filterNew) {
       return filteredProducts(products);
     }
-  
+
     const productsWithTimestamps = products.map((el) => ({
       timestamp: new Date(el.createdAt).getTime(),
       product: el,
     }));
-  
+
     const sortedProducts = productsWithTimestamps.sort(
       (a, b) => b.timestamp - a.timestamp
     );
@@ -224,7 +220,7 @@ const AdminPage = () => {
         description={'Добавляйте, редактируйте и удаляйте товары/отзывы'}
       />
 
-      <div className="h-auto">
+      <div className="h-auto relative">
         <AdminNavbar
           changeCategory={changeCategory}
           selectedCategory={selectedCategory}
@@ -365,9 +361,7 @@ const AdminPage = () => {
               </table>
             </div>
           ) : (
-            <div className='bg-slate-200 h-screen w-full rounded-lg mb-10 animate-pulse'>
-
-            </div>
+            <div className="bg-slate-200 h-screen w-full rounded-lg mb-10 animate-pulse"></div>
           )}
         </div>
       </div>

@@ -49,10 +49,10 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="contayner py-20 md:py-24 lg:py-40">
+    <div className="contayner py-20 md:py-24 lg:py-40 min-h-screen">
       <div className="flex justify-center w-full">
         <div className="max-w-2xl">
-          <div className=" md:w-[600px] bg-white shadow-md border border-gray-200 rounded-lg max-w-sm p-4 sm:p-6 lg:p-8 ">
+          <div className="w-[300px] md:w-[600px] bg-white shadow-md border border-gray-200 rounded-lg max-w-sm p-4 sm:p-6 lg:p-8 ">
             <form
               className="space-y-6"
               noValidate
