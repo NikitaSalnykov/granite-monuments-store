@@ -10,7 +10,7 @@ const Footer = () => {
   const pathname = location.pathname;
   const isAboutPage = pathname.includes('about');
   return (
-    <footer className="w-fullbody-font mt-8 md:mt-16 bg-black border-t-[1px] border-neutral-600 border-t-solid font-manrope">
+    <footer className="w-fullbody-font bg-black border-t-[1px] border-neutral-600 border-t-solid font-manrope">
       <div className="container flex flex-col flex-wrap px-5 py-12 md:py-24 mx-auto md:items-center lg:items-start md:flex-row md:flex-no-wrap md:gap-9">
         <div className="md:pl-20 flex-shrink-0 justify-center items-center w-[300px] mx-auto text-center md:mx-0 md:text-left ">
           <Link

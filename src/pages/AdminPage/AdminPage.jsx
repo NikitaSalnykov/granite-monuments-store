@@ -64,6 +64,15 @@ const AdminPage = () => {
   const filterNew = useSelector(getFilterNew);
 
   useEffect(() => {
+    dispatch(setFilterName(''));
+    dispatch(setFilterPrice(''));
+    dispatch(setFilterCategory(''));
+    dispatch(setFilterType(''));
+    dispatch(setFilterSale(false));
+    dispatch(setFilterNew(false));
+  }, []);
+
+  useEffect(() => {
     dispatch(fetchProducts());
   }, [
     dispatch,
