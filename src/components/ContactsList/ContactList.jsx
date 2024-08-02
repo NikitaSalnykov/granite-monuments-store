@@ -1,11 +1,11 @@
 import { useTranslation } from 'react-i18next';
 import Svg from '../Svg/Svg';
 
-export const ContactList = ({color="black", small=false}) => {
+export const ContactList = ({color="black", small=false, column=false}) => {
   const { t } = useTranslation();
 
   return (
-    <div className={`flex justify-center items-center gap-x-8 gap-y-4 flex-wrap text-${color}`}>
+    <div className={`flex justify-center ${column ? 'items-start' : 'items-center'} ${column && 'flex-col  items-start pl-4'}  gap-x-8 gap-y-4 flex-wrap text-${color}`}>
       <div className="flex gap-x-1 py-1 justify-center items-center">
         <svg
           xmlns="http://www.w3.org/2000/svg"

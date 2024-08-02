@@ -40,6 +40,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import { Title } from '../../components/Title/Title';
 import { cutText } from '../../helpers/cutText';
+import { useLocation } from 'react-router-dom';
 
 const AdminPage = () => {
   const [selectedCategory, setSelectedCategory] = useState('products');
@@ -70,21 +71,6 @@ const AdminPage = () => {
     isModalEditProductOpen,
     isModalProductOpen,
   ]);
-
-
-
-  useEffect(() => {
-  
-    return () => {
-      dispatch(setFilterName(''));
-      dispatch(setFilterCategory('')); 
-      dispatch(setFilterType('')); 
-      dispatch(setFilterPrice('')); 
-      dispatch(setFilterSale(false)); 
-      dispatch(setFilterNew(false));
-    }
-
-  }, [])
   
 
   useEffect(() => {
@@ -128,9 +114,15 @@ const AdminPage = () => {
     return products
       .filter((el) => {
         let categoryMatch;
-        const nameMatch =
+
+          const nameMatch =
           el.name.ru.toLowerCase().includes(filterName.toLowerCase()) ||
-          el.name.ua.toLowerCase().includes(filterName.toLowerCase());
+          t(el.category).toLowerCase().includes(filterName.toLowerCase()) ||
+          t(el.type).toLowerCase().includes(t(filterName.toLowerCase())) ||
+          el.name.ua.toLowerCase().includes(filterName.toLowerCase()) ||
+          el.description.ua.toLowerCase().includes(filterName.toLowerCase()) ||
+          el.description.ru.toLowerCase().includes(filterName.toLowerCase())
+
   
         if (filterCategory === t('monuments')) {
           const types = [

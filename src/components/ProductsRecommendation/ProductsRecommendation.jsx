@@ -13,6 +13,7 @@ export const ProductsRecommendation = ({
   type = false,
   discount = false,
   newItems = false,
+  id = false,
 }) => {
   const { t } = useTranslation();
 
@@ -23,20 +24,25 @@ export const ProductsRecommendation = ({
 
   useEffect(() => {
     dispatch(fetchProducts());
-  }, []);
-
+  }, [dispatch]);
 
   const filterProducts = (products) => {
     if (!products || products.length < 0) return products;
 
     let filtered = [...products];
 
-    if (category && typeof category === 'string') {
+    // Exclude products with availability set to false and the specified id
+    filtered = filtered.filter(
+      (el) => el.availability === true && el._id !== id
+    );
+
+    console.log(filtered);
+    if (category && typeof category === 'string' && !type) {
       filtered = filtered.filter((el) => el.category.includes(category));
       title = `${t('recomandation')} ${t(category)}`;
     }
 
-    if (type && typeof type === 'string') {
+    if (type && typeof type === 'string' && !category) {
       filtered = filtered.filter((el) => el.type.includes(type));
       title = `${t('recomandation')} ${t(type)}`;
     }
@@ -45,6 +51,19 @@ export const ProductsRecommendation = ({
       filtered = filtered.filter((el) => el.discount > 0);
       title = `${t('recomandation')} ${t('sale')}`;
     }
+
+    // if (newItems && typeof newItems === 'boolean') {
+    //   const productsWithTimestamps = filtered.map((el) => ({
+    //     timestamp: new Date(el.createdAt).getTime(),
+    //     product: el,
+    //   }));
+
+    //   const sortedProducts = productsWithTimestamps.sort(
+    //     (a, b) => b.timestamp - a.timestamp
+    //   );
+    //   filtered = sortedProducts.map((item) => item.product);
+    //   title = `${t('recomandation')} ${t('new')}`;
+    // }
 
     filtered = filtered.filter(
       (product, index, self) =>
@@ -60,12 +79,27 @@ export const ProductsRecommendation = ({
       const randomNumber = Math.random() * (100 - 1) + 1;
 
       if (randomNumber <= 50) {
-        filtered.filter((el) => el.category.includes(category));
+        filtered = filtered.filter((el) => el.category.includes(category));
         title = `${t('recomandation')} ${t(category)}`;
       } else {
-        filtered.filter((el) => el.type.includes(type));
+        filtered = filtered.filter((el) => el.type.includes(type));
         title = `${t('recomandation')} ${t(category)} / ${t(type)}`;
       }
+    }
+
+    // Check if the filtered products are less than one
+    if (filtered.length < 1 && newItems && typeof newItems === 'boolean') {
+      const productsWithTimestamps = products.map((el) => ({
+        timestamp: new Date(el.createdAt).getTime(),
+        product: el,
+      }));
+
+      const sortedProducts = productsWithTimestamps.sort(
+        (a, b) => b.timestamp - a.timestamp
+      );
+
+      filtered = sortedProducts.slice(0, 6).map((item) => item.product);
+      title = `${t('recomandation')} ${t('new')}`;
     }
 
     return filtered;
@@ -76,8 +110,8 @@ export const ProductsRecommendation = ({
       {products &&
         filterProducts(products) &&
         filterProducts(products).length > 0 && (
-          <div className="flex flex-col gap-4 ">
-            {title && <h3 className="text-lg md:text-xl ">{title}</h3>}
+          <div className="flex flex-col gap-4">
+            {title && <h3 className="text-lg md:text-xl">{title}</h3>}
             {!isLoading ? (
               <div className="p-2">
                 <SwiperCards products={filterProducts(products)} />

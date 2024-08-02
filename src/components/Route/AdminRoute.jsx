@@ -12,12 +12,13 @@ export default function AdminRoute({ children }) {
   const isLoggedIn = useSelector(getIsLoggedIn);
   const isRefresh = useSelector(getRefresh);
 
-  const isLoading = !user && !isLoggedIn && isRefresh;
+  const isLoading = isRefresh || (isLoggedIn && !user);
 
   if (isLoading) {
     return <Loader />;
   }
-  if (isLoggedIn && user.role === 'admin') {
+
+  if (isLoggedIn && user?.role === 'admin') {
     return children;
   } else {
     return <Navigate to="/login" />;

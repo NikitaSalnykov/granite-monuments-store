@@ -16,7 +16,6 @@ import {
 } from '../../Redux/filter/filterSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { useLocation, useNavigate } from 'react-router-dom';
 
 export const Filter = ({
   nameFilter = false,
@@ -40,6 +39,8 @@ export const Filter = ({
   const [isCheckedSale, setCheckedSale] = useState(
     value === 'sale' ? true : false
   );
+
+
 
 
   const handleFilter = ({ currentTarget }) => {
@@ -134,7 +135,6 @@ export const Filter = ({
                 value={type}
               >
                 <option value="">{t('all_types')}</option>
-                <option value="availability">{t('availability')}</option>
                 <option value="vertical">{t('vertical')}</option>
                 <option value="horizontal">{t('horizontal')}</option>
                 <option value="small">{t('small')}</option>

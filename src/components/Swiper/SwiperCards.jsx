@@ -46,6 +46,7 @@ export const SwiperCards = ({ products }) => {
               className="w-full min-h-[250px] pb-4"
               style={{ display: 'flex', justifyContent: 'center' }}
             >
+              <div className="w-[400px]">
               <ProductCard
                 key={product._id}
                 id={product._id}
@@ -56,7 +57,9 @@ export const SwiperCards = ({ products }) => {
                 discount={product.discount}
                 category={product.category}
                 type={product.type}
+                availability={product.availability}
               />
+              </div>
             </SwiperSlide>
           ))}
         </Swiper>

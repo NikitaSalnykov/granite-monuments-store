@@ -5,6 +5,7 @@ import { cutText } from '../../helpers/cutText';
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { getUser } from '../../Redux/auth/auth-selectors';
+import { resultPrice } from '../../helpers/resultPrice';
 
 export const ProductCard = ({
   id,
@@ -22,8 +23,10 @@ export const ProductCard = ({
   const currentLanguage = i18n.language;
 
   return (
-    <div className={`relative`}>
+    <div className={`relative border-solid border-[1px] p-3 border-grey-900 transition shadow-lg bg-[#ffffffa8] hover:bg-[#ffffffcb]`}>
       <Link to={`/products/${category}/${type}/${id}`}>
+<div className="flex flex-col justify-between h-full">
+<div>
         <div
           className={`h-[200px] md:h-[300px] rounded-lg bg-slate-300 text-center overflow-hidden ${
             !availability && 'opacity-40 grayscale-[100%]'
@@ -33,8 +36,8 @@ export const ProductCard = ({
         </div>
         {discount > 0 && (
           <div className="absolute top-0 left-0 ">
-            <p className="text-xs md:text-md p-1 bg-red text-white">
-              {discount}%
+            <p className="text-lg md:text-md px-1 bg-red text-white font-viola leading-5 tracking-wider rounded-ee-xl py-2">
+              -{discount}%
             </p>
           </div>
         )}
@@ -49,14 +52,28 @@ export const ProductCard = ({
               : cutText(description.ru, 150)}
           </span>
         </div>
-        <div className="flex gap-2 items-center justify-between mt-2 md:mt-4">
+        </div>
+        <div className="flex  gap-2 justify-between mt-2 md:mt-4">
           <div className="flex gap-2 items-center">
-            <p className="md:text-xl font-bold">{price}</p>
+            {
+          discount && discount > 1 ? 
+          (<div className='flex gap-[2px] flex-col leading-none justify-center items-center '>
+            <div className="flex flex-row gap-1 text-sm leading-none justify-center items-center">
+            <p className='line-through text-[12px] md:text-[14px] '>{price}₴</p>  
+            <p className='text-red text-[12px] md:text-[14px] '>-{discount}%</p>  
+
+            </div>
+            <p className='text-md lg:text-xl text-red  font-semibold leading-none '>{resultPrice(price, discount)} грн</p>  
+
+            </div>) :
+          (<p className='leading-none'>{price} грн</p>  )
+          }
           </div>
-          <div className="py-1 px-2 smOnly:text-xs md:px-3 border-[1px] border-grey">
+          <div className="py-1 px-2 smOnly:text-xs text-sm md:px-3 border-[1px] border-grey h-[40px] flex justify-center items-center">
             {t('more')}
           </div>
         </div>
+</div>
       </Link>
       {!availability && (
         <div className="absolute top-[30%] left-[50%] translate-x-[-50%] translate-y-[-50%]">

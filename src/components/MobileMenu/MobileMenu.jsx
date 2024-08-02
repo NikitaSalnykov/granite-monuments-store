@@ -87,14 +87,6 @@ export const MobileMenu = ({ isOpen, onCloseModal }) => {
                   <div className="flex flex-col gap-6 text-white text-xl py-[30px] ">
                     <Accordion title={t('monuments')}>
                       <div className="flex flex-col gap-4 items-center text-gray-200 font-manrope">
-                        <div className="px-1 py-1 cursor-pointer rounded-sm text-lg ">
-                          <Link
-                            to={'/products?category=monuments&type=availability'}
-                            onClick={() => closeMenu()}
-                          >
-                            {t('availability')}{' '}
-                          </Link>
-                        </div>
                         <div className="px-1 py-1 cursor-pointer rounded-sm text-lg">
                           <Link
                             to={'/products?category=monuments&type=vertical'}

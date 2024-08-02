@@ -31,6 +31,7 @@ const ProductPage = () => {
     <Container>
       {product && <ProductDetails
         image={product.mainPhoto}
+        extraImages={product.extraImages}
         name={product.name}
         description={product.description}
         price={product.price}
@@ -41,7 +42,7 @@ const ProductPage = () => {
 
 
    <div className="pb-12">
-    {product && <ProductsRecommendation type={product.type} category={product.category} discount={true}/>  }
+    {product && <ProductsRecommendation type={product.type} category={product.category} id={product._id} newItems={true}/>  }
    </div>
     </Container>
        : (<Container>

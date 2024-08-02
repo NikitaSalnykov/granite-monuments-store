@@ -36,9 +36,6 @@ const Header = () => {
               <Dropdown
                 title={t('monuments')}
                 links={[
-                  { title: t('availability'), 
-                  link: `/products?category=monuments&type=availability`,
-                },
                   { title: t('vertical'), 
                   link: `/products?category=monuments&type=vertical` },
                   { title: t('horizontal'), 

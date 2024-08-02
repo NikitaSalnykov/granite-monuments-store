@@ -52,7 +52,7 @@ export const AdminNavbar = ({
           >
             Отзывы
           </div>
-          {selectedCategory === "products" ? <Filter isAdminPage={true} nameFilter={true} filterType={true} filterCategory={true} filterNew={true} filterPrice={true} filterSale={true}/> : <Filter nameFilter={true} />}
+          {selectedCategory === "products" ? <Filter nameFilter={true} filterNew={true} filterPrice={true} filterSale={true}/> : <Filter nameFilter={true} />}
           <div
             onClick={handleToggleModal}
             className="hover:cursor-pointer hover:opacity-85 shadow-md p-2 font-bold bg-black text-white rounded-full uppercase text-center"
@@ -100,7 +100,7 @@ export const AdminNavbar = ({
                 : 'Добавить отзыв'}
             </div>
           </div>
-          {selectedCategory === "products" ? <Filter isAdminPage={true} nameFilter={true} filterType={true} filterCategory={true} filterNew={true} filterPrice={true} filterSale={true}/> : <Filter nameFilter={true} />}
+          {selectedCategory === "products" ? <Filter nameFilter={true} filterNew={true} filterPrice={true} filterSale={true}/> : <Filter nameFilter={true} />}
         </div>
       </div>
 

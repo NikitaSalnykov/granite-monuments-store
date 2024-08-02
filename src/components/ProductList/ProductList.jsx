@@ -35,7 +35,6 @@ export const ProductList = ({ products }) => {
   const dispatch = useDispatch();
 
   const [currentPage, setCurrentPage] = useState(1);
-  const [first, setfirst] = useState(null);
 
   const limit = 10;
   const navigate = useNavigate();
@@ -49,6 +48,7 @@ export const ProductList = ({ products }) => {
   const newFilter = params.get('new');
   const page = params.get('page');
   const queryParams = new URLSearchParams();
+
 
   useEffect(() => {
     if (name) dispatch(setFilterName(name));
@@ -86,18 +86,6 @@ export const ProductList = ({ products }) => {
     if (currentPage) queryParams.set('page', currentPage);
 
     navigate(`${location.pathname}?${queryParams.toString()}`);
-
-    return () => {
-      queryParams.delete('sale');
-      queryParams.delete('new');
-      queryParams.delete('page');
-      queryParams.delete('price');
-      queryParams.delete('category');
-      queryParams.delete('type');
-      queryParams.delete('name');
-
-      // navigate(`${location.pathname}?${queryParams.toString()}`);
-    };
   }, [
     filterName,
     filterCategory,
@@ -116,6 +104,9 @@ export const ProductList = ({ products }) => {
     dispatch(setFilterSale(false));
     dispatch(setFilterNew(false));
   }, [filterCategory, filterType, currentPage, navigate, location.pathname]);
+
+  
+
 
   const filteredProducts = (products) => {
     if (!products || products.length <= 0) return products;
@@ -216,7 +207,7 @@ export const ProductList = ({ products }) => {
     <>
       {paginatedProducts(products) && paginatedProducts(products).length > 0 ? (
         <div className="mx-auto">
-          <div className="grid grid-cols-2 gap-x-8 gap-y-4 md:grid-cols-3 lg:grid-cols-5">
+          <div className="grid grid-cols-2 gap-x-4 gap-y-8 md:grid-cols-3 lg:grid-cols-5">
             {paginatedProducts(products).map((product, index) => (
               <ProductCard
                 key={product._id}
