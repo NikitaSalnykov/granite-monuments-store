@@ -6,8 +6,8 @@ import Svg from '../Svg/Svg';
 const Breadcrumbs = ({ name }) => {
   const [arr, setArr] = useState([]);
   const { t } = useTranslation();
-  const currentUrl = window.location.href;  
-  
+  const currentUrl = window.location.href;
+
   useEffect(() => {
     const url = new URL(currentUrl);
     const path = url.pathname;
@@ -28,94 +28,136 @@ const Breadcrumbs = ({ name }) => {
         return null;
       case 'availability':
         return (
-          <Link to={'/products?category=monuments&type=availability'} className="p-[2px] md:p-1">
+          <Link
+            to={'/products?category=monuments&type=availability'}
+            className="p-[2px] md:p-1"
+          >
             {t('availability')}
           </Link>
         );
       case 'vertical':
         return (
-          <Link to={'/products?category=monuments&type=vertical'} className="p-[2px] md:p-1">
+          <Link
+            to={'/products?category=monuments&type=vertical'}
+            className="p-[2px] md:p-1"
+          >
             {t('vertical')}
           </Link>
         );
       case 'horizontal':
         return (
-          <Link to={'/products?category=monuments&type=horizontal'} className="p-[2px] md:p-1">
+          <Link
+            to={'/products?category=monuments&type=horizontal'}
+            className="p-[2px] md:p-1"
+          >
             {t('horizontal')}
           </Link>
         );
       case 'small':
         return (
-          <Link to={'/products?category=monuments&type=small'} className="p-[2px] md:p-1">
+          <Link
+            to={'/products?category=monuments&type=small'}
+            className="p-[2px] md:p-1"
+          >
             {t('small')}
           </Link>
         );
       case 'landscaping':
         return (
-          <Link to={'/products?category=landscaping'} className="p-[2px] md:p-1">
+          <Link
+            to={'/products?category=landscaping'}
+            className="p-[2px] md:p-1"
+          >
             {t('landscaping')}
           </Link>
         );
-      case 'antisettlementslabs':
+      case 'antiSettlementSlabs':
         return (
           <Link
             to={'/products?category=landscaping&type=antiSettlementSlabs'}
             className="p-[2px] md:p-1"
           >
-            {t('antiSettlementSlabs')}р
+            {t('antiSettlementSlabs')}
           </Link>
         );
       case 'pavingTiles':
         return (
-          <Link to={'/products?category=landscaping&type=pavingTiles'} className="p-[2px] md:p-1">
+          <Link
+            to={'/products?category=landscaping&type=pavingTiles'}
+            className="p-[2px] md:p-1"
+          >
             {t('pavingTiles')}
           </Link>
         );
       case 'graniteTiles':
         return (
-          <Link to={'/products?category=landscaping&type=graniteTiles'} className="p-[2px] md:p-1">
+          <Link
+            to={'/products?category=landscaping&type=graniteTiles'}
+            className="p-[2px] md:p-1"
+          >
             {t('graniteTiles')}
           </Link>
         );
       case 'fencing':
         return (
-          <Link to={'/products?category=landscaping&type=fencing'} className="p-[2px] md:p-1">
+          <Link
+            to={'/products?category=landscaping&type=fencing'}
+            className="p-[2px] md:p-1"
+          >
             {t('fencing')}
           </Link>
         );
       case 'tablesAndBenches':
         return (
-          <Link to={'/products?category=landscaping&type=tablesAndBenches'} className="p-[2px] md:p-1">
+          <Link
+            to={'/products?category=landscaping&type=tablesAndBenches'}
+            className="p-[2px] md:p-1"
+          >
             {t('tablesAndBenches')}
           </Link>
         );
       case 'vasesandlamps':
         return (
-          <Link to={'/products?category=landscaping&type=vasesAndLamps'} className="p-[2px] md:p-1">
+          <Link
+            to={'/products?category=landscaping&type=vasesAndLamps'}
+            className="p-[2px] md:p-1"
+          >
             {t('vasesAndLamps')}
           </Link>
         );
       case 'cubesandspheres':
         return (
-          <Link to={'/products?category=landscaping&type=cubesAndSpheres'} className="p-[2px] md:p-1">
+          <Link
+            to={'/products?category=landscaping&type=cubesAndSpheres'}
+            className="p-[2px] md:p-1"
+          >
             {t('cubesAndSpheres')}
           </Link>
         );
       case 'relatedProducts':
         return (
-          <Link to={'/products?category=relatedProducts'} className="p-[2px] md:p-1">
+          <Link
+            to={'/products?category=relatedProducts'}
+            className="p-[2px] md:p-1"
+          >
             {t('relatedProducts')}
           </Link>
         );
       case 'glassPhotos':
         return (
-          <Link to={'/products?category=relatedProducts&type=glassPhotos'} className="p-[2px] md:p-1">
+          <Link
+            to={'/products?category=relatedProducts&type=glassPhotos'}
+            className="p-[2px] md:p-1"
+          >
             {t('glassPhotos')}
           </Link>
         );
       case 'plaques':
         return (
-          <Link to={'/products?category=relatedProducts&type=plaques'} className="p-[2px] md:p-1">
+          <Link
+            to={'/products?category=relatedProducts&type=plaques'}
+            className="p-[2px] md:p-1"
+          >
             {t('plaques')}
           </Link>
         );
@@ -128,7 +170,7 @@ const Breadcrumbs = ({ name }) => {
             {t('embeddedParts')}
           </Link>
         );
-        
+
       case 'buildingMaterials':
         return (
           <Link to={'/buildingmaterials'} className="p-[2px] md:p-1">
@@ -156,9 +198,11 @@ const Breadcrumbs = ({ name }) => {
       case 'all':
         return <div className="p-[2px] md:p-1">{t('all')}</div>;
       case 'products':
-        return  <Link to={'/products'} className="p-[2px] md:p-1">
-        {t('products')}
-      </Link>
+        return (
+          <Link to={'/products'} className="p-[2px] md:p-1">
+            {t('products')}
+          </Link>
+        );
 
       default:
         return (
@@ -170,7 +214,6 @@ const Breadcrumbs = ({ name }) => {
             <Svg id={'icon-logo'} size={15} stroke={'black'} fill={'grey'} />
           </div>
         );
-        return null;
     }
   }
 

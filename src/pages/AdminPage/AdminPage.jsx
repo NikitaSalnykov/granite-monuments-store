@@ -40,8 +40,7 @@ import {
 import { useTranslation } from 'react-i18next';
 import { Title } from '../../components/Title/Title';
 import { cutText } from '../../helpers/cutText';
-import { useLocation } from 'react-router-dom';
-
+import { resultPrice } from '../../helpers/resultPrice';
 const AdminPage = () => {
   const [selectedCategory, setSelectedCategory] = useState('products');
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -120,6 +119,10 @@ const AdminPage = () => {
 
     return products
       .filter((el) => {
+        if (!el || !el.name || !el.name.ru || !el.category || !el.type) {
+          return false;
+        }
+
         let categoryMatch;
 
         const nameMatch =
@@ -308,10 +311,23 @@ const AdminPage = () => {
                             </div>
                           </td>
                           <td className="px-1 md:px-2 py-2 text-right text-cyan-500 w-1/3">
-                            <p>
-                              {el.price}
-                              <span className="font-bold">₴</span>
-                            </p>
+                            {el.discount ? (
+                              <div className="">
+                                <p className=" line-through">
+                                  {el.price}
+                                  <span className="font-bold">₴</span>
+                                </p>
+                                <p>
+                                  {resultPrice(el.price, el.discount)}
+                                  <span className="font-bold">₴</span>
+                                </p>
+                              </div>
+                            ) : (
+                              <p>
+                                {el.price}
+                                <span className="font-bold">₴</span>
+                              </p>
+                            )}
 
                             {el.discount > 0 && (
                               <p className="text-red">-{el.discount}%</p>

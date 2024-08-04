@@ -12,7 +12,7 @@ import 'swiper/css/scrollbar';
 export const SwiperCards = ({ products }) => {
   const breakpoints = {
     1280: {
-      slidesPerView: 4,
+      slidesPerView: 3,
     },
     760: {
       slidesPerView: 2,
@@ -47,18 +47,18 @@ export const SwiperCards = ({ products }) => {
               style={{ display: 'flex', justifyContent: 'center' }}
             >
               <div className="w-[400px]">
-              <ProductCard
-                key={product._id}
-                id={product._id}
-                image={product.mainPhoto}
-                name={product.name}
-                description={product.description}
-                price={product.price}
-                discount={product.discount}
-                category={product.category}
-                type={product.type}
-                availability={product.availability}
-              />
+                <ProductCard
+                  key={product._id}
+                  id={product._id}
+                  image={product.mainPhoto}
+                  name={product.name}
+                  description={product.description}
+                  price={product.price}
+                  discount={product.discount}
+                  category={product.category}
+                  type={product.type}
+                  availability={product.availability}
+                />
               </div>
             </SwiperSlide>
           ))}

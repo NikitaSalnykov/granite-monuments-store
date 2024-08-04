@@ -1,12 +1,14 @@
 export const resultPrice = (price, discount) => {
-  let priceToNumber = Number(price)
+  let cleanedPrice = price.replace(/\s+/g, '');
 
-  if(!discount) {
-    return price
+  let priceToNumber = Number(cleanedPrice);
+
+  if (!discount) {
+    return cleanedPrice;
   }
-  
+
   if (discount === 0) {
-    return price
-  } 
-  return String(Math.round(price - (priceToNumber / 100 * discount)))
-}
+    return cleanedPrice;
+  }
+  return String(Math.round(priceToNumber - (priceToNumber / 100) * discount));
+};

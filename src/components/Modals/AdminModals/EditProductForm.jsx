@@ -18,7 +18,6 @@ const categories = [
   { title: 'buildingMaterials', t: 'buildingMaterials' },
 ];
 const monuments = [
-  { title: 'availability', t: 'availability' },
   { title: 'vertical', t: 'vertical' },
   { title: 'horizontal', t: 'horizontal' },
   { title: 'small', t: 'small' },
@@ -97,10 +96,11 @@ export const EditProductForm = ({ onCloseModal, product }) => {
     formData.append('name[ua]', data.nameUA);
     formData.append('name[ru]', data.nameRU);
     formData.append('category', data.category);
-    if(data.category === "buildingMaterials") {
-      formData.append('type', 'all')} else {
-        formData.append('type', data.type);
-      };
+    if (data.category === 'buildingMaterials') {
+      formData.append('type', 'all');
+    } else {
+      formData.append('type', data.type);
+    }
     formData.append('price', data.price);
     formData.append('discount', data.discount);
     formData.append('description[ua]', data.descriptionUA);
@@ -244,7 +244,7 @@ export const EditProductForm = ({ onCloseModal, product }) => {
               type="file"
               id="mainPhoto"
               name="mainPhoto"
-              accept="image/jpeg, image/png, image/webp"
+              accept="image/jpeg, image/png, image/webp, webp"
               onChange={(e) => {
                 const file = e.target.files[0];
                 formik.setFieldValue('mainPhoto', file);
@@ -266,7 +266,7 @@ export const EditProductForm = ({ onCloseModal, product }) => {
               type="file"
               id="extraPhotos"
               name="extraPhotos"
-              accept="image/jpeg, image/png, image/webp"
+              accept="image/jpeg, image/png, image/webp, webp"
               multiple
               onChange={(e) => {
                 const files = e.target.files;

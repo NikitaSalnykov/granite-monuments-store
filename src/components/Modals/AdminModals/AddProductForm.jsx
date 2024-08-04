@@ -18,7 +18,6 @@ const categories = [
   { title: 'buildingMaterials', t: 'buildingMaterials' },
 ];
 const monuments = [
-  { title: 'availability', t: 'availability' },
   { title: 'vertical', t: 'vertical' },
   { title: 'horizontal', t: 'horizontal' },
   { title: 'small', t: 'small' },
@@ -63,7 +62,6 @@ export const AddProductForm = ({ onCloseModal }) => {
     }
   }, [isProductCreated, errorProducts, onCloseModal, dispatch]);
 
-
   const formik = useFormik({
     initialValues: {
       nameRU: '',
@@ -83,11 +81,16 @@ export const AddProductForm = ({ onCloseModal }) => {
     validationSchema: productSchema,
     onSubmit: (values) => {
       const newProduct = { ...values };
-
       const formData = createUserFormData(newProduct);
       dispatch(createProduct(formData));
     },
   });
+
+  useEffect(() => {
+    if (formik.values.category === 'buildingMaterials') {
+      formik.setFieldValue('type', 'all');
+    }
+  }, [formik.values.category]);
 
   const errors = formik.errors;
   const formikValues = formik.values;
@@ -98,10 +101,11 @@ export const AddProductForm = ({ onCloseModal }) => {
     formData.append('name[ua]', data.nameUA);
     formData.append('name[ru]', data.nameRU);
     formData.append('category', data.category);
-    if(data.category === "buildingMaterials") {
-      formData.append('type', 'all')} else {
-        formData.append('type', data.type);
-      };
+    if (data.category === 'buildingMaterials') {
+      formData.append('type', 'all');
+    } else {
+      formData.append('type', data.type);
+    }
     formData.append('price', data.price);
     formData.append('discount', data.discount);
     formData.append('description[ua]', data.descriptionUA);
@@ -118,7 +122,13 @@ export const AddProductForm = ({ onCloseModal }) => {
     return formData;
   };
 
-  const renderInputField = (label, name, type = 'text', isTextArea = false) => (
+  const renderInputField = (
+    label,
+    name,
+    type = 'text',
+    isTextArea = false,
+    placeholder = ''
+  ) => (
     <div className="flex justify-between relative flex-wrap gap-2 items-center">
       <label className={labelStyle} htmlFor={name}>
         {label}:
@@ -132,6 +142,7 @@ export const AddProductForm = ({ onCloseModal }) => {
           name={name}
           value={formikValues[name]}
           onChange={formik.handleChange}
+          placeholder={placeholder}
         />
       ) : (
         <input
@@ -139,6 +150,7 @@ export const AddProductForm = ({ onCloseModal }) => {
           type={type}
           id={name}
           name={name}
+          placeholder={placeholder}
           value={formikValues[name]}
           onChange={formik.handleChange}
         />
@@ -173,9 +185,7 @@ export const AddProductForm = ({ onCloseModal }) => {
                   value={formikValues['category']}
                   onChange={formik.handleChange}
                 >
-                  <option value=''>
-                      Выберете категорию
-                    </option>
+                  <option value="">Выберете категорию</option>
                   {categories.map((el, index) => (
                     <option key={index} value={el.title}>
                       {t(el.t)}
@@ -202,9 +212,7 @@ export const AddProductForm = ({ onCloseModal }) => {
                     value={formikValues['type']}
                     onChange={formik.handleChange}
                   >
-                                      <option value=''>
-                      Выберете тип
-                    </option>
+                    <option value="">Выберете тип</option>
                     {formikValues['category'] === 'monuments' &&
                       monuments.map((el, index) => (
                         <option key={index} value={el.title}>
@@ -230,14 +238,32 @@ export const AddProductForm = ({ onCloseModal }) => {
                 </div>
               </div>
             )}
-            {renderInputField('Цена', 'price')}
-            {renderInputField('Скидка', 'discount')}
+            {renderInputField('Цена', 'price', 'input', false, 'только цифры')}
+            {renderInputField(
+              'Скидка',
+              'discount',
+              'input',
+              false,
+              'только цифры от 1 до 99'
+            )}
             {renderInputField('Артикль', 'article')}
           </div>
 
           <div className="flex flex-col gap-4 w-full">
-            {renderInputField('Описание UA', 'descriptionUA', 'textarea', true)}
-            {renderInputField('Описание RU', 'descriptionRU', 'textarea', true)}
+            {renderInputField(
+              'Описание UA',
+              'descriptionUA',
+              'textarea',
+              true,
+              'символ ; для перенесення рядка'
+            )}
+            {renderInputField(
+              'Описание RU',
+              'descriptionRU',
+              'textarea',
+              true,
+              'символ ; для переноса строки'
+            )}
           </div>
         </div>
 
@@ -251,7 +277,7 @@ export const AddProductForm = ({ onCloseModal }) => {
               type="file"
               id="mainPhoto"
               name="mainPhoto"
-              accept="image/jpeg, image/png, image/webp"
+              accept="image/jpeg, image/png, image/webp, webp"
               onChange={(e) => {
                 const file = e.target.files[0];
                 formik.setFieldValue('mainPhoto', file);
@@ -273,7 +299,7 @@ export const AddProductForm = ({ onCloseModal }) => {
               type="file"
               id="extraPhotos"
               name="extraPhotos"
-              accept="image/jpeg, image/png, image/webp"
+              accept="image/jpeg, image/png, image/webp, webp"
               multiple
               onChange={(e) => {
                 const files = e.target.files;
