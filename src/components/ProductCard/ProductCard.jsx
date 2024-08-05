@@ -38,7 +38,7 @@ export const ProductCard = ({
               }`}
             >
               <img
-                className="object-cover w-full h-full"
+                className="object-cover w-full h-full min-h-[150px]  md:min-h-[200px]"
                 src={image || placeholder}
                 alt={name}
               />

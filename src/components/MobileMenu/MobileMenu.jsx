@@ -29,7 +29,7 @@ export const MobileMenu = ({ isOpen, onCloseModal }) => {
     setIsOpenAnimation(false);
     setTimeout(() => {
       onCloseModal();
-    }, 100);
+    }, 300);
   };
 
   useEffect(() => {
@@ -221,7 +221,9 @@ export const MobileMenu = ({ isOpen, onCloseModal }) => {
                     </Accordion>
                     <div className="px-4  py-2 cursor-pointer rounded-sm font-semibold flex items-center justify-center tracking-widest ">
                       <Link
-                        to={'/buildingmaterials'}
+                        to={
+                          '/buildingmaterials?category=buildingmaterials&page=1'
+                        }
                         onClick={() => closeMenu()}
                       >
                         {t('buildingMaterials')}

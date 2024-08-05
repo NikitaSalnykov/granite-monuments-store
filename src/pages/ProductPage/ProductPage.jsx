@@ -34,7 +34,7 @@ const ProductPage = () => {
             {product && (
               <ProductDetails
                 image={product.mainPhoto}
-                extraImages={product.extraImages}
+                extraPhotos={product.extraPhotos}
                 name={product.name}
                 description={product.description}
                 price={product.price}

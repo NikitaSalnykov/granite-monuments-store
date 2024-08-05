@@ -49,25 +49,26 @@ export const ProductList = ({ products }) => {
   const page = params.get('page');
   const queryParams = new URLSearchParams();
 
-
   useEffect(() => {
-    if (name) dispatch(setFilterName(name));
-    if (category) {
-      dispatch(setFilterCategory(category));
-    }
-    if (type) dispatch(setFilterType(type));
-    if (price) dispatch(setFilterPrice(price));
-    if (sale) dispatch(setFilterSale(sale));
-    if (newFilter) dispatch(setFilterNew(newFilter));
-    if (page) setCurrentPage(Number(page));
-    if (category === '') {
-      dispatch(setFilterType(''));
-      dispatch(setFilterCategory(''));
-    }
+    if (!location.pathname.includes('building')) {
+      if (name) dispatch(setFilterName(name));
+      if (category) {
+        dispatch(setFilterCategory(category));
+      }
+      if (type) dispatch(setFilterType(type));
+      if (price) dispatch(setFilterPrice(price));
+      if (sale) dispatch(setFilterSale(sale));
+      if (newFilter) dispatch(setFilterNew(newFilter));
+      if (page) setCurrentPage(Number(page));
+      if (category === '') {
+        dispatch(setFilterType(''));
+        dispatch(setFilterCategory(''));
+      }
 
-    if (location.pathname.includes('buildingMaterials')) {
-      dispatch(setFilterCategory(''));
-      dispatch(setFilterType(''));
+      if (location.pathname.includes('buildingMaterials')) {
+        dispatch(setFilterCategory(''));
+        dispatch(setFilterType(''));
+      }
     }
   }, [location.search, dispatch]);
 
@@ -104,9 +105,6 @@ export const ProductList = ({ products }) => {
     dispatch(setFilterSale(false));
     dispatch(setFilterNew(false));
   }, [filterCategory, filterType, currentPage, navigate, location.pathname]);
-
-  
-
 
   const filteredProducts = (products) => {
     if (!products || products.length <= 0) return products;

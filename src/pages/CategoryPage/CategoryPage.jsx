@@ -23,19 +23,23 @@ const CategoryPage = () => {
   return (
     <Section>
       <Container className="h-screen">
-      {!isLoading ?
-        <>
-        <div className="mb-4 md:mb-8">
-          <Filter
-            nameFilter={true}
-            filterType={true}
-            filterCategory={true}
-            filterPrice={true}
-            filterNew={true}
-            filterSale={true}
-          />
-        </div>
-         <ProductList products={products} /></> : <SkeletonProduct />}
+        {!isLoading ? (
+          <>
+            <div className="mb-4 md:mb-8">
+              <Filter
+                nameFilter={true}
+                filterType={true}
+                filterCategory={true}
+                filterPrice={true}
+                filterNew={true}
+                filterSale={true}
+              />
+            </div>
+            <ProductList products={products} />
+          </>
+        ) : (
+          <SkeletonProduct />
+        )}
       </Container>
     </Section>
   );

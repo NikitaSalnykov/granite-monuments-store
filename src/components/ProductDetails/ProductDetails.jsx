@@ -12,7 +12,7 @@ const ProductDetails = ({
   category,
   type,
   image,
-  extraImages,
+  extraPhotos,
   name,
   description,
   price,
@@ -23,10 +23,11 @@ const ProductDetails = ({
   const { i18n } = useTranslation();
   const currentLanguage = i18n.language;
 
-  const getAllImages = () => {
+  const getAllImages = (image, extraPhotos) => {
     let imgArr = [];
     imgArr.push(image);
-    if (extraImages && extraImages.length > 0) imgArr.push(...extraImages);
+    if (extraPhotos && extraPhotos.length > 0) imgArr.push(...extraPhotos);
+    console.log(extraPhotos);
     return imgArr;
   };
 
@@ -39,8 +40,8 @@ const ProductDetails = ({
 
   return (
     <div className="lg:flex items-start justify-between pb-12 font-manrope">
-      <div className=" relative w-full flex justify-center h-[400px] md:h-[600px] lg:w-2/4 rounded-lg overflow-hidden bg-gray-300">
-        <ImageSlider images={getAllImages()} />
+      <div className=" relative w-full flex justify-center h-[350px] md:h-[600px] lg:w-2/4 rounded-lg overflow-hidden bg-gray-300">
+        <ImageSlider images={getAllImages(image, extraPhotos)} />
       </div>
       <div className="xl:w-2/5 lg:w-1/2 lg:ml-8 lg:mt-0 mt-6">
         <div className="border-b border-gray-400 pb-6">
