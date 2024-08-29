@@ -128,7 +128,7 @@ export const Reviews = () => {
           </div>
         )}
         <div className="flex justify-center mt-6 lg:mt-8 gap-4">
-          {visibleCount < reviewsArr.length &&
+          {reviews &&
             reviews.length > visibleCount && (
               <div onClick={handleLoadMore}>
                 <Button bg={false}>{t('see_more')}</Button>

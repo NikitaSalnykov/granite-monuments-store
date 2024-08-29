@@ -18,6 +18,8 @@ const LandscapingPage = lazy(() => import('./pages/LandscapingPage/LandscapingPa
 const RelatedProductsPage = lazy(() => import('./pages/RelatedProductsPage/RelatedProductsPage'));
 const MonumentsPage = lazy(() => import('./pages/MonumentsPage/MonumentsPage'));
 const ProductPage = lazy(() => import('./pages/ProductPage/ProductPage'));
+const WorksPage = lazy(() => import('./pages/WorksPage/WorksPage'));
+
 const CategoryPage = lazy(() => import('./pages/CategoryPage/CategoryPage'));
 const FavoritePage = lazy(() => import('./pages/FavoritePage/FavoritePage'));
 const AboutPage = lazy(() => import('./pages/AboutPage/AboutPage'));
@@ -53,6 +55,7 @@ function App() {
 
             <Route path="buildingmaterials" element={<BuildingMaterialsPage />} />
             <Route path="services" element={<ExtraServicesPage />} />
+            <Route path="gallery" element={<WorksPage />} />
             <Route path="about" element={<AboutPage />} />
             <Route path="favorite" element={<FavoritePage />} />
             <Route path="*" element={<ErrorPage />} />

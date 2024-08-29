@@ -183,6 +183,12 @@ const Breadcrumbs = ({ name }) => {
             {t('extraServices')}
           </Link>
         );
+        case 'gallery':
+          return (
+            <Link to={'/services'} className="p-[2px] md:p-1">
+              {t('photogallery')}
+            </Link>
+          );
       case 'about':
         return (
           <Link to={'/about'} className="p-[2px] md:p-1">

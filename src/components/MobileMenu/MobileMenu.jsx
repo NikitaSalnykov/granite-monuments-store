@@ -229,9 +229,14 @@ export const MobileMenu = ({ isOpen, onCloseModal }) => {
                         {t('buildingMaterials')}
                       </Link>
                     </div>
-                    <div className=" px-4 py-2 cursor-pointer rounded-sm font-semibold flex items-center justify-center tracking-widest ">
+                    {/* <div className=" px-4 py-2 cursor-pointer rounded-sm font-semibold flex items-center justify-center tracking-widest ">
                       <Link to={'/services'} onClick={() => closeMenu()}>
                         {t('extraServices')}
+                      </Link>
+                    </div> */}
+                    <div className=" px-4 py-2 cursor-pointer rounded-sm font-semibold flex items-center justify-center tracking-widest ">
+                      <Link to={'/gallery'} onClick={() => closeMenu()}>
+                        {t('photogallery')}
                       </Link>
                     </div>
                     <div className="px-4 py-2 cursor-pointer rounded-sm font-semibold flex items-center justify-center tracking-widest ">
