@@ -8,9 +8,24 @@ import relatedproductsImg from '../../images/Сопутствующие-това
 import buildingmaterials from '../../images/Стройматериалы.png';
 import extraImg from '../../images/img-2.jpg';
 import { AllCategoriesList } from '../CategoriesList/AllCategoriesList';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { setFilterCategory, setFilterName, setFilterNew, setFilterPrice, setFilterSale, setFilterType } from '../../Redux/filter/filterSlice';
+
 export const AllCategories = () => {
   
   const { t } = useTranslation();
+  const dispatch = useDispatch()
+  
+
+  useEffect(() => {
+    dispatch(setFilterName(''));
+    dispatch(setFilterPrice(''));
+    dispatch(setFilterType(''));
+    dispatch(setFilterCategory(''));
+    dispatch(setFilterSale(false));
+    dispatch(setFilterNew(false));
+  }, []);
   
   const categories = [
     {
