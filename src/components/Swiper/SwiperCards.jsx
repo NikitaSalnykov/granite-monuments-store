@@ -12,7 +12,7 @@ import 'swiper/css/scrollbar';
 export const SwiperCards = ({ products }) => {
   const breakpoints = {
     1280: {
-      slidesPerView: 3,
+      slidesPerView: 5,
     },
     760: {
       slidesPerView: 2,
