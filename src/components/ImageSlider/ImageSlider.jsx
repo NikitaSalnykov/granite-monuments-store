@@ -41,19 +41,19 @@ const ImageSlider = ({ images }) => {
         <Svg id={'icon-arrow'} size={24} fill={'black'} stroke={'black'} />
       </button>
 
-      <div className="w-full">
+      <div className="w-full h-full">
         {images.map((image, index) => (
           <div
             key={index}
             style={{ display: currentIndex === index + 1 ? 'block' : 'none' }}
-            className="transition-opacity duration-300 absolute w-full top-0 left-0"
+            className="transition-opacity duration-300 absolute w-full  top-0 left-0"
           >
             <PhotoProvider>
               <PhotoView src={image}>
                 <img
                   src={image}
                   alt={`image-${index}`}
-                  className="w-full h-auto object-cover cursor-pointer max-w-[180px] lg:max-w-[300px] mx-auto my-auto"
+                  className="w-full  cursor-pointer  object-scale-down object-top	"
                 />
               </PhotoView>
             </PhotoProvider>
