@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import ProductDetails from '../../components/ProductDetails/ProductDetails';
-import { useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   fetchProducts,
@@ -18,10 +18,14 @@ import { ProductsRecommendation } from '../../components/ProductsRecommendation/
 const ProductPage = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
+  const location = useLocation()
+  const pathname = location.pathname
+
+
 
   useEffect(() => {
     dispatch(getProductById(id));
-  }, [dispatch]);
+  }, [dispatch, pathname]);
 
   const product = useSelector(getSelectedProducts);
   const isLoading = useSelector(getIsLoadingSelectedProduct);
@@ -42,6 +46,7 @@ const ProductPage = () => {
                 category={product.category}
                 type={product.type}
                 article={product.article}
+                id={product._id}
               />
             )}
 

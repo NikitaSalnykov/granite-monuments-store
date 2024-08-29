@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import image from '../../images/example.webp';
 import { useTranslation } from 'react-i18next';
 import ImageSlider from '../ImageSlider/ImageSlider';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { ContactList } from '../../components/ContactsList/ContactList';
 import { resultPrice } from '../../helpers/resultPrice';
 import Svg from '../Svg/Svg';
@@ -18,6 +18,7 @@ const ProductDetails = ({
   price,
   discount,
   article,
+  id
 }) => {
   const { t } = useTranslation();
   const { i18n } = useTranslation();

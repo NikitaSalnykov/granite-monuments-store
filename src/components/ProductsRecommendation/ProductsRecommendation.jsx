@@ -36,7 +36,6 @@ export const ProductsRecommendation = ({
       (el) => el.availability === true && el._id !== id
     );
 
-    console.log(filtered);
     if (category && typeof category === 'string' && !type) {
       filtered = filtered.filter((el) => el.category.includes(category));
       title = `${t('recomandation')} ${t(category)}`;

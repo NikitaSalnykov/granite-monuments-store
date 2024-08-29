@@ -20,6 +20,8 @@ export const ProductCard = ({
   const { i18n } = useTranslation();
   const currentLanguage = i18n.language;
 
+  
+
   const descriptionText =
     currentLanguage === 'ua'
       ? replaceNewLines(description.ua)

@@ -25,6 +25,8 @@ export const SwiperCards = ({ products }) => {
     },
   };
 
+  console.log('dsad', products);
+
   return (
     <>
       {products && (

@@ -26,7 +26,8 @@ const BuildingMaterialsPage = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    
+    dispatch(setFilterCategory('')); 
+    dispatch(setFilterType('')); 
     return () => {
       dispatch(setFilterCategory('')); 
       dispatch(setFilterType('')); 

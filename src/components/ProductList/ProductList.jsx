@@ -64,12 +64,13 @@ export const ProductList = ({ products }) => {
         dispatch(setFilterType(''));
         dispatch(setFilterCategory(''));
       }
-
-      if (location.pathname.includes('buildingMaterials')) {
-        dispatch(setFilterCategory(''));
-        dispatch(setFilterType(''));
-      }
     }
+    
+    if (location.pathname.includes('buildingMaterials')) {
+      dispatch(setFilterCategory(''));
+      dispatch(setFilterType(''));
+    }
+    
   }, [location.search, dispatch]);
 
   useEffect(() => {
