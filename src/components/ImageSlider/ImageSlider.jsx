@@ -53,7 +53,7 @@ const ImageSlider = ({ images }) => {
                 <img
                   src={image}
                   alt={`image-${index}`}
-                  className="w-full h-auto object-cover cursor-pointer "
+                  className="w-full h-auto object-cover cursor-pointer max-w-[180px] lg:max-w-[300px] mx-auto my-auto"
                 />
               </PhotoView>
             </PhotoProvider>

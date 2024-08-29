@@ -33,7 +33,7 @@ export const ProductCard = ({
         <div className="flex flex-col justify-between h-full">
           <div>
             <div
-              className={`max-h-[300px] min-h-[150px] md:max-h-[400px] md:min-h-[200px] w-[100%] rounded-lg bg-slate-300 text-center overflow-hidden ${
+              className={`max-h-[350px] min-h-[150px] md:max-h-[400px] md:min-h-[200px] w-[100%] rounded-lg bg-slate-300 text-center overflow-hidden ${
                 !availability && 'opacity-40 grayscale-[100%]'
               }`}
             >
