@@ -112,8 +112,7 @@ export const AddProductForm = ({ onCloseModal }) => {
     formData.append('description[ru]', data.descriptionRU);
     formData.append('article', data.article);
     formData.append('mainPhoto', data.mainPhoto);
-
-    // Добавляем extraPhotos, если они существуют
+    
     if (data.extraPhotos && data.extraPhotos.length > 0) {
       [...data.extraPhotos].forEach((file) => {
         formData.append('extraPhotos', file);

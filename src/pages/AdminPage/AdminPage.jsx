@@ -1,3 +1,4 @@
+// AdminPage.jsx
 import React, { useEffect, useState } from 'react';
 import { Container } from '../../components/Container/Container';
 import { AdminNavbar } from './AdminNavbar';
@@ -41,6 +42,9 @@ import { useTranslation } from 'react-i18next';
 import { Title } from '../../components/Title/Title';
 import { cutText } from '../../helpers/cutText';
 import { resultPrice } from '../../helpers/resultPrice';
+import { fetchGallery, deletePhoto } from '../../Redux/gallery/galleryOperation';
+import { getGallery } from '../../Redux/gallery/gallerySelectors';
+
 const AdminPage = () => {
   const [selectedCategory, setSelectedCategory] = useState('products');
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -48,10 +52,15 @@ const AdminPage = () => {
   const [isModalDeleteProductOpen, setModalDeleteProductOpen] = useState(false);
   const [isModalProductOpen, setModalProductOpen] = useState(false);
   const [isModalReviewOpen, setModalReviewOpen] = useState(false);
+  const [isModalGalleryOpen, setModalGalleryOpen] = useState(false);
+
+  // Добавляем состояние для модала галереи, если требуется
+  // const [isModalGalleryOpen, setModalGalleryOpen] = useState(false);
 
   const dispatch = useDispatch();
   const products = useSelector(getProducts);
   const reviews = useSelector(getReviews);
+  const gallery = useSelector(getGallery);
   const { t } = useTranslation();
   const isLoadingProducts = useSelector(getIsLoadingProducts);
   const isLoadingReview = useSelector(getIsLoadingReview);
@@ -69,7 +78,7 @@ const AdminPage = () => {
     dispatch(setFilterType(''));
     dispatch(setFilterSale(false));
     dispatch(setFilterNew(false));
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(fetchProducts());
@@ -84,9 +93,19 @@ const AdminPage = () => {
     dispatch(fetchReviews());
   }, [dispatch, isModalReviewOpen]);
 
+  useEffect(() => {
+    dispatch(fetchGallery());
+  }, [dispatch, isModalGalleryOpen]);
+
+
   const handleDeleteReview = (review) => {
     dispatch(deleteReview(review._id));
     dispatch(fetchReviews());
+  };
+
+  const handleDeletePhoto = (photo) => {
+    dispatch(deletePhoto(photo._id));
+    // dispatch(fetchGallery());
   };
 
   const onTogleProductModal = () => {
@@ -95,6 +114,10 @@ const AdminPage = () => {
 
   const onTogleReviewModal = () => {
     setModalReviewOpen(!isModalReviewOpen);
+  };
+
+  const onTogleGalleryModal = () => {
+    setModalGalleryOpen(!isModalGalleryOpen);
   };
 
   const onTogleEditProductModal = (product) => {
@@ -225,6 +248,11 @@ const AdminPage = () => {
       });
   };
 
+  // Добавляем функцию для отображения галереи, если требуется
+  // const filteredGallery = (gallery) => {
+  //   // Логика фильтрации галереи
+  // };
+
   return (
     <Container>
       <Title
@@ -240,17 +268,23 @@ const AdminPage = () => {
           onTogleProductModal={onTogleProductModal}
           isModalReviewOpen={isModalReviewOpen}
           onTogleReviewModal={onTogleReviewModal}
+          onTogleGalleryModal={onTogleGalleryModal}
+          isModalGalleryOpen={isModalGalleryOpen}
         />
 
-        <div className="lg:ml-64 lg:pl-4 lg:flex lg:flex-col lg:w-75% mx-[2px] md:mx-2 min-h-screen">
+        <div className="lg:ml-64 lg:pl-4 lg:flex lg:flex-col lg:w-3/4 mx-[2px] md:mx-2 min-h-screen">
           {!isLoadingProducts && !isLoadingReview ? (
-            <div className="bg-white rounded-lg p-2 shadow-md mb-20  md:p-4 min-h-screen">
+            <div className="bg-white rounded-lg p-2 shadow-md mb-20 md:p-4 min-h-screen">
               <table className="table-auto w-full text-xs md:text-md lg:text-md">
                 <thead>
                   <tr>
                     <th className="px-1 md:px-2 py-2 text-left border-b-2 w-1/3">
                       <h2 className="text-ml font-bold text-gray-600">
-                        {selectedCategory.toUpperCase()}
+                      {selectedCategory === 'products'
+              ? 'Товары'
+              : selectedCategory === 'reviews'
+              ? 'Отзывы'
+              : 'Галлерея'}
                       </h2>
                     </th>
                     <th className="px-1 md:px-2 py-2 text-left border-b-2 w-1/3"></th>
@@ -261,12 +295,12 @@ const AdminPage = () => {
                 <tbody>
                   {selectedCategory === 'products' &&
                     products &&
-                    newProducts(products).map((el, index) => (
+                    newProducts(products).map((el) => (
                       <React.Fragment key={el._id}>
                         <tr className="" key={el._id}>
                           <td className="px-1 md:px-2 py-2 text-left align-center w-full md:w-1/3">
                             <div>
-                              <h2 className=" font-semibold">{el.name.ru}</h2>
+                              <h2 className="font-semibold">{el.name.ru}</h2>
                               <p className="text-[8px] md:text-xs">
                                 {formattedDate(el.createdAt)}
                               </p>
@@ -313,7 +347,7 @@ const AdminPage = () => {
                           <td className="px-1 md:px-2 py-2 text-right text-cyan-500 w-1/3">
                             {el.discount ? (
                               <div className="">
-                                <p className=" line-through">
+                                <p className="line-through">
                                   {el.price}
                                   <span className="font-bold">₴</span>
                                 </p>
@@ -335,15 +369,15 @@ const AdminPage = () => {
                           </td>
                         </tr>
                         <tr className="border-b w-full">
-                          <td className="px-1 pb-3  text-white flex gap-2 md:gap-4">
+                          <td className="px-1 pb-3 text-white flex gap-2 md:gap-4">
                             <div
-                              className=" cursor-pointer hover:opacity-80 transition-opacity px-42 p-1 bg-red rounded-md flex justify-center items-center"
+                              className="cursor-pointer hover:opacity-80 transition-opacity px-4 py-1 bg-red rounded-md flex justify-center items-center"
                               onClick={() => onTogleDeleteProductModal(el)}
                             >
                               Удалить
                             </div>
                             <div
-                              className=" cursor-pointer hover:opacity-80 transition-opacity p-1 bg-green-500 rounded-md flex justify-center items-center"
+                              className="cursor-pointer hover:opacity-80 transition-opacity p-1 bg-green-500 rounded-md flex justify-center items-center"
                               onClick={() => onTogleEditProductModal(el)}
                             >
                               Изменить
@@ -352,9 +386,10 @@ const AdminPage = () => {
                         </tr>
                       </React.Fragment>
                     ))}
+
                   {selectedCategory === 'reviews' &&
                     reviews &&
-                    filteredReviews(reviews).map((el, index) => (
+                    filteredReviews(reviews).map((el) => (
                       <tr className="border-b" key={el._id}>
                         <td className="px-1 md:px-2 py-2 text-left align-center w-1/4 md:w-1/2">
                           <div>
@@ -366,14 +401,14 @@ const AdminPage = () => {
                         </td>
                         <td className="px-1 md:px-2 py-2 text-left align-center w-1/2">
                           <div>
-                            <p className="bold">{el.title}</p>
+                            <p className="font-bold">{el.title}</p>
                             <p>{el.text}</p>
                           </div>
                         </td>
                         <td className="px-1 md:px-2 py-2 text-left w-1/4 text-white">
                           <div className="flex flex-col gap-1">
                             <div
-                              className=" cursor-pointer hover:opacity-80 transition-opacity px-42 p-1 bg-red rounded-md flex justify-center items-center"
+                              className="cursor-pointer hover:opacity-80 transition-opacity px-4 py-1 bg-red rounded-md flex justify-center items-center"
                               onClick={() => handleDeleteReview(el)}
                             >
                               Удалить
@@ -382,6 +417,45 @@ const AdminPage = () => {
                         </td>
                       </tr>
                     ))}
+
+                  {selectedCategory === 'gallery' && (
+                    <tr >
+                      <th className="px-1 md:px-2 py-2 text-left border-b-2 w-1/3">
+                        Фото
+                      </th>
+                      <th className="px-1 md:px-2 py-2 text-left border-b-2 w-1/3">
+                        Название
+                      </th>
+                      <th className="px-1 md:px-2 py-2 text-left border-b-2 w-1/3">
+                        Текст
+                      </th>
+                      <th className="px-1 md:px-2 py-2 text-left border-b-2 w-1/3">
+                      </th>
+                    </tr>
+                  )}
+                  {selectedCategory === 'gallery' && gallery.length > 0 &&  
+                    gallery.map((el) => (
+                    <tr className="border-b"  key={el && el._id}>
+                      <td className="px-1 md:px-2 py-2 text-left w-1/4">
+                        {el && el.mainPhoto ? <img className='w-16 h-16 md:w-[140px] md:h-[140px] object-cover rounded' src={el.mainPhoto} alt={el.title}/> : <div className="w-16 h-16 bg-gray-200 rounded"></div>}
+                      </td>
+                      <td className="px-1 md:px-2 py-2 text-left w-1/4">
+                      {el && el.title ? cutText(el.title, 25) : ''}
+                      </td>
+                      <td className="px-1 md:px-2 py-2 text-left w-1/4">
+                      {el && el.text ? cutText(el.text, 25) : ''}
+                      </td>
+                          <td className="px-1 pb-3 pt-4 text-white flex gap-2 md:gap-4">
+                            <div
+                              className="cursor-pointer hover:opacity-80 transition-opacity px-4 py-1 bg-red rounded-md"
+                              onClick={() => handleDeletePhoto(el)}
+                            >
+                              Удалить
+                            </div>
+                          </td>
+                    </tr>
+                    )
+                  )}
                 </tbody>
               </table>
             </div>
@@ -398,7 +472,7 @@ const AdminPage = () => {
         <DeleteProduct
           onCloseModal={onTogleDeleteProductModal}
           product={selectedProduct}
-        />{' '}
+        />
       </BasicModal>
       <BasicModal
         isOpen={isModalEditProductOpen}

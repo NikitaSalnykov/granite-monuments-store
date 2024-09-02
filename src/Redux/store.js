@@ -6,6 +6,7 @@ import favoriteSlice from './favorites/favoriteSlice';
 import { authSlice } from './auth/auth-slice';
 import { productsStateReducer } from './products/productsSlice';
 import { reviewsReducer } from './reviews/reviewsSlice';
+import { galleryReducer } from './gallery/gallerySlice';
 
 const favoritesPersistConfig = {
   key: 'favorites',
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
   auth: persistReducer(authPersistConfig, authSlice.reducer),
   filter: filterSlice,
   reviews: reviewsReducer,
+  gallery: galleryReducer,
   products: productsStateReducer,
   favorites: persistReducer(favoritesPersistConfig, favoriteSlice),
 });

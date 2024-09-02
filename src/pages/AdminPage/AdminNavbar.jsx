@@ -2,8 +2,10 @@ import { Filter } from '../../components/Filter/Filter';
 import AddProduct from '../../components/Modals/AdminModals/AddProduct';
 import { BasicModal } from '../../components/Modals/BasicModal/BasicModal';
 import { CreateReview } from '../../components/Modals/Review/CreateReview';
+import { CreatePhoto } from '../../components/Modals/Gallery/AddPhoto';
 import Leaving from '../../components/Modals/Leaving/Leaving';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export const AdminNavbar = ({
   changeCategory,
@@ -12,8 +14,11 @@ export const AdminNavbar = ({
   onTogleProductModal,
   isModalReviewOpen,
   onTogleReviewModal,
+  onTogleGalleryModal,
+  isModalGalleryOpen
 }) => {
   const [isLeavingModalOpen, setLeavingModalOpen] = useState(false);
+  const { t } = useTranslation();
 
   const onToogleLeavingModal = () => {
     setLeavingModalOpen(!isLeavingModalOpen);
@@ -24,6 +29,8 @@ export const AdminNavbar = ({
       onTogleProductModal();
     } else if (selectedCategory === 'reviews') {
       onTogleReviewModal();
+    } else if (selectedCategory === 'gallery') {
+      onTogleGalleryModal();
     } else {
       console.log('Error');
     }
@@ -33,13 +40,13 @@ export const AdminNavbar = ({
     <>
       <div
         id="sideNav"
-        className="hidden lg:block bg-white absolute w-64  rounded-lg border-none "
+        className="hidden lg:block bg-white absolute w-64 rounded-lg border-none"
       >
         <div className="p-4 space-y-2 gap-2">
           <div
             onClick={() => changeCategory('products')}
             className={`cursor-pointer px-2 py-1 flex items-center space-x-4 rounded-md text-gray-500 group ${
-              selectedCategory === 'products' && 'text-white bg-black'
+              selectedCategory === 'products' ? 'text-white bg-black' : ''
             }`}
           >
             Товары
@@ -47,10 +54,18 @@ export const AdminNavbar = ({
           <div
             onClick={() => changeCategory('reviews')}
             className={`cursor-pointer px-2 py-1 flex items-center space-x-4 rounded-md text-gray-500 group ${
-              selectedCategory === 'reviews' && 'text-white bg-black'
+              selectedCategory === 'reviews' ? 'text-white bg-black' : ''
             }`}
           >
             Отзывы
+          </div>
+          <div
+            onClick={() => changeCategory('gallery')}
+            className={`cursor-pointer px-2 py-1 flex items-center space-x-4 rounded-md text-gray-500 group ${
+              selectedCategory === 'gallery' ? 'text-white bg-black' : ''
+            }`}
+          >
+            Галерея
           </div>
           {selectedCategory === 'products' ? (
             <Filter
@@ -59,22 +74,24 @@ export const AdminNavbar = ({
               filterPrice={true}
               filterSale={true}
             />
-          ) : (
+          ) : selectedCategory === 'reviews' ? (
             <Filter nameFilter={true} />
-          )}
+          ) : null}
           <div
             onClick={handleToggleModal}
             className="hover:cursor-pointer hover:opacity-85 shadow-md p-2 font-bold bg-black text-white rounded-full uppercase text-center"
           >
             {selectedCategory === 'products'
               ? 'Добавить товар'
-              : 'Добавить отзыв'}
+              : selectedCategory === 'reviews'
+              ? 'Добавить отзыв'
+              : 'Добавить в галерею'}
           </div>
         </div>
       </div>
 
-      <div className="lg:hidden w-fullborder-none flex justify-center">
-        <div className="flex flex-wrap flex-col justify-center gap-4 items-center bg-[#ffffffa9] w-[400px] p-4 mb-2  rounded-lg ">
+      <div className="lg:hidden w-full border-none flex justify-center">
+        <div className="flex flex-wrap flex-col justify-center gap-4 items-center bg-[#ffffffa9] w-[400px] p-4 mb-2 rounded-lg">
           <div
             onClick={onToogleLeavingModal}
             className="hover:cursor-pointer text-sm hover:opacity-85 text-center underline"
@@ -85,7 +102,7 @@ export const AdminNavbar = ({
             <div
               onClick={() => changeCategory('products')}
               className={`cursor-pointer px-2 py-1 flex items-center space-x-4 rounded-md text-gray-500 group ${
-                selectedCategory === 'products' && 'text-white bg-black'
+                selectedCategory === 'products' ? 'text-white bg-black' : ''
               }`}
             >
               Товары
@@ -93,10 +110,18 @@ export const AdminNavbar = ({
             <div
               onClick={() => changeCategory('reviews')}
               className={`cursor-pointer px-2 py-1 flex items-center space-x-4 rounded-md text-gray-500 group ${
-                selectedCategory === 'reviews' && 'text-white bg-black'
+                selectedCategory === 'reviews' ? 'text-white bg-black' : ''
               }`}
             >
               Отзывы
+            </div>
+            <div
+              onClick={() => changeCategory('gallery')}
+              className={`cursor-pointer px-2 py-1 flex items-center space-x-4 rounded-md text-gray-500 group ${
+                selectedCategory === 'gallery' ? 'text-white bg-black' : ''
+              }`}
+            >
+              Галерея
             </div>
           </div>
           <div className="flex gap-4 flex-wrap items-center justify-center">
@@ -106,7 +131,9 @@ export const AdminNavbar = ({
             >
               {selectedCategory === 'products'
                 ? 'Добавить товар'
-                : 'Добавить отзыв'}
+                : selectedCategory === 'reviews'
+                ? 'Добавить отзыв'
+                : 'Добавить в галерею'}
             </div>
           </div>
           {selectedCategory === 'products' ? (
@@ -116,9 +143,9 @@ export const AdminNavbar = ({
               filterPrice={true}
               filterSale={true}
             />
-          ) : (
+          ) : selectedCategory === 'reviews' ? (
             <Filter nameFilter={true} />
-          )}
+          ) : null}
         </div>
       </div>
 
@@ -132,6 +159,11 @@ export const AdminNavbar = ({
       <BasicModal isOpen={isModalReviewOpen} onCloseModal={onTogleReviewModal}>
         <CreateReview onCloseModal={onTogleReviewModal} />
       </BasicModal>
+
+      <BasicModal isOpen={isModalGalleryOpen} onCloseModal={onTogleGalleryModal}>
+        <CreatePhoto onCloseModal={onTogleGalleryModal} />
+      </BasicModal>
+
 
       <BasicModal
         isOpen={isLeavingModalOpen}
