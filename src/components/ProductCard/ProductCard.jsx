@@ -29,7 +29,7 @@ export const ProductCard = ({
 
   return (
     <div
-      className={`relative border-solid border-[1px] p-3 border-grey-900 transition shadow-lg bg-[#ffffffa8] hover:bg-[#ffffffcb]`}
+      className={`relative border-solid border-[1px] p-3 border-grey-900 shadow-lg bg-[#ffffffa8] hover:bg-[#ffffffcb] hover:scale-[101%] hover:shadow-xl transition`}
     >
       <Link to={`/products/${category}/${type}/${id}`}>
         <div className="flex flex-col justify-between h-full">

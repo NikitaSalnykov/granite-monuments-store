@@ -46,7 +46,7 @@ dispatch(fetchGallery())
 
         {photos.slice(0, visibleCount).map((el) => 
             <PhotoView key={el._id} src={el.mainPhoto} >
-              <div className="w-full  overflow-hidden relative shadow-md rounded-lg">
+              <div className="w-full  overflow-hidden relative shadow-md rounded-lg hover:shadow-lg hover:scale-[101%] transition">
                             <img
                 src={el.mainPhoto}
                 alt={`image-${el.title}`}
@@ -55,7 +55,7 @@ dispatch(fetchGallery())
               <img
                 src={el.mainPhoto}
                 alt={`bg-${el.title}`}
-                className="w-full h-full cursor-pointer  object-scale-down	 absolute	top-0 right-0 "
+                className="w-full h-full cursor-pointer  object-scale-down hover:object-cover	 absolute	top-0 right-0 "
               />
 
                             </div>
