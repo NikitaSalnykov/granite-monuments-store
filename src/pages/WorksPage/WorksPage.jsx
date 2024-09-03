@@ -31,7 +31,7 @@ dispatch(fetchGallery())
   return (
     <Section>
       <Container>
-      <Title title={t('photogallery')} description={t('our_works_description')}/>
+      <Title title={t('photogallery')}/>
       {!isLoading ? (<div>
       <div>
         {photos && photos.length > 0 ? (<div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4 justify-center items-center">
