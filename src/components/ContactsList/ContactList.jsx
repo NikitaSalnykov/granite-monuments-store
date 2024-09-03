@@ -30,8 +30,8 @@ export const ContactList = ({color="black", small=false, column=false}) => {
       <div className="flex gap-x-2 py-1 justify-center items-center">
         <Svg id={'icon-telegram'} size={!small ? 24 : 18} fill={color} />
         <a
-          href="https://google.com"
-          className={`cursor-pointer rounded-sm ${!small ? "sm:text-md md:text-lg" : "sm:text-sm md:text-md"} font-medium hover:underline `}
+  href="https://t.me/+380671356226"
+  className={`cursor-pointer rounded-sm ${!small ? "sm:text-md md:text-lg" : "sm:text-sm md:text-md"} font-medium hover:underline `}
         >
           {t('Telegram')}
         </a>
@@ -39,8 +39,8 @@ export const ContactList = ({color="black", small=false, column=false}) => {
       <div className="flex gap-x-2 py-1 justify-center items-center ">
         <Svg id={'icon-viber'} size={!small ? 24 : 18} fill={color} />
         <a
-          href="https://google.com"
-          className={`cursor-pointer rounded-sm ${!small ? "sm:text-md md:text-lg" : "sm:text-sm md:text-md"} font-medium hover:underline `}
+  href="viber://chat?number=+380671356226"
+  className={`cursor-pointer rounded-sm ${!small ? "sm:text-md md:text-lg" : "sm:text-sm md:text-md"} font-medium hover:underline `}
         >
           {t('Viber')}
         </a>

@@ -21,17 +21,20 @@ const Footer = () => {
           </Link>
 
           <div className="mt-4">
-            <span className="w-full flex justify-center mt-2 sm:ml-auto sm:mt-0 sm:justify-center">
+            <div className="w-full flex justify-center mt-2 sm:ml-auto sm:mt-0 sm:justify-center">
               <Link className=" text-white cursor-pointer hover:opacity-80">
                 <Svg id={'icon-viber'} fill={'white'} size={24} />
               </Link>
-              <Link className="ml-3 text-white cursor-pointer hover:opacity-80">
+              <a   href="https://t.me/+380671356226"
+  target="_blank"
+                      rel="noreferrer" className="ml-3 text-white cursor-pointer hover:opacity-80">
                 <Svg id={'icon-telegram'} fill={'white'} size={24} />
-              </Link>
-              <Link className="ml-3 text-white cursor-pointer hover:opacity-80">
-                <Svg id={'icon-phone'} fill={'white'} size={24} />
-              </Link>
-            </span>
+              </a>
+              <a   href="viber://chat?number=+380671356226"
+  target="_blank"
+                      rel="noreferrer" className=" text-white cursor-pointer hover:opacity-80">
+              </a>
+            </div>
           </div>
         </div>
         <div className="flex flex-wrap flex-grow mt-10 -mb-10 text-center md:pl-20 md:mt-0 md:text-left">
@@ -183,6 +186,7 @@ const Footer = () => {
               {t('about')}
             </h2>
             <nav className="mb-10 list-none flex flex-col gap-3">
+              <ul>
               <li>
                 <a
                   href="mailto:test@gmail.com"
@@ -198,12 +202,13 @@ const Footer = () => {
               </li>
               <li>
                 <a
-                  href="tel:+1234567890"
+                  href="tel:+380671356226"
                   className="text-white cursor-pointer hover:text-gray-200"
                 >
-                  +123-456-7890
+                  +380671356226
                 </a>
               </li>
+              </ul>
             </nav>
           </div>
         </div>

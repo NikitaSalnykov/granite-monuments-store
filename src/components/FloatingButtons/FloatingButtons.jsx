@@ -78,16 +78,16 @@ export const FloatingButtons = () => {
                   </p>
                   <div className="flex gap-4 smOnly:mr-4">
                     <a
-                      href="https://www.google.com/"
-                      target="_blank"
+  href="https://t.me/+380671356226"
+  target="_blank"
                       rel="noreferrer"
                     >
                       {' '}
                       <Svg id={'icon-telegram'} size={42} fill={'white'} />
                     </a>
                     <a
-                      href="https://www.google.com/"
-                      target="_blank"
+  href="viber://chat?number=+380671356226"
+  target="_blank"
                       rel="noreferrer"
                     >
                       {' '}
