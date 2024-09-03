@@ -8,6 +8,8 @@ import { Button } from '../../components/Button/Button';
 import { getGallery, getIsLoading } from '../../Redux/gallery/gallerySelectors';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchGallery } from '../../Redux/gallery/galleryOperation';
+import { cutText } from '../../helpers/cutText'
+import { CloseButton,  DragToolbar,  SlideArrowLeft, SlideArrowRight, SlideCountText, SlideDownload  } from 'react-image-previewer/ui'
 
  const WorksPage = () => {
   const { t } = useTranslation();
@@ -33,20 +35,34 @@ dispatch(fetchGallery())
       {!isLoading ? (<div>
       <div>
         {photos && photos.length > 0 ? (<div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4 justify-center items-center">
-        {photos.slice(0, visibleCount).map((el, index) => 
-            <PhotoProvider>
-            <PhotoView src={el.mainPhoto}>
-              <div className="w-full h-[300px] md:h-[500px] overflow-hidden">
+        <PhotoProvider cale={0.5} maskOpacity={0.9}    overlayRender={props => {
+     return (
+       <>
+         <DragToolbar {...props} />
+         <CloseButton onClick={props. onClose} />
+       </>
+     )
+   }}>
+
+        {photos.slice(0, visibleCount).map((el) => 
+            <PhotoView key={el._id} src={el.mainPhoto} >
+              <div className="w-full  overflow-hidden relative shadow-md rounded-lg">
+                            <img
+                src={el.mainPhoto}
+                alt={`image-${el.title}`}
+                className="w-full  h-[240px]  lg:h-[400px] cursor-pointer  object-cover blur-xl brightness-125"
+              />
               <img
                 src={el.mainPhoto}
-                alt={`image-${index}`}
-                className="w-full h-full cursor-pointer  object-cover  hover:object-scale-down	"
+                alt={`bg-${el.title}`}
+                className="w-full h-full cursor-pointer  object-scale-down	 absolute	top-0 right-0 "
               />
-              </div>
+
+                            </div>
+
             </PhotoView>
-          </PhotoProvider>
         )}
-   
+             </PhotoProvider>
 </div>) : (
               <div className="w-full flex justify-center items-center mt-8 font-manrope text-gray-700">
                 {t('not_found')}

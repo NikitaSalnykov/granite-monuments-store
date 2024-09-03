@@ -53,7 +53,7 @@ export const CreatePhoto = ({ onCloseModal }) => {
     const formData = new FormData();
 
     formData.append('title', data.title);
-    formData.append('text', data.text);
+    if (data.text.trim() !== "") formData.append('text', data.text);
     formData.append('mainPhoto', data.mainPhoto);
     
     return formData;
