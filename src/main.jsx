@@ -12,7 +12,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
   <Provider store={store}>
     <PersistGate persistor={persistor}>
-  <BrowserRouter basename="/granite-monuments-store">
+  <BrowserRouter>
       <App />
       </BrowserRouter>
       </PersistGate>

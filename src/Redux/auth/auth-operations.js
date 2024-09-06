@@ -4,8 +4,8 @@ import { setToken, delToken } from '../operations/handleToken';
 import { data } from 'autoprefixer';
 
 export const instance = axios.create({
-  // baseURL: 'http://localhost:3000',
-  baseURL: 'https://granite-monuments-store.onrender.com',
+  baseURL: 'https://ms.dp.ua',
+  // baseURL: 'https://granite-monuments-store.onrender.com',
 });
 
 // register

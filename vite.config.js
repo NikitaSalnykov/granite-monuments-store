@@ -12,7 +12,7 @@ export default defineConfig({
           assets: '/src/assets'
         },
       },
-      base: '/granite-monuments-store',
+      // base: '/granite-monuments-store',
       server: {proxy: {'/uploads': {target: 'http://localhost:3000'}}}
     });
     
