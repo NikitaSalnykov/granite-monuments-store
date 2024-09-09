@@ -23,9 +23,9 @@ export const ContactList = ({color="black", small=false, column=false}) => {
       </div>
       <div className="flex gap-x-2 py-1 justify-center items-center">
         <Svg id={'icon-phone'} size={!small ? 24 : 18} fill={color} />
-        <p className={`cursor-pointer rounded-sm ${!small ? "sm:text-md md:text-lg" : "sm:text-sm md:text-md"} font-medium hover:underline `}>
-          +38056345654
-        </p>
+        <a href="tel:+38056345654" className={`cursor-pointer rounded-sm ${!small ? "sm:text-md md:text-lg" : "sm:text-sm md:text-md"} font-medium hover:underline`}>
+  +38056345654
+</a>
       </div>
       <div className="flex gap-x-2 py-1 justify-center items-center">
         <Svg id={'icon-telegram'} size={!small ? 24 : 18} fill={color} />

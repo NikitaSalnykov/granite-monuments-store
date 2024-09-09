@@ -185,9 +185,9 @@ const Header = () => {
                 </div>
                 <div className="flex gap-x-2 py-1">
                   <Svg id={'icon-phone'} size={14} fill={'gray'} />
-                  <p className="cursor-pointer rounded-sm text-xs font-manrope hover:bg-gray-100">
+                  <a href="tel:+38056345654"  className="cursor-pointer rounded-sm text-xs font-manrope hover:bg-gray-100">
                     +38056345654
-                  </p>
+                  </a>
                 </div>
               </div>
             </div>

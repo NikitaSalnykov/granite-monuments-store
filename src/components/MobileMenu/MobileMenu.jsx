@@ -70,7 +70,8 @@ export const MobileMenu = ({ isOpen, onCloseModal }) => {
             <div className="w-full h-full" ref={modalRef}>
               <div className="flex h-full flex-col justify-between">
                 <div className="flex items-center justify-between py-4 px-4 md:px-12 w-full ">
-                  <Logo size={42} textSize={20} textColor={'white'} />
+                  <div onClick={() => closeMenu()}><Logo size={42} textSize={20} textColor={'white'} />
+                  </div>
                   <Svg
                     className={`transition-all duration-500 ${
                       isOpenAnimation ? 'rotate-90' : 'rotate-0'
@@ -79,7 +80,7 @@ export const MobileMenu = ({ isOpen, onCloseModal }) => {
                     id={'icon-cross'}
                     size={'24px'}
                     stroke={'black'}
-                    onClick={closeMenu}
+                    onClick={() => closeMenu()}
                   />
                 </div>
 
@@ -269,9 +270,9 @@ export const MobileMenu = ({ isOpen, onCloseModal }) => {
                           </div>
                           <div className="flex gap-x-2 py-1">
                             <Svg id={'icon-phone'} size={18} fill={'gray'} />
-                            <p className="cursor-pointer rounded-sm text-sm font-medium hover:bg-gray-100">
+                            <a href="tel:+38056345654"  className="cursor-pointer rounded-sm text-sm font-medium hover:opacity-60">
                               +38056345654
-                            </p>
+                            </a>
                           </div>
                         </div>
                         <div className="flex justify-center items-center text-sm">
