@@ -49,8 +49,8 @@ export const AllCategories = () => {
       img: buildingmaterials,
     },
     {
-      title: t('extraServices'),
-      link: '/services',
+      title: t('photogallery'),
+      link: '/gallery',
       img: services,
     },
     {
