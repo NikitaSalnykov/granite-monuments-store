@@ -28,7 +28,6 @@ const ProductDetails = ({
     let imgArr = [];
     imgArr.push(image);
     if (extraPhotos && extraPhotos.length > 0) imgArr.push(...extraPhotos);
-    console.log(extraPhotos);
     return imgArr;
   };
 

@@ -196,9 +196,10 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <p className="text-white cursor-pointer hover:text-gray-200">
+                <a       target='_blank'             href="https://maps.app.goo.gl/KbqypbL3wgrXxwdj7?g_st=com.google.maps.preview.copy"
+ className="text-white cursor-pointer hover:text-gray-200">
                   {t('locate')}
-                </p>
+                </a>
               </li>
               <li>
                 <a
@@ -206,6 +207,14 @@ const Footer = () => {
                   className="text-white cursor-pointer hover:text-gray-200"
                 >
                   +380671356226
+                </a>
+              </li>
+              <li>
+                <a
+                  href="tel:+380990508676"
+                  className="text-white cursor-pointer hover:text-gray-200"
+                >
+                  +380990508676
                 </a>
               </li>
               </ul>
@@ -223,7 +232,9 @@ const Footer = () => {
       ) : (
         <div className="w-full bg-black/5 p-4 text-center text-white">
           © 2024 Memorial Service
+
         </div>
+        
       )}
     </footer>
   );

@@ -181,12 +181,15 @@ const Header = () => {
                       clipRule="evenodd"
                     />
                   </svg>
-                  <span className="text-xs font-manrope">{t('locate')}</span>
+                  <a target='_blank'    href="https://maps.app.goo.gl/KbqypbL3wgrXxwdj7?g_st=com.google.maps.preview.copy" className="hover:bg-gray-100 text-xs font-manrope">{t('locate')}</a>
                 </div>
                 <div className="flex gap-x-2 py-1">
                   <Svg id={'icon-phone'} size={14} fill={'gray'} />
-                  <a href="tel:+38056345654"  className="cursor-pointer rounded-sm text-xs font-manrope hover:bg-gray-100">
-                    +38056345654
+                  <a href="tel:+380671356226"  className="cursor-pointer rounded-sm text-xs font-manrope hover:bg-gray-100">
+                    +380671356226
+                  </a>
+                  <a href="tel:+380990508676"  className="cursor-pointer rounded-sm text-xs font-manrope hover:bg-gray-100">
+                    +380990508676
                   </a>
                 </div>
               </div>

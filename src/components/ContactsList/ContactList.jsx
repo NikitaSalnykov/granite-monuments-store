@@ -19,12 +19,18 @@ export const ContactList = ({color="black", small=false, column=false}) => {
             clipRule="evenodd"
           />
         </svg>
-        <span className={` font-medium ${!small ? "sm:text-md md:text-lg" : "sm:text-sm md:text-md"}`}>{t('locate')}</span>
+        <a  target='_blank'   href="https://maps.app.goo.gl/KbqypbL3wgrXxwdj7?g_st=com.google.maps.preview.copy" className={` font-medium ${!small ? "sm:text-md md:text-lg" : "sm:text-sm md:text-md"}`}>{t('locate')}</a>
       </div>
       <div className="flex gap-x-2 py-1 justify-center items-center">
         <Svg id={'icon-phone'} size={!small ? 24 : 18} fill={color} />
-        <a href="tel:+38056345654" className={`cursor-pointer rounded-sm ${!small ? "sm:text-md md:text-lg" : "sm:text-sm md:text-md"} font-medium hover:underline`}>
-  +38056345654
+        <a href="tel:+380671356226" className={`cursor-pointer rounded-sm ${!small ? "sm:text-md md:text-lg" : "sm:text-sm md:text-md"} font-medium hover:underline`}>
+  +380671356226
+</a>
+      </div>
+      <div className="flex gap-x-2 py-1 justify-center items-center">
+        <Svg id={'icon-phone'} size={!small ? 24 : 18} fill={color} />
+        <a href="tel:+380990508676" className={`cursor-pointer rounded-sm ${!small ? "sm:text-md md:text-lg" : "sm:text-sm md:text-md"} font-medium hover:underline`}>
+  +380990508676
 </a>
       </div>
       <div className="flex gap-x-2 py-1 justify-center items-center">

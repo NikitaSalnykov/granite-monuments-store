@@ -270,8 +270,14 @@ export const MobileMenu = ({ isOpen, onCloseModal }) => {
                           </div>
                           <div className="flex gap-x-2 py-1">
                             <Svg id={'icon-phone'} size={18} fill={'gray'} />
-                            <a href="tel:+38056345654"  className="cursor-pointer rounded-sm text-sm font-medium hover:opacity-60">
-                              +38056345654
+                            <a href="tel:+380671356226"  className="cursor-pointer rounded-sm text-sm font-medium hover:opacity-60">
+                              +380671356226
+                            </a>
+                          </div>
+                          <div className="flex gap-x-2 py-1">
+                            <Svg id={'icon-phone'} size={18} fill={'gray'} />
+                            <a href="tel:+380990508676"  className="cursor-pointer rounded-sm text-sm font-medium hover:opacity-60">
+                              +380990508676
                             </a>
                           </div>
                         </div>
