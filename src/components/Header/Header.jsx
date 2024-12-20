@@ -6,6 +6,8 @@ import { Logo } from '../Logo/Logo';
 import Svg from '../Svg/Svg';
 import { Link } from 'react-router-dom';
 
+
+
 const Header = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { t } = useTranslation();
