@@ -50,11 +50,13 @@ const ImageSlider = ({ images }) => {
           >
             <PhotoProvider>
               <PhotoView src={image}>
+                <div className="w-full h-[400px] md:h-[600px]">
                 <img
                   src={image}
                   alt={`image-${index}`}
-                  className="w-full  cursor-pointer  object-scale-down object-top	"
+                  className="w-full h-full cursor-pointer object-center object-scale-down"
                 />
+                </div>
               </PhotoView>
             </PhotoProvider>
             <button
