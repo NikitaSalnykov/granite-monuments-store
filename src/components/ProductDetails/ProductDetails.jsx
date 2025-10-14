@@ -72,7 +72,7 @@ const ProductDetails = ({
             <p className="text-sm leading-none text-black"> {t(type)}</p>
           </div>
         </div>
-        <div className="py-4 border-b border-gray-400 flex items-center justify-between">
+        <div className="py-4 border-b border-gray-400 flex items-center justify-between font-extrabold">
           <p className="text-base leading-4 font-bold text-gray-800 ">
             {t('price')}
           </p>

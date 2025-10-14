@@ -2,8 +2,10 @@ import React from 'react';
 import { Title } from '../Title/Title';
 import { WorksList } from './WorksList';
 import { useTranslation } from 'react-i18next';
-
-
+import img1 from '../../images/work-1.jpg'
+import img2 from '../../images/work-2.jpg'
+import img3 from '../../images/work-3.jpg'
+import img4 from '../../images/work-4.jpg'
 
 export const Works = () => {
 
@@ -11,7 +13,7 @@ const {t} = useTranslation()
 
 const worksArr = [
   {
-    img: 'https://granite.dp.ua/images/service11111.jpg',
+    img: img1,
     title: t('work_1_title'),
     description: t('work_1_title'),
     text: t('work_1_text'),
@@ -19,7 +21,7 @@ const worksArr = [
     link: '/landscaping',
   },
   {
-    img: 'https://ua-ritual.com/images/blagoustroistvo-mogily.jpg',
+    img: img2,
     title: t('work_2_title'),
     description: t('work_2_title'),
     text: t('work_2_text'),
@@ -27,7 +29,7 @@ const worksArr = [
     link: '/monuments',
   },
   {
-    img: 'https://ritual-stone.com.ua/wp-content/uploads/2022/12/Uhod-za-mogiloj.webp',
+    img: img3,
     title: t('work_3_title'),
     description: t('work_3_title'),
     text: t('work_3_text'),
@@ -35,7 +37,7 @@ const worksArr = [
     link: '/about',
   },
   {
-    img: 'https://www.granitas.by/new/ograda3.jpg',
+    img: img4,
     title: t('work_4_title'),
     description: t('work_4_title'),
     text: t('work_4_text'),

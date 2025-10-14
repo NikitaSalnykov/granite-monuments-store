@@ -87,7 +87,7 @@ export const ProductCard = ({
             </div>
           </div>
           <div className="flex gap-2 justify-between mt-2 md:mt-4">
-            <div className="flex gap-2 items-center">
+            <div className="flex gap-2 items-center font-extrabold">
               {discount && discount > 1 ? (
                 <div className="flex gap-[2px] flex-col leading-none justify-center items-center">
                   <div className="flex flex-row gap-1 text-sm leading-none justify-center items-center">
