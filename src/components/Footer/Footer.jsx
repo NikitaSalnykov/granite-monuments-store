@@ -2,6 +2,8 @@ import { Link, useLocation } from 'react-router-dom';
 import { Logo } from '../Logo/Logo';
 import Svg from '../Svg/Svg';
 import { useTranslation } from 'react-i18next';
+import ScrollToTop from '../ScrollToTop/ScrollToTop'; // 👈 добавляем твой компонент
+import { useEffect } from 'react';
 
 const Footer = () => {
   const { t } = useTranslation();
@@ -9,9 +11,16 @@ const Footer = () => {
 
   const pathname = location.pathname;
   const isAboutPage = pathname.includes('about');
+
+
+
   return (
     <footer className="w-fullbody-font bg-black border-t-[1px] border-neutral-600 border-t-solid font-manrope">
+      {/* 👇 компонент, который прокручивает вверх только при смене ссылки футера */}
+      <ScrollToTop />
+
       <div className="container flex flex-col flex-wrap px-5 py-12 md:py-24 mx-auto md:items-center lg:items-start md:flex-row md:flex-no-wrap md:gap-9">
+        {/* Логотип и соцсети */}
         <div className="md:pl-20 flex-shrink-0 justify-center items-center w-[300px] mx-auto text-center md:mx-0 md:text-left ">
           <Link
             to="/"
@@ -22,22 +31,24 @@ const Footer = () => {
 
           <div className="mt-4">
             <div className="w-full flex justify-center mt-2 sm:ml-auto sm:mt-0 sm:justify-center">
-              <Link className=" text-white cursor-pointer hover:opacity-80">
+              <Link className="text-white cursor-pointer hover:opacity-80">
                 <Svg id={'icon-viber'} fill={'white'} size={24} />
               </Link>
-              <a   href="https://t.me/+380671356226"
-  target="_blank"
-                      rel="noreferrer" className="ml-3 text-white cursor-pointer hover:opacity-80">
+              <a
+                href="https://t.me/+380671356226"
+                target="_blank"
+                rel="noreferrer"
+                className="ml-3 text-white cursor-pointer hover:opacity-80"
+              >
                 <Svg id={'icon-telegram'} fill={'white'} size={24} />
-              </a>
-              <a   href="viber://chat?number=+380671356226"
-  target="_blank"
-                      rel="noreferrer" className=" text-white cursor-pointer hover:opacity-80">
               </a>
             </div>
           </div>
         </div>
+
+        {/* Ссылки */}
         <div className="flex flex-wrap flex-grow mt-10 -mb-10 text-center md:pl-20 md:mt-0 md:text-left">
+          {/* --- Монументы --- */}
           <div className="w-full px-4 lg:w-1/4 md:w-1/2">
             <h2 className="mb-3 text-sm font-medium tracking-widest text-gray-400 uppercase title-font">
               {t('monuments')}
@@ -69,6 +80,8 @@ const Footer = () => {
               </li>
             </nav>
           </div>
+
+          {/* --- Благоустройство --- */}
           <div className="w-full px-4 lg:w-1/4 md:w-1/2">
             <h2 className="mb-3 text-sm font-medium tracking-widest text-gray-400 uppercase title-font">
               {t('landscaping')}
@@ -109,7 +122,6 @@ const Footer = () => {
               <li>
                 <Link
                   to="/products?category=landscaping&type=tableSandBenches"
-                  target="_blank"
                   className="text-white cursor-pointer hover:text-gray-200"
                 >
                   {t('tablesAndBenches')}
@@ -133,6 +145,8 @@ const Footer = () => {
               </li>
             </nav>
           </div>
+
+          {/* --- Сопутствующие товары --- */}
           <div className="w-full px-4 lg:w-1/4 md:w-1/2">
             <div>
               <h2 className="mb-3 text-sm font-medium tracking-widest text-gray-400 uppercase title-font">
@@ -165,6 +179,7 @@ const Footer = () => {
                 </li>
               </nav>
             </div>
+
             <div>
               <h2 className="mb-3 text-sm font-medium tracking-widest text-gray-400 uppercase title-font">
                 {t('buildingMaterials')}
@@ -181,60 +196,65 @@ const Footer = () => {
               </nav>
             </div>
           </div>
+
+          {/* --- Контакты --- */}
           <div className="w-full px-4 lg:w-1/4 md:w-1/2">
             <h2 className="mb-3 text-sm font-medium tracking-widest text-gray-400 uppercase title-font">
               {t('about')}
             </h2>
             <nav className="mb-10 list-none flex flex-col gap-3">
               <ul>
-              <li>
-                <a
-                  href="mailto:test@gmail.com"
-                  className="text-white cursor-pointer hover:text-gray-200"
-                >
-                  salnikov.nkt@gmail.com
-                </a>
-              </li>
-              <li>
-                <a       target='_blank'             href="https://maps.app.goo.gl/KbqypbL3wgrXxwdj7?g_st=com.google.maps.preview.copy"
- className="text-white cursor-pointer hover:text-gray-200">
-                  {t('locate')}
-                </a>
-              </li>
-              <li>
-                <a
-                  href="tel:+380671356226"
-                  className="text-white cursor-pointer hover:text-gray-200"
-                >
-                  +380671356226
-                </a>
-              </li>
-              <li>
-                <a
-                  href="tel:+380990508676"
-                  className="text-white cursor-pointer hover:text-gray-200"
-                >
-                  +380990508676
-                </a>
-              </li>
+                <li>
+                  <a
+                    href="mailto:zabor2007@ukr.net"
+                    className="text-white cursor-pointer hover:text-gray-200"
+                  >
+                    zabor2007@ukr.net
+                  </a>
+                </li>
+                <li>
+                  <a
+                    target="_blank"
+                    rel="noreferrer"
+                    href="https://maps.app.goo.gl/KbqypbL3wgrXxwdj7?g_st=com.google.maps.preview.copy"
+                    className="text-white cursor-pointer hover:text-gray-200"
+                  >
+                    {t('locate')}
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="tel:+380671356226"
+                    className="text-white cursor-pointer hover:text-gray-200"
+                  >
+                    +380671356226
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="tel:+380990508676"
+                    className="text-white cursor-pointer hover:text-gray-200"
+                  >
+                    +380990508676
+                  </a>
+                </li>
               </ul>
             </nav>
           </div>
         </div>
       </div>
 
+      {/* Низ футера */}
       {isAboutPage ? (
         <div className="w-full bg-black/5 p-4 text-center text-white">
-          <Link to={'/admin'} className="hover:underline">
+          <Link to="/admin" className="hover:underline">
             © 2024 Memorial Service
           </Link>
         </div>
       ) : (
         <div className="w-full bg-black/5 p-4 text-center text-white">
           © 2024 Memorial Service
-
         </div>
-        
       )}
     </footer>
   );

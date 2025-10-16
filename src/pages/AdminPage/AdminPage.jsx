@@ -298,11 +298,17 @@ const AdminPage = () => {
                     newProducts(products).map((el) => (
                       <React.Fragment key={el._id}>
                         <tr className="" key={el._id}>
-                          <td className="px-1 md:px-2 py-2 text-left align-center w-full md:w-1/3">
+                          <td className="px-1 md:px-2 py-2 text-left align-center w-full md:w-1/3 flex-row flex-wrap">
+                            <div className=" hidden md:block">
+                            <img src={el.mainPhoto} alt="" className='w-[200px] h-[200px] object-cover rounded-lg' />
+                            </div>
                             <div>
                               <h2 className="font-semibold">{el.name.ru}</h2>
-                              <p className="text-[8px] md:text-xs">
+                              <p className="text-[8px] md:text-2xs">
                                 {formattedDate(el.createdAt)}
+                              </p>
+                              <p className="text-[8px] md:text-xs">
+                               Артикль: <span className=' font-bold'>{el.article}</span>
                               </p>
                               <div className="flex gap-1">
                                 <input
